@@ -1,0 +1,17 @@
+%feature("docstring") OTLMR::LinearModelResult
+"The LinearModelResult class is created through the method getResult of a LinearModelAlgorithm.
+
+See Also
+--------
+LinearModel, LinearModelAlgorithm
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTLMR::LinearModelResult::getLinearModel
+"Accessor to the linear model.
+
+Returns
+-------
+linearModel : :class:`~openturns.LinearModel`
+    The linear model."
