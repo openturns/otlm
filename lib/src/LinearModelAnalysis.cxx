@@ -452,17 +452,17 @@ Graph LinearModelAnalysis::drawResidualsVsFitted() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Indices positions(size);
+    Description positions(size);
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
       annotations[index] = (OSS() << index + 1);
       if (residuals(index, 0) < 0.0)
-        positions[index] = 3;
+        positions[index] = "top";
       else
-        positions[index] = 1;
+        positions[index] = "bottom";
     }
-    Text text(dataFull, annotations, 1);
+    Text text(dataFull, annotations, "bottom");
     text.setColor("red");
     text.setTextPositions(positions);
     graph.add(text);
@@ -511,17 +511,17 @@ Graph LinearModelAnalysis::drawScaleLocation() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Indices positions(size);
+    Description positions(size);
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
       annotations[index] = (OSS() << index + 1);
       if (stdresiduals(index, 0) < 0.0)
-        positions[index] = 3;
+        positions[index] = "top";
       else
-        positions[index] = 1;
+        positions[index] = "bottom";
     }
-    Text text(dataFull, annotations, 1);
+    Text text(dataFull, annotations, "bottom");
     text.setColor("red");
     text.setTextPositions(positions);
     graph.add(text);
@@ -574,18 +574,18 @@ Graph LinearModelAnalysis::drawQQplot() const
     }
     const NumericalSample sortedData1(dataWithIndex1.sortAccordingToAComponent(0));
     const NumericalSample sortedData2(dataWithIndex2.sortAccordingToAComponent(0));
-    Indices positions(size);
+    Description positions(size);
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index1 = sortedData1(size - 1 - i, 1);
       const UnsignedInteger index2 = sortedData2(size - 1 - i, 1);
       annotations[index1] = (OSS() << index2 + 1);
       if (dataFull(index1, 1) < 0.0)
-        positions[index1] = 3;
+        positions[index1] = "top";
       else
-        positions[index1] = 1;
+        positions[index1] = "bottom";
     }
-    Text text(dataFull, annotations, 1);
+    Text text(dataFull, annotations, "bottom");
     text.setColor("red");
     text.setTextPositions(positions);
     graph.add(text);
@@ -654,7 +654,7 @@ Graph LinearModelAnalysis::drawCookDistance() const
     {
       Description desc(2);
       desc[1]=annotations[i];
-      Text text(dataFull, desc, 3);
+      Text text(dataFull, desc, "top");
       text.setColor("red");
       graph.add(text);
     }
@@ -699,17 +699,17 @@ Graph LinearModelAnalysis::drawResidualsVsLeverages() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Indices positions(size);
+    Description positions(size);
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
       annotations[index] = (OSS() << index + 1);
       if (cookdistances[index] < 0.0)
-        positions[index] = 3;
+        positions[index] = "top";
       else
-        positions[index] = 1;
+        positions[index] = "bottom";
     }
-    Text text(dataFull, annotations, 1);
+    Text text(dataFull, annotations, "bottom");
     text.setColor("red");
     text.setTextPositions(positions);
     graph.add(text);
@@ -756,12 +756,12 @@ Graph LinearModelAnalysis::drawResidualsVsLeverages() const
     annotation[0] = (OSS() << isovalues[k]);
     Cloud cloud1(diagonal1, "red", "dot");
     graph.add(cloud1);
-    Text text1(diagonal1, annotation, 3);
+    Text text1(diagonal1, annotation, "top");
     text1.setColor("red");
     graph.add(text1);
     Cloud cloud2(diagonal2, "red", "dot");
     graph.add(cloud2);
-    Text text2(diagonal2, annotation, 3);
+    Text text2(diagonal2, annotation, "bottom");
     text2.setColor("red");
     graph.add(text2);
   }
@@ -800,17 +800,17 @@ Graph LinearModelAnalysis::drawCookVsLeverages() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Indices positions(size);
+    Description positions(size);
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
       annotations[index] = (OSS() << index + 1);
       if (cookdistances[index] < 0.0)
-        positions[index] = 3;
+        positions[index] = "top";
       else
-        positions[index] = 1;
+        positions[index] = "bottom";
     }
-    Text text(dataFull, annotations, 1);
+    Text text(dataFull, annotations, "bottom");
     text.setColor("red");
     text.setTextPositions(positions);
     graph.add(text);
@@ -855,7 +855,7 @@ Graph LinearModelAnalysis::drawCookVsLeverages() const
     annotation[1] = (OSS() << isovalues[k]);
     Cloud cloud(diagonal, "red", "dot");
     graph.add(cloud);
-    Text text(diagonal, annotation, 3);
+    Text text(diagonal, annotation, "top");
     text.setColor("red");
     graph.add(text);
   }
