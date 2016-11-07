@@ -452,7 +452,7 @@ Graph LinearModelAnalysis::drawResidualsVsFitted() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Description positions(size);
+    Description positions(size, "top");
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
@@ -511,7 +511,7 @@ Graph LinearModelAnalysis::drawScaleLocation() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Description positions(size);
+    Description positions(size, "top");
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
@@ -574,7 +574,7 @@ Graph LinearModelAnalysis::drawQQplot() const
     }
     const NumericalSample sortedData1(dataWithIndex1.sortAccordingToAComponent(0));
     const NumericalSample sortedData2(dataWithIndex2.sortAccordingToAComponent(0));
-    Description positions(size);
+    Description positions(size, "top");
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index1 = sortedData1(size - 1 - i, 1);
@@ -699,7 +699,7 @@ Graph LinearModelAnalysis::drawResidualsVsLeverages() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Description positions(size);
+    Description positions(size, "top");
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
@@ -800,7 +800,7 @@ Graph LinearModelAnalysis::drawCookVsLeverages() const
       dataWithIndex(i, 1) = i;
     }
     const NumericalSample sortedData(dataWithIndex.sortAccordingToAComponent(0));
-    Description positions(size);
+    Description positions(size, "top");
     for(UnsignedInteger i = 0; i < identifiers; ++i)
     {
       const UnsignedInteger index = sortedData(size - 1 - i, 1);
@@ -879,14 +879,21 @@ void LinearModelAnalysis::load(Advocate & adv)
 
 void LinearModelAnalysis::InitializeResourceMap()
 {
-  UnsignedInteger identifiers = 0;
   try
   {
-    identifiers = ResourceMap::GetAsUnsignedInteger("LinearModelAnalysis-Identifiers");
+    (void) ResourceMap::GetAsUnsignedInteger("LinearModelAnalysis-Identifiers");
   }
   catch(InternalException)
   {
     ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
+  }
+  try
+  {
+    (void) ResourceMap::GetAsBool("LinearModelAnalysis-ChiSquareAdjust");
+  }
+  catch(InternalException)
+  {
+    ResourceMap::SetAsBool("LinearModelAnalysis-ChiSquareAdjust", true);
   }
 }
 
