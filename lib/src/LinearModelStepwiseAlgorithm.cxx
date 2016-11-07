@@ -594,7 +594,7 @@ void LinearModelStepwiseAlgorithm::buildCurrentMatrixFromIndices(const Indices &
   currentX_ = Matrix(size, columns.getSize());
   currentIndices_ = columns;
   for (UnsignedInteger i = 0; i < columns.getSize(); ++i)
-    memcpy(&currentX_(0, columns[i]), &maxX_(0, i), sizeof(NumericalScalar) * size);
+    memcpy(&currentX_(0, i), &maxX_(0, columns[i]), sizeof(NumericalScalar) * size);
 }
 
 
