@@ -33,6 +33,20 @@ the residual couples :math:`(\epsilon_i, \epsilon_{i+1})`, where the residual
 :math:`\epsilon_i  = Ysample_i - \tilde{Y}_i` with
 :math:`\tilde{Y}_i = a_0 + a_1 + Xsample_i`. The OpenTURNS method is
 :class:`~openturns.VisualTest_DrawLinearModelResidual`.
+
+Examples
+--------
+>>> import openturns as ot
+>>> import otlmr
+>>> ot.RandomGenerator.SetSeed(0)
+>>> distribution = ot.Normal()
+>>> Xsample = distribution.getSample(30)
+>>> func = ot.NumericalMathFunction('x', '2 * x + 1')
+>>> Ysample = func(Xsample) + ot.Normal().getSample(30)
+>>> algo = otlmr.LinearModelAlgorithm(Ysample, Xsample)
+>>> result = algo.getResult()
+>>> analysis = otlmr.LinearModelAnalysis(result)
+>>> print(analysis)
 "
 
 // ---------------------------------------------------------------------
@@ -232,7 +246,7 @@ From the previous values per class, we compute the Pearson test statistic :math:
 Finally, the p-value is computed thanks to a chi-square distribution with :math:`dof` degrees of freedom, where
 `dof` is adjusted thanks to the boolean ResouceMap key (`LinearModelAnalysis-ChiSquareAdjust`).
 If key is set to True, degree of freedom is :math:`nClasses - 3`. Otherwise it is :math:`nClasses - 1`
-It is recomanded to test with both `True` and `False` values."
+It is recomanded to test with both ``True`` and ``False`` values."
 
 // ---------------------------------------------------------------------
 
@@ -272,6 +286,7 @@ We chech that the residual is gaussian thanks to :class:`~openturns.NormalityTes
 Returns
 -------
 graph : :class:`~openturns.Graph`
+    Test result class.
 "
 
 // ---------------------------------------------------------------------
@@ -324,42 +339,3 @@ Returns
 graph : :class:`~openturns.Graph`
 "
 
-"
-Examples
---------
->>> import openturns as ot
->>> import otlmr
->>> ot.RandomGenerator.SetSeed(0)
->>> distribution = ot.Normal()
->>> Xsample = distribution.getSample(30)
->>> func = ot.NumericalMathFunction('x', '2 * x + 1')
->>> Ysample = func(Xsample) + ot.Normal().getSample(30)
->>> algo = otlmr.LinearModelAlgorithm(Ysample, Xsample)
->>> result = algo.getResult()
->>> analysis = otlmr.LinearModelAnalysis(result)
->>> print(analysis)
-Call:
-Basis( [[outputVariable]->[1],[outputVariable]->[outputVariable]] )
-
- Coefficients:
-                                   | Estimate    | Std Error   | t value     | Pr(>|t|)    | 
---------------------------------------------------------------------------------------------
-[outputVariable]->[1]              | -0.501231   | 0.0853548   | -5.87232    | 2.58167e-06 | 
-[outputVariable]->[outputVariable] | 0.410475    | 0.0360555   | 11.3845     | 5.10531e-12 | 
---------------------------------------------------------------------------------------------
-
- Residual standard error: 0.42458 on 28 degrees of freedom 
- F-statistic: 129.61 ,  p-value: 3.2199e-12
----------------------------------
-Multiple R-squared   | 0.822343 | 
-Adjusted R-squared   | 0.815998 | 
----------------------------------
-
----------------------------------
-Normality test       | p-value  | 
----------------------------------
-Anderson-Darling     | 0.237946 | 
-Chi-Squared          | 0.026711 | 
-Kolmogorov-Smirnov   | 0.769622 | 
----------------------------------
-"
