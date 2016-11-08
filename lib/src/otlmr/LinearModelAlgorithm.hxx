@@ -50,6 +50,11 @@ public:
   LinearModelAlgorithm(const OT::NumericalSample & inputSample,
                        const OT::NumericalSample & outputSample);
 
+  /** Parameters constructor */
+  LinearModelAlgorithm(const OT::NumericalSample & inputSample,
+                       const OT::Basis & basis,
+                       const OT::NumericalSample & outputSample);
+
   /** Virtual constructor */
   virtual LinearModelAlgorithm * clone() const;
 
@@ -60,6 +65,9 @@ public:
   /** Sample accessors */
   OT::NumericalSample getInputSample() const;
   OT::NumericalSample getOutputSample() const;
+
+  /** Basis accessor */
+  OT::Basis getBasis() const;
 
   /** Perform regression */
   void run();
@@ -78,6 +86,9 @@ private:
 
   // The input data
   OT::NumericalSample inputSample_;
+
+  /** The basis */
+  OT::Basis basis_;
 
   // The associated output data
   OT::NumericalSample outputSample_;

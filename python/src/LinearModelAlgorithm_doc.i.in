@@ -5,6 +5,8 @@
 
     LinearModelAlgorithm(Xsample, Ysample)
 
+    LinearModelAlgorithm(Xsample, basis, Ysample)
+
 See Also
 --------
 LinearModel, LinearModelResult
@@ -44,6 +46,16 @@ Returns
 -------
 inputSample : :class:`~openturns.NumericalSample`
     The Xsample which had been passed to the constructor."
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTLMR::LinearModelAlgorithm::getBasis
+"Accessor to the input basis.
+
+Returns
+-------
+basis : :class:`~openturns.Basis`
+    The basis which had been passed to the constructor."
 
 // ---------------------------------------------------------------------
 

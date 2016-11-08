@@ -55,6 +55,34 @@ LinearModelAlgorithm::LinearModelAlgorithm(const NumericalSample & inputSample,
   // Set samples
   inputSample_ = inputSample;
   outputSample_ = outputSample;
+  Collection<NumericalMathFunction> functions;
+  const Description inputDescription(inputSample_.getDescription());
+  functions.add(NumericalMathFunction(inputSample_.getDescription(), Description(1, "1")));
+  for(UnsignedInteger i = 0; i < inputSample_.getDimension(); ++i)
+  {
+    functions.add(NumericalMathFunction(inputSample_.getDescription(), Description(1, inputDescription[i])));
+  }
+  basis_ = Basis(functions);
+}
+
+
+/* Parameters constructor */
+LinearModelAlgorithm::LinearModelAlgorithm(const NumericalSample & inputSample,
+    const Basis & basis,
+    const NumericalSample & outputSample)
+  : MetaModelAlgorithm()
+  , inputSample_(0, 0)
+  , outputSample_(0, 0)
+  , result_()
+  , hasRun_(false)
+{
+  // Check the sample sizes
+  if (inputSample.getSize() != outputSample.getSize())
+    throw InvalidArgumentException(HERE) << "In LinearModelAlgorithm::LinearModelAlgorithm, input sample size (" << inputSample.getSize() << ") does not match output sample size (" << outputSample.getSize() << ").";
+  // Set samples
+  inputSample_ = inputSample;
+  outputSample_ = outputSample;
+  basis_ = basis;
 }
 
 
@@ -70,18 +98,9 @@ void LinearModelAlgorithm::run()
 {
   // Do not run again if already computed
   if (hasRun_) return;
-  // TODO: DIRTY HACK, FIX BEFORE RELEASE
-  Collection<NumericalMathFunction> functions;
-  const Description inputDescription(inputSample_.getDescription());
-  functions.add(NumericalMathFunction(inputSample_.getDescription(), Description(1, "1")));
-  for(UnsignedInteger i = 0; i < inputSample_.getDimension(); ++i)
-  {
-    functions.add(NumericalMathFunction(inputSample_.getDescription(), Description(1, inputDescription[i])));
-  }
-  Basis basis(functions);
-  Indices indices(basis.getSize());
+  Indices indices(basis_.getSize());
   indices.fill();
-  LinearModelStepwiseAlgorithm step(inputSample_, basis, outputSample_, indices, true, 2.0, 0);
+  LinearModelStepwiseAlgorithm step(inputSample_, basis_, outputSample_, indices, true, 2.0, 0);
   result_ = step.getResult();
   hasRun_ = true;
 }
@@ -93,6 +112,7 @@ String LinearModelAlgorithm::__repr__() const
   OSS oss;
   oss << "class=" << getClassName()
       << ", inputSample=" << inputSample_
+      << ", basis=" << basis_
       << ", outputSample=" << outputSample_
       << ", result=" << result_;
   return oss;
@@ -102,6 +122,12 @@ String LinearModelAlgorithm::__repr__() const
 NumericalSample LinearModelAlgorithm::getInputSample() const
 {
   return inputSample_;
+}
+
+
+Basis LinearModelAlgorithm::getBasis() const
+{
+  return basis_;
 }
 
 
@@ -123,8 +149,10 @@ void LinearModelAlgorithm::save(Advocate & adv) const
 {
   PersistentObject::save(adv);
   adv.saveAttribute( "inputSample_", inputSample_ );
+  adv.saveAttribute( "basis_", basis_ );
   adv.saveAttribute( "outputSample_", outputSample_ );
   adv.saveAttribute( "result_", result_ );
+  adv.saveAttribute( "hasRun_", hasRun_ );
 }
 
 /* Method load() reloads the object from the StorageManager */
@@ -132,8 +160,10 @@ void LinearModelAlgorithm::load(Advocate & adv)
 {
   PersistentObject::load(adv);
   adv.loadAttribute( "inputSample_", inputSample_ );
+  adv.loadAttribute( "basis_", basis_ );
   adv.loadAttribute( "outputSample_", outputSample_ );
   adv.loadAttribute( "result_", result_ );
+  adv.loadAttribute( "hasRun_", hasRun_ );
 }
 
 } /* namespace OTLMR */
