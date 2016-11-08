@@ -46,7 +46,6 @@ Examples
 >>> algo = otlmr.LinearModelAlgorithm(Ysample, Xsample)
 >>> result = algo.getResult()
 >>> analysis = otlmr.LinearModelAnalysis(result)
->>> print(analysis)
 "
 
 // ---------------------------------------------------------------------
