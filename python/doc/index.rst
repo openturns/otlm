@@ -1,5 +1,5 @@
-OTTemplate documentation
-========================
+otlmr documentation
+===================
 
 User documentation
 ------------------

@@ -75,10 +75,6 @@ Graphs
     dpi   = sample[:,3]
     ddpi  = sample[:,4]
     
-    # model1
-    outputSample = sample[:,0]
-    inputSample = sample[:,1:5]
-    
     # model2
     f = ot.NumericalMathFunction('x','x^4','y')
     outputSample = f(sr)
