@@ -5,7 +5,29 @@
 
     LinearModelStepwiseAlgorithm()
 
-    LinearModelStepwiseAlgorithm(*variables, direction, penalty, maximumIterationNumber*)
+    LinearModelStepwiseAlgorithm(*inputSample, basis, outputSample, minimalIndices, isForward, penalty, maximumIterationNumber*)
+
+    LinearModelStepwiseAlgorithm(*inputSample, basis, outputSample, minimalIndices, startIndices, penalty, maximumIterationNumber*)
+
+Parameters
+----------
+inputSample, outputSample : :class:`~openturns.NumericalSample`
+    The input and output samples of a model.
+basis : :class:`~openturns.Basis`
+    Functional basis to estimate the trend.
+minimalIndices : :class:`~openturns.Indices`
+    The indices of minimal model
+isForward : :class:`~openturns.Bool`
+      the boolean value used for the stepwise regression method direction FORWARD and BACKWARD. 
+startIndices : :class:`~openturns.Indices`
+     The indices of start model used for the stepwise regression method direction BOTH.
+penalty : :class:`~openturns.NumericalScalar`
+     The multiple of the degrees of freedom used for the penalty of the stepwise regression method : 
+     - 2      Akaike   information criterion (AIC)
+     - log(n) Bayesian information criterion (BIC)  
+maximumIterationNumber : :class:`~openturns.UnsignedInteger`
+     The maximum number of iterations of the stepwise regression method. 
+
 
 See Also
 --------
@@ -37,52 +59,3 @@ the residual couples :math:`(\epsilon_i, \epsilon_{i+1})`, where the residual
 :class:`~openturns.VisualTest_DrawLinearModelResidual`.
 "
 
-// ---------------------------------------------------------------------
-
-%feature("docstring") OTLMR::LinearModelStepwiseAlgorithm::build
-"Build the linear model from numerical samples.
-
-**Available usages**:
-
-    build(*Xsample, Ysample, minIndices*)
-
-    build(*Xsample, Ysample, minIndices, startIndices*)
-
-Parameters
-----------
-Xsample : 2-d sequence of float
-    Input sample, of dimension :math:`n \geq 1`.
-Ysample : 2-d sequence of float
-    Output sample, of dimension 1.
-minIndices : 1-d sequence of int
-    Indices of minimal model
-startIndices : 1-d sequence of int
-    Indices of starting model
-
-Returns
--------
-linearModelResult : :class:`~otlmr.LinearModelResult`
-    The linear model built from the samples :math:`(Xsample, Ysample)`:
-    :math:`a_0 + \sum_{i=1}^n a_i X_i + \epsilon`, where :math:`\epsilon` is the
-    random residual with zero mean.
-
-See Also
---------
-LinearModelResult
-
-
-Examples
---------
->>> import openturns as ot
->>> import otlmr
->>> ot.RandomGenerator.SetSeed(0)
->>> distribution = ot.Normal()
->>> Xsample = distribution.getSample(30)
->>> func = ot.NumericalMathFunction('x', '2 * x + 1')
->>> Ysample = func(Xsample) + ot.Normal().getSample(30)
->>> LMF = otlmr.LinearModelStepwiseAlgorithm()
->>> linearModel = LMF.build(Xsample, Ysample)
->>> print(linearModel)
-LinearModel name=Unnamed regression=[1.1802,2.0034] confidence intervals=[0.887852, 1.47256]
-[1.70439, 2.3024] p-Values=[1.87486e-07,5.10531e-12]
-"
