@@ -632,14 +632,55 @@ NumericalScalar LinearModelStepwiseAlgorithm::computeLogLikelihood()
 void LinearModelStepwiseAlgorithm::save(Advocate & adv) const
 {
   PersistentObject::save(adv);
-  throw NotYetImplementedException(HERE);
+  adv.saveAttribute( "inputSample_", inputSample_ );
+  adv.saveAttribute( "basis_", basis_ );
+  adv.saveAttribute( "outputSample_", outputSample_ );
+  adv.saveAttribute( "direction_", static_cast<double>(direction_) );
+  adv.saveAttribute( "penalty_", penalty_ );
+  adv.saveAttribute( "maximumIterationNumber_", maximumIterationNumber_ );
+  adv.saveAttribute( "minimalIndices_", minimalIndices_ );
+  adv.saveAttribute( "startIndices_", startIndices_ );
+  adv.saveAttribute( "condensedFormula_", condensedFormula_ );
+  adv.saveAttribute( "Y_", Y_ );
+  adv.saveAttribute( "maxX_", maxX_ );
+  adv.saveAttribute( "currentX_", currentX_ );
+  adv.saveAttribute( "currentQ_", currentQ_ );
+  adv.saveAttribute( "currentInvRt_", currentInvRt_ );
+  adv.saveAttribute( "currentResidual_", currentResidual_ );
+  adv.saveAttribute( "currentIndices_", currentIndices_ );
+  adv.saveAttribute( "result_", result_ );
+  adv.saveAttribute( "hasRun_", hasRun_ );
 }
 
 /* Method load() reloads the object from the StorageManager */
 void LinearModelStepwiseAlgorithm::load(Advocate & adv)
 {
   PersistentObject::load(adv);
-  throw NotYetImplementedException(HERE);
+  double direction;
+  adv.loadAttribute( "inputSample_", inputSample_ );
+  adv.loadAttribute( "basis_", basis_ );
+  adv.loadAttribute( "outputSample_", outputSample_ );
+  adv.loadAttribute( "direction_", direction );
+  if (direction < -0.5)
+    direction_ = BACKWARD;
+  else if (direction > 0.5)
+    direction_ = FORWARD;
+  else
+    direction_ = BOTH;
+  adv.loadAttribute( "penalty_", penalty_ );
+  adv.loadAttribute( "maximumIterationNumber_", maximumIterationNumber_ );
+  adv.loadAttribute( "minimalIndices_", minimalIndices_ );
+  adv.loadAttribute( "startIndices_", startIndices_ );
+  adv.loadAttribute( "condensedFormula_", condensedFormula_ );
+  adv.loadAttribute( "Y_", Y_ );
+  adv.loadAttribute( "maxX_", maxX_ );
+  adv.loadAttribute( "currentX_", currentX_ );
+  adv.loadAttribute( "currentQ_", currentQ_ );
+  adv.loadAttribute( "currentInvRt_", currentInvRt_ );
+  adv.loadAttribute( "currentResidual_", currentResidual_ );
+  adv.loadAttribute( "currentIndices_", currentIndices_ );
+  adv.loadAttribute( "result_", result_ );
+  adv.loadAttribute( "hasRun_", hasRun_ );
 }
 
 

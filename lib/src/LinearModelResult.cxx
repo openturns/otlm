@@ -173,7 +173,9 @@ void LinearModelResult::save(Advocate & adv) const
   adv.saveAttribute( "beta_", beta_ );
   adv.saveAttribute( "condensedFormula_", condensedFormula_ );
   adv.saveAttribute( "coefficientsNames_", coefficientsNames_ );
+  adv.saveAttribute( "sampleResiduals_", sampleResiduals_ );
   adv.saveAttribute( "standardizedResiduals_", standardizedResiduals_ );
+  adv.saveAttribute( "diagonalGramInverse_", diagonalGramInverse_ );
   adv.saveAttribute( "leverages_", leverages_ );
   adv.saveAttribute( "cookDistances_", cookDistances_ );
 }
@@ -190,7 +192,9 @@ void LinearModelResult::load(Advocate & adv)
   adv.loadAttribute( "beta_", beta_ );
   adv.loadAttribute( "condensedFormula_", condensedFormula_ );
   adv.loadAttribute( "coefficientsNames_", coefficientsNames_ );
+  adv.loadAttribute( "sampleResiduals_", sampleResiduals_ );
   adv.loadAttribute( "standardizedResiduals_", standardizedResiduals_ );
+  adv.loadAttribute( "diagonalGramInverse_", diagonalGramInverse_ );
   adv.loadAttribute( "leverages_", leverages_ );
   adv.loadAttribute( "cookDistances_", cookDistances_ );
 }
