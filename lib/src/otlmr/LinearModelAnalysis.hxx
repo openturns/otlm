@@ -50,7 +50,7 @@ public:
   LinearModelAnalysis();
 
   /** Parameter constructor */
-  LinearModelAnalysis(const LinearModelResult & linearModelResult);
+  explicit LinearModelAnalysis(const LinearModelResult & linearModelResult);
 
   /** Virtual constructor */
   LinearModelAnalysis * clone() const;
