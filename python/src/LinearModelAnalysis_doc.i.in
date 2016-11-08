@@ -215,13 +215,12 @@ fisherPValue : :class:`~openturns.NumericalScalar`
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultChiSquared
-"Performs Pearson Chi-2 statistical test to check gaussian assumption of the model
+"Performs Pearson Chi-2 statistical test to check Gaussian assumption of the model
 
 Returns
 -------
 testResult : :class:`~openturns.TestResult`
     Test result class.
-
 
 Notes
 -----
@@ -231,27 +230,28 @@ From a dataset :math:`\epsilon=(\epsilon_1,...,\epsilon_k)` of size :math:`k` (r
 where :math:`nClasses := 2\ k^{\frac{2}{5}}`.
 
 Under the normality hypothesis, we compute cumulative function of the :math:`\epsilon` set (mean and standard
-deviation of the underlying normal distribution derive from the dataset). The interval :math:`[0, 1]` is then splited
+deviation of the underlying normal distribution derived from the dataset). The interval :math:`[0, 1]` is then splitted
 onto :math:`nClasses` intervals.
 
 For the Chi-Square test, two major elements are to be considered:
+
  - :math:`C_{i}` is the number of counted observations in the class :math:`i`
  - :math:`E_{i}` is the number of expected observations in the class :math:`i`
 
-Using the cumulative information, we count number of elements in each class ( :math:`C_{i}` )
-Also, under the null hypothesis, the different classes are equiprobable ( :math:`E_{i}\ =\ E\ =\frac{k}{nClasses}`
+Using the cumulative information, we count number of elements in each class (:math:`C_{i}`).
+Also, under the null hypothesis, the different classes are equiprobable ( :math:`E_{i}\ =\ E\ =\frac{k}{nClasses}`.
 
-From the previous values per class, we compute the Pearson test statistic :math:`P=\sum_{i=1}^{nClasses} \frac{C_{i} - E_{i})^{2}}{E_{i}}`
+From the previous values per class, we compute the Pearson test statistic :math:`P=\sum_{i=1}^{nClasses} \frac{C_{i} - E_{i})^{2}}{E_{i}}`.
 
 Finally, the p-value is computed thanks to a chi-square distribution with :math:`dof` degrees of freedom, where
-`dof` is adjusted thanks to the boolean ResouceMap key (`LinearModelAnalysis-ChiSquareAdjust`).
-If key is set to True, degree of freedom is :math:`nClasses - 3`. Otherwise it is :math:`nClasses - 1`
-It is recomanded to test with both ``True`` and ``False`` values."
+:math:`dof` is adjusted thanks to the boolean ResourceMap key (``LinearModelAnalysis-ChiSquareAdjust``).
+If key is set to *True*, degree of freedom is :math:`nClasses - 3`. Otherwise it is :math:`nClasses - 1`
+It is recommended to test with both *True* and *False* values."
 
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultKolmogorovSmirnov
-"Performs Kolmogorov test to check gaussian assumption of the model
+"Performs Kolmogorov test to check Gaussian assumption of the model
 
 Returns
 -------
@@ -261,12 +261,12 @@ testResult : :class:`~openturns.TestResult`
 
 Notes
 -----
-We chech that the residual is gaussian thanks to :class:`~openturns.FittingTest::Kolmogorov`"
+We check that the residual is Gaussian thanks to :class:`~openturns.FittingTest::Kolmogorov`."
 
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultAndersonDarling
-"Performs Anderson-Darling test to check gaussian assumption of the model
+"Performs Anderson-Darling test to check Gaussian assumption of the model
 
 Returns
 -------
@@ -276,7 +276,7 @@ testResult : :class:`~openturns.TestResult`
 
 Notes
 -----
-We chech that the residual is gaussian thanks to :class:`~openturns.NormalityTest::AndersonDarling`"
+We check that the residual is Gaussian thanks to :class:`~openturns.NormalityTest::AndersonDarling`."
 
 // ---------------------------------------------------------------------
 
@@ -286,13 +286,12 @@ We chech that the residual is gaussian thanks to :class:`~openturns.NormalityTes
 Returns
 -------
 graph : :class:`~openturns.Graph`
-    Test result class.
 "
 
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLMR::LinearModelAnalysis::drawScaleLocation
-"Accessor to a Scale-Location plot of sqrt(| residuals |) versus fitted values.
+"Accessor to a Scale-Location plot of sqrt(abs(residuals)) versus fitted values.
 
 Returns
 -------
