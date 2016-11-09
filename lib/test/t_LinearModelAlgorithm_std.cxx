@@ -20,11 +20,32 @@
  */
 #include "openturns/OT.hxx"
 #include "openturns/OTtestcode.hxx"
+#include "otlmr/otlmr.hxx"
 
 using namespace OT;
 using namespace OT::Test;
+using namespace OTLMR;
 
 int main(int argc, char *argv[])
 {
- 
+
+  TESTPREAMBLE;
+  OStream fullprint(std::cout);
+  setRandomGenerator();
+
+  UnsignedInteger size = 20;
+  NumericalSample oneSample(size, 1);
+  NumericalSample twoSample(size, 1);
+  for (UnsignedInteger i = 0; i < size; ++i)
+  {
+    oneSample[i][0] = 7.0 * sin(-3.5 + (6.5 * i) / (size - 1.0)) + 2.0;
+    twoSample[i][0] = -2.0 * oneSample[i][0] + 3.0 + 0.05 * sin(oneSample[i][0]);
+  }
+  LinearModelAlgorithm test(oneSample, twoSample);
+  LinearModelResult result(test.getResult());
+  LinearModelAnalysis analysis(result);
+  fullprint << "trend = " << test.getResult().getTrendCoefficients() << std::endl;
+
+  return ExitCode::Success;
+
 }
