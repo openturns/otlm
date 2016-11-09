@@ -526,8 +526,8 @@ void LinearModelStepwiseAlgorithm::run()
   LOGDEBUG(OSS() << "Final indices are " << currentIndices_.__str__() << " and criterion is " << criterion);
 
   NumericalPoint regression(p);
-  const Matrix QtY = currentQ_.getImplementation()->genProd(*(Y_.getImplementation()), true, false);
-  const Matrix invRQtY(currentInvRt_.transpose() * QtY);
+  const Matrix QtY(currentQ_.getImplementation()->genProd(*(Y_.getImplementation()), true, false));
+  const Matrix invRQtY(currentInvRt_.getImplementation()->genProd(*(QtY.getImplementation()), true, false));
   memcpy(&regression[0], &invRQtY(0, 0), sizeof(NumericalScalar)*p);
 
   Description coefficientsNames(p);
