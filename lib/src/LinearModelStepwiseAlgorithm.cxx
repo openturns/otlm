@@ -396,6 +396,45 @@ void LinearModelStepwiseAlgorithm::run()
   const NumericalMathFunction f(basis_);
   NumericalSample fx(f(inputSample_));
   LOGDEBUG(OSS() << "Total number of columns=" << fx.getDimension());
+
+  // Normalize input to improve numerical robustness.
+  NumericalPoint normalizationMean(fx.computeMean());
+  NumericalPoint normalizationStdev(fx.computeStandardDeviationPerComponent());
+  // Do not normalize the constant term
+  UnsignedInteger intercept = normalizationStdev.getDimension();
+  // Since normalization should be harmless, it is currently not possible
+  // to discard it.  However, one can set normalize to false just below
+  // and recompile.
+  const Bool normalize = true;
+  if (normalize)
+  {
+    for (UnsignedInteger i = 0; i < normalizationStdev.getDimension(); ++i)
+    {
+      if (normalizationStdev[i] == 0.0 && normalizationMean[i] == 1.0)
+      {
+        intercept = i;
+        break;
+      }
+    }
+  }
+
+  // We normalize only if there is a constant term
+  if (intercept < normalizationStdev.getDimension())
+  {
+    normalizationStdev[intercept] = 1.0;
+    normalizationMean[intercept] = 0.0;
+    fx -= normalizationMean;
+    for (UnsignedInteger i = 0; i < normalizationStdev.getDimension(); ++i)
+    {
+      if (std::abs(normalizationStdev[i]) <= SpecFunc::MinNumericalScalar)
+      {
+        normalizationStdev[i] = 1.0;
+      }
+    }
+    fx /= normalizationStdev;
+    LOGDEBUG(OSS() << "Normalize columns: index(intercept)=" << (intercept < normalizationStdev.getDimension() ? (OSS() << intercept).str() : "none") << " mean=" << normalizationMean << " stdev=" << normalizationStdev);
+  }
+
   {  // Reduce scope of Xt
     Matrix Xt(fx.getDimension(), size, fx.getImplementation()->getData());
     maxX_ = Xt.transpose();
@@ -525,10 +564,42 @@ void LinearModelStepwiseAlgorithm::run()
   const NumericalScalar criterion(penalty_ * p + computeLogLikelihood());
   LOGDEBUG(OSS() << "Final indices are " << currentIndices_.__str__() << " and criterion is " << criterion);
 
+  // Revert normalization
+  if (intercept < normalizationStdev.getDimension() && columnMaxToCurrent[intercept] < columnMaxToCurrent.getSize())
+  {
+    NumericalPoint scaling(p, 1.0);
+    NumericalPoint translation(p);
+    for (UnsignedInteger i = 0; i < columnMaxToCurrent.getSize(); ++i)
+    {
+      const UnsignedInteger currentIndex = columnMaxToCurrent[i];
+      if (currentIndex < columnMaxToCurrent.getSize())
+      {
+        scaling[currentIndex] = normalizationStdev[i];
+        translation[currentIndex] = normalizationMean[i];
+      }
+    }
+    for (UnsignedInteger j = 0; j < currentX_.getNbColumns(); ++j)
+    {
+      const NumericalScalar scale = scaling[j];
+      const NumericalScalar translate = translation[j];
+      for (UnsignedInteger i = 0; i < currentX_.getNbRows(); ++i)
+      {
+        currentX_(i, j) = translate + scale * currentX_(i, j);
+      }
+    }
+    Matrix R;
+    currentQ_ = currentX_.computeQR(R, size < p, true);
+    const MatrixImplementation b(*IdentityMatrix(p).getImplementation());
+    //                                                     keep intact, lower, transposed
+    currentInvRt_ = R.getImplementation()->solveLinearSystemTri(b, false, false, true);
+  }
+
   NumericalPoint regression(p);
   const Matrix QtY(currentQ_.getImplementation()->genProd(*(Y_.getImplementation()), true, false));
   const Matrix invRQtY(currentInvRt_.getImplementation()->genProd(*(QtY.getImplementation()), true, false));
   memcpy(&regression[0], &invRQtY(0, 0), sizeof(NumericalScalar)*p);
+
+  LOGDEBUG(OSS() << "regression=" << regression);
 
   Description coefficientsNames(p);
   for (UnsignedInteger i = 0, k = 0; k < basis_.getSize(); ++k)
