@@ -109,8 +109,8 @@ String LinearModelAnalysis::__str__() const
   }
   awidth = twidth+5*separator.size()+4*lwidth-1;
 
-  oss << "\n Call:\n" << getFormula() ;
-  oss << "\n\n Coefficients:\n"  ;
+  oss << getFormula() ;
+  oss << "\n\nCoefficients:\n"  ;
   oss <<  String( twidth , ' ' ) << separator;
   st = "Estimate";
   oss << st << String( lwidth - st.size(),' ') << separator;
@@ -135,9 +135,9 @@ String LinearModelAnalysis::__str__() const
     oss << st << String( lwidth - st.size(),' ') << separator;
     oss << "\n";
   }
-  oss << String( awidth , '-' )<<"\n";
-  oss << "\n Residual standard error: "<<  std::sqrt(sigma2*n/dof)  <<" on "<< dof <<" degrees of freedom ";
-  oss << "\n F-statistic: " << getFisherScore() << " , " << " p-value: " <<  getFisherPValue();
+  oss << String( awidth , '-' )<<"\n\n";
+  oss << "Residual standard error: "<<  std::sqrt(sigma2*n/dof)  <<" on "<< dof <<" degrees of freedom\n";
+  oss << "F-statistic: " << getFisherScore() << " , " << " p-value: " <<  getFisherPValue() << "\n";
 
   //  R-squared & Adjusted R-squared tests
   lwidth=0;
@@ -149,7 +149,7 @@ String LinearModelAnalysis::__str__() const
   st = OSS() << test2;
   lwidth = std::max( lwidth, st.size() );
   awidth = twidth+2*separator.size()+lwidth-1;
-  oss <<"\n"<< String( awidth , '-' )<<"\n";
+  oss << String( awidth , '-' )<<"\n";
   st = "Multiple R-squared";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = OSS() << test1;
