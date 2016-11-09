@@ -22,7 +22,7 @@
 #ifndef OTLMR_OTLMR_HXX
 #define OTLMR_OTLMR_HXX
 
-#include "otlmr/LinearModelAnalysis.hxx"
+#include "otlmr/LinearModelAlgorithm.hxx"
 #include "otlmr/LinearModelAnalysis.hxx"
 #include "otlmr/LinearModelResult.hxx"
 #include "otlmr/LinearModelStepwiseAlgorithm.hxx"
