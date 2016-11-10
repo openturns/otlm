@@ -34,6 +34,10 @@ the residual couples :math:`(\epsilon_i, \epsilon_{i+1})`, where the residual
 :math:`\tilde{Y}_i = a_0 + a_1 + Xsample_i`. The OpenTURNS method is
 :class:`~openturns.VisualTest_DrawLinearModelResidual`.
 
+By default, labels of the 3 most significant points are displayed on graphs.
+This number can be changed by modifying the ResourceMap key
+(``LinearModelAnalysis-Identifiers``).
+
 Examples
 --------
 >>> import openturns as ot
