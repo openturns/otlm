@@ -36,18 +36,17 @@ ANOVA Table
 
 .. parsed-literal::
 
-     Call:
     Basis( [[Trt]->[1],[Trt]->[Trt]] )
     
-     Coefficients:
-                 | Estimate    | Std Error   | t value     | Pr(>|t|)    | 
-    ----------------------------------------------------------------------
-    [Trt]->[1]   | 5.032       | 0.220218    | 22.8501     | 9.54713e-15 | 
-    [Trt]->[Trt] | -0.371      | 0.311435    | -1.19126    | 0.249023    | 
-    ----------------------------------------------------------------------
+    Coefficients:
+                 | Estimate   | Std Error  | t value    | Pr(>|t|)   | 
+    ------------------------------------------------------------------
+    [Trt]->[1]   | 5.032      | 0.155717   | 32.3149    | 2.1528e-17 | 
+    [Trt]->[Trt] | -0.371     | 0.159763   | -2.32219   | 0.0321487  | 
+    ------------------------------------------------------------------
     
-     Residual standard error: 0.69639 on 18 degrees of freedom 
-     F-statistic: 1.4191 ,  p-value: 0.24822
+    Residual standard error: 0.69639 on 18 degrees of freedom
+    F-statistic: 1.4191 ,  p-value: 0.24822
     ----------------------------------
     Multiple R-squared   | 0.0730776 | 
     Adjusted R-squared   | 0.0215819 | 
