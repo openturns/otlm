@@ -104,13 +104,12 @@ ANOVA table
 It is requested to give access to the following data:
 
 * Linear model formula, in a textual form
-* Informations about residuals (minimum, maximum, median, mean, quantiles, standard deviation)
+* Residuals
 * For each factor,
 
   - its coefficient
   - its standard error
   - p-value for Student test
-  - A visual symbol for significance test
 
 * Number of degrees of freedom
 * Coefficients :math:`R^2` and adjusted :math:`R^2`
