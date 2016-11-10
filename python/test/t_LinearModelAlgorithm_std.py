@@ -1,64 +1,49 @@
 #! /usr/bin/env python
 
 from __future__ import print_function
-from openturns import *
-from math import *
+import openturns as ot
+import otlmr as lm
+from math import sin
 
-TESTPREAMBLE()
+ot.TESTPREAMBLE()
 
 try:
-    # TEST NUMBER ZERO : DEFAULT & COPY CONSTRUCTORs AND STRING CONVERTER
-    print(
-        "test number zero : default & copy constructors and string converter")
 
-    vectR = NumericalPoint(1, 12.0)
-    testSample = NumericalSample(1, 1)
-
-    begin = -1.0
-    end = 36.92
-    testInterval = Interval([begin], [end])
-    testInterval.setName("testInterval")
-
-    valColl = NumericalScalarCollection()
-    valColl.add(1.0)
-
-    # Constructor from NumericalPoint
-    # Y = Somme (ai * Xi), i=0, n
-    # linearModel : (ai), i=0, n
-    LM = LinearModel(vectR, testInterval, valColl)
-    emptyLM = LinearModel(vectR)
-
-    # String converter #
-    print("LM = ", repr(LM))
-    print("emptyLM = ", repr(emptyLM))
-
-    # * TEST NUMBER ONE : GET ELEMENTS #
-    print("test number one : get elements")
-
-    # coefficients ai
-    print("LM.getRegression = ", repr(LM.getRegression()))
-    # confidence intervals of the ai coefficients
-    print("LM.getConfidenceIntervals = ", repr(LM.getConfidenceIntervals()))
-    # p values of the (n+1) coefficients ai:
-    print("LM.getPValues = ", repr(LM.getPValues()))
-
-    # * TEST NUMBER TWO : GET PREDICT/RESIDUAL #
-    print("test number two : get predicted/residual")
-    lmfact = LinearModelFactory()
+    # lm build
+    print("Fit y ~ 3 - 2 x + 0.05 * sin(x) model using 20 points (sin(x) ~ noise)")
     size = 20
-    oneSample = NumericalSample(size, 1)
-    twoSample = NumericalSample(size, 1)
+    oneSample = ot.NumericalSample(size, 1)
+    twoSample = ot.NumericalSample(size, 1)
     for i in range(size):
-        oneSample[i] = NumericalPoint(
-            1, 7.0 * sin(-3.5 + (6.5 * i) / (size - 1.0)) + 2.0)
-        twoSample[i] = NumericalPoint(
-            1, -2.0 * oneSample[i, 0] + 3.0 + 0.05 * sin(oneSample[i, 0]))
-    test = lmfact.build(oneSample, twoSample)
-    # evaluate the predictions on sample : predict = Somme(aiXi)
-    print("LM.getPredicted = ", repr(test.getPredicted(oneSample)))
-    # get the residuals epsiloni
-    print("LM.getResidual = ", repr(test.getResidual(oneSample, twoSample)))
+        oneSample[i,0] = 7.0 * sin(-3.5 + (6.5 * i) / (size - 1.0)) + 2.0
+        twoSample[i,0] = -2.0 * oneSample[i, 0] + 3.0 + 0.05 * sin(oneSample[i, 0])
+
+    test = lm.LinearModelAlgorithm(oneSample, twoSample)
+    result = lm.LinearModelResult(test.getResult())
+    print ("trend coefficients = ", result.getTrendCoefficients())
+
+    print( "Fit y ~ 1 + 0.1 x + 10 x^2 model using 100 points")
+    ot.RandomGenerator.SetSeed(0)
+    size = 100
+    # Define a linespace from 0 to 10 with size points
+    # We use a Box expermient ==> remove 0 & 1 points
+    experiment = ot.Box([size - 2]);
+    X = experiment.generate();
+    # X is defined in [0,1]
+    X *= [10];
+    # Stack X2
+    X2 = ot.NumericalSample(X);
+    for i in range(size):
+      X2[i, 0] = X[i, 0] * X2[i, 0]
+    X.stack(X2)
+    # Define y
+    Y = ot.NumericalSample(size, 1);
+    for i in range(size):
+      Y[i, 0] = 1.0 +  0.1 * X[i, 0] + 10.0 * X[i, 0] * X[i, 0]  + 0.1 * ot.DistFunc.rNormal() ;
+    test = lm.LinearModelAlgorithm(X, Y)
+    result = test.getResult()
+    print ("trend coefficients = ", result.getTrendCoefficients())
 
 except:
     import sys
-    print("t_LinearModel_std.py", sys.exc_info()[0], sys.exc_info()[1])
+    print("t_LinearModelAlgorithm_std.py", sys.exc_info()[0], sys.exc_info()[1])
