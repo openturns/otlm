@@ -1,34 +1,5 @@
-Architecture considerations
-===========================
-
-Dependencies
-------------
-
-Several dependencies are needed in order to build the module:
-
- - OpenTURNS
- - Sphinx-doc (optional for this doc)
-
-Compilation
------------
-
-.. code-block:: bash
-
-    cd otlmr
-    mkdir -p build && cd build
-    cmake \
-      -DCMAKE_INSTALL_PREFIX=$PWD/install \
-      -DOpenTURNS_DIR=$PWD/../../openturns/build/install/lib/cmake/openturns \
-      ..
-
-Source code structure
----------------------
-
-This section makes up the general specification design for the linear model stepwise regression analysis
-in OpenTURNS.
-
 Linear regression models
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 Let us consider the general linear regression model:
 
@@ -78,6 +49,35 @@ The residuals are defined by
 .. math::
 
     \hat{\epsilon} = Y - H_X Y
+
+Architecture considerations
+===========================
+
+Dependencies
+------------
+
+Several dependencies are needed in order to build the module:
+
+ - OpenTURNS
+ - Sphinx-doc (optional for this doc)
+
+Compilation
+-----------
+
+.. code-block:: bash
+
+    cd otlmr
+    mkdir -p build && cd build
+    cmake \
+      -DCMAKE_INSTALL_PREFIX=$PWD/install \
+      -DOpenTURNS_DIR=$PWD/../../openturns/build/install/lib/cmake/openturns \
+      ..
+
+Source code structure
+---------------------
+
+This section makes up the general specification design for the linear model stepwise regression analysis
+in OpenTURNS.
 
 LinearModel
 ~~~~~~~~~~~
@@ -131,7 +131,7 @@ Several plots are provided by :class:`~otlmr.LinearModelAnalysis` class, see dia
 
   .. math:: \tilde{\epsilon}_i = \frac{\hat{\epsilon}_i}{\sqrt{\frac{n}{n-p-1}\hat{\sigma}^2 (1-H_{i,i})}}
 
-* :func:`~otlmr.LinearModelAnalysis.drawQQPlot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
+* :func:`~otlmr.LinearModelAnalysis.drawQQplot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
   vs. theoretical quantiles.
 * :func:`~otlmr.LinearModelAnalysis.drawScaleLocation` plots :math:`\sqrt{\tilde{\epsilon}_i}`
   vs. fitted values.
@@ -525,7 +525,7 @@ The function ``ComputeUpdateBackward`` computes the least square of the residual
 4. Return :math:`F_i` and :math:`i`
 
 Perspectives
-------------
+============
 
 Here are some issues which could be investigated before integrating otlmr inside OpenTURNS:
 
