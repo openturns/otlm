@@ -91,6 +91,7 @@ endmacro ( ot_pyinstallcheck_test )
 
 ot_pyinstallcheck_test (LinearModelAlgorithm_std)
 ot_pyinstallcheck_test (LinearModelAnalysis_std)
+ot_pyinstallcheck_test (LinearModelStepwiseAlgorithm_std)
 ot_pyinstallcheck_test (docstring)
 
 add_custom_target ( pyinstallcheck COMMAND ${CMAKE_CTEST_COMMAND} -R "^pyinstallcheck_"
