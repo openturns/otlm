@@ -24,7 +24,7 @@ Compilation
 Source code structure
 ---------------------
 
-This section makes up the general specification design for the general linear model stepwise regression analysis
+This section makes up the general specification design for the linear model stepwise regression analysis
 in OpenTURNS.
 
 Linear regression models
@@ -523,4 +523,18 @@ The function ``ComputeUpdateBackward`` computes the least square of the residual
    e. If (:math:`F_j \, < \, F_i`), set :math:`F_i\,=\, F_j` and :math:`i=j`
 
 4. Return :math:`F_i` and :math:`i`
+
+Perspectives
+------------
+
+Here are some issues which could be investigated before integrating otlmr inside OpenTURNS:
+
+* *Input normalization*: At the moment, inputs are normalized after applying basis' functions.
+  To improve robustness, it would be better to normalize input before applying basis' functions.
+  But in fact, data should be normalized before performing linear regression.
+* *Multivariate output*: stepwise selection is implemented only when output is 1D.
+* *Singular Value Decomposition*: algorithm currently uses a QR-decomposition of input sample.
+  By using a singular value decomposition, maybe some post-processing computations (like
+  leverages) could be easier to compute.
+* Instead of optimal trend coefficients, maybe we could return their law.
 
