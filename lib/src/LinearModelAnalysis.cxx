@@ -71,7 +71,7 @@ String LinearModelAnalysis::__repr__() const
 {
   return OSS(true)
          << "class=" << getClassName()
-         << "linearModelResult=" << linearModelResult_;
+         << ", linearModelResult=" << linearModelResult_;
 }
 
 
@@ -87,6 +87,7 @@ String LinearModelAnalysis::__str__() const
   const UnsignedInteger dof = getDegreesOfFreedom();
   const UnsignedInteger n = getResiduals().getSize();
   const String separator(" | ");
+  const String separatorEndLine(" |");
   size_t twidth = 0; // column title max width
   size_t lwidth = 0; // LHS number max width
   size_t awidth = 0;
@@ -106,7 +107,7 @@ String LinearModelAnalysis::__str__() const
     st = OSS() << pValues[i][0];
     lwidth = std::max( lwidth, st.size() );
   }
-  awidth = twidth+5*separator.size()+4*lwidth-1;
+  awidth = twidth + 5 * separator.size() + 4 * lwidth - 1;
 
   oss << getFormula() ;
   oss << "\n\nCoefficients:\n"  ;
@@ -118,24 +119,24 @@ String LinearModelAnalysis::__str__() const
   st = "t value";
   oss << st << String( lwidth - st.size(),' ') << separator;
   st = "Pr(>|t|)";
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss << "\n"<<  String( awidth , '-' )<<"\n";
   for (UnsignedInteger i = 0; i < pValues.getSize(); ++i)
   {
     st = names[i];
-    oss << st << String( twidth - st.size(),' ') << separator;
+    oss << st << String( twidth - st.size(), ' ') << separator;
     st = OSS() << estimates[i][0];
-    oss << st << String( lwidth - st.size(),' ') << separator;
+    oss << st << String( lwidth - st.size(), ' ') << separator;
     st = OSS() << standardErrors[i][0];
-    oss << st << String( lwidth - st.size(),' ') << separator;
+    oss << st << String( lwidth - st.size(), ' ') << separator;
     st = OSS() << tscores[i][0];
-    oss << st << String( lwidth - st.size(),' ') << separator;
+    oss << st << String( lwidth - st.size(), ' ') << separator;
     st = OSS() << pValues[i][0];
-    oss << st << String( lwidth - st.size(),' ') << separator;
+    oss << st << String( lwidth - st.size(), ' ') << separatorEndLine;
     oss << "\n";
   }
   oss << String( awidth , '-' )<<"\n\n";
-  oss << "Residual standard error: "<<  std::sqrt(sigma2*n/dof)  <<" on "<< dof <<" degrees of freedom\n";
+  oss << "Residual standard error: "<<  std::sqrt(sigma2 * n /dof)  <<" on "<< dof <<" degrees of freedom\n";
   oss << "F-statistic: " << getFisherScore() << " , " << " p-value: " <<  getFisherPValue() << "\n";
 
   //  R-squared & Adjusted R-squared tests
@@ -152,12 +153,12 @@ String LinearModelAnalysis::__str__() const
   st = "Multiple R-squared";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = OSS() << test1;
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss << "\n";
   st = "Adjusted R-squared";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = OSS() << test2;
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss <<"\n"<< String( awidth , '-' )<<"\n";
 
   // normality tests
@@ -177,22 +178,22 @@ String LinearModelAnalysis::__str__() const
   st = "Normality test";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = "p-value";
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss << "\n"<<  String( awidth , '-' )<<"\n";
   st = "Anderson-Darling";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = OSS() << normalitytest1;
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss << "\n";
   st = "Chi-Squared";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = OSS() << normalitytest2;
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss << "\n";
   st = "Kolmogorov-Smirnov";
   oss << st << String( twidth - st.size(),' ') << separator;
   st = OSS() << normalitytest3;
-  oss << st << String( lwidth - st.size(),' ') << separator;
+  oss << st << String( lwidth - st.size(),' ') << separatorEndLine;
   oss << "\n"<<  String( awidth , '-' )<<"\n";
   return oss;
 }
