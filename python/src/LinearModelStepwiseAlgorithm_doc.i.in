@@ -50,6 +50,10 @@ Each coefficient :math:`a_i` is evaluated from both samples :math:`Ysample` and
 :math:`Xsample` and is accompagnied by a confidence interval and a p-value (which
 tests if they are significantly different from 0.0).
 
+By default, input sample is normalized.  It is possible to set Resource key
+(``LinearModelStepwiseAlgorithm-normalize``) to *False* in order to discard
+this normalization.
+
 This class enables to test the quality of the model. It provides only numerical
 tests. If :math:`X` is scalar, a graphical validation test exists, that draws
 the residual couples :math:`(\epsilon_i, \epsilon_{i+1})`, where the residual

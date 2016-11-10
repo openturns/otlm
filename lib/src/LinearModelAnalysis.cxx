@@ -48,7 +48,7 @@ static const Factory<LinearModelAnalysis> Factory_LinearModelAnalysis;
 LinearModelAnalysis::LinearModelAnalysis()
   : PersistentObject()
 {
-  InitializeResourceMap();
+  // Nothing to do
 }
 
 /* Parameter constructor */
@@ -56,13 +56,12 @@ LinearModelAnalysis::LinearModelAnalysis(const LinearModelResult & linearModelRe
   : PersistentObject()
   , linearModelResult_(linearModelResult)
 {
-  InitializeResourceMap();
+  // Nothing to do
 }
 
 /* Virtual constructor */
 LinearModelAnalysis * LinearModelAnalysis::clone() const
 {
-  InitializeResourceMap();
   return new LinearModelAnalysis(*this);
 }
 
@@ -875,26 +874,6 @@ void LinearModelAnalysis::load(Advocate & adv)
 {
   PersistentObject::load(adv);
   adv.loadAttribute( "linearModelResult_", linearModelResult_ );
-}
-
-void LinearModelAnalysis::InitializeResourceMap()
-{
-  try
-  {
-    (void) ResourceMap::GetAsUnsignedInteger("LinearModelAnalysis-Identifiers");
-  }
-  catch(InternalException)
-  {
-    ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
-  }
-  try
-  {
-    (void) ResourceMap::GetAsBool("LinearModelAnalysis-ChiSquareAdjust");
-  }
-  catch(InternalException)
-  {
-    ResourceMap::SetAsBool("LinearModelAnalysis-ChiSquareAdjust", true);
-  }
 }
 
 } /* namespace OTLMR */

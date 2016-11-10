@@ -27,6 +27,7 @@
 #include "openturns/SpecFunc.hxx"
 #include "openturns/Log.hxx"
 #include "openturns/MatrixImplementation.hxx"
+#include "openturns/ResourceMap.hxx"
 
 #include <cmath>
 
@@ -402,10 +403,7 @@ void LinearModelStepwiseAlgorithm::run()
   NumericalPoint normalizationStdev(fx.computeStandardDeviationPerComponent());
   // Do not normalize the constant term
   UnsignedInteger intercept = normalizationStdev.getDimension();
-  // Since normalization should be harmless, it is currently not possible
-  // to discard it.  However, one can set normalize to false just below
-  // and recompile.
-  const Bool normalize = true;
+  const Bool normalize = ResourceMap::GetAsBool("LinearModelStepwiseAlgorithm-normalize");
   if (normalize)
   {
     for (UnsignedInteger i = 0; i < normalizationStdev.getDimension(); ++i)
