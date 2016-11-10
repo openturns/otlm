@@ -557,4 +557,6 @@ Perspectives
   - *Sensitivity analysis*: standard regression coefficients are currently defined in
     :class:`~openturns.CorrelationAnalysis`.
     An improvement is to rely on :class:`~otlmr.LinearModelResult` in a new post-processing.
+  - Extend :class:`~openturns.BoxCoxFactory` to accept a :class:`~otlmr.LinearModelAlgorithm`,
+    as is done with :class:`~openturns.GeneralizedLinearModelResult`.
 
