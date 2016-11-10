@@ -527,8 +527,6 @@ The function ``ComputeUpdateBackward`` computes the least square of the residual
 Perspectives
 ============
 
-Here are some issues which could be investigated before integrating otlmr inside OpenTURNS:
-
 * Integration into OpenTURNS
 
   - classes :class:`~openturns.LinearModel` and :class:`~openturns.LinearModelFactory`
@@ -546,7 +544,7 @@ Here are some issues which could be investigated before integrating otlmr inside
 * Extensions
 
   - Drop dependency against R for normality tests
-  - Extend :class:`~otlmr.LinearModelAnalysis` to accept :class:`~openturns.FunctionalchaosResult`
+  - Extend :class:`~otlmr.LinearModelAnalysis` to accept :class:`~openturns.FunctionalChaosResult`
     as argument.
   - *Input normalization*: At the moment, inputs are normalized after applying basis' functions.
     To improve robustness, it would be better to normalize input before applying basis' functions.
@@ -556,6 +554,8 @@ Here are some issues which could be investigated before integrating otlmr inside
     By using a singular value decomposition, maybe some post-processing computations (like
     leverages) could be easier to compute.
   - Instead of optimal trend coefficients, maybe we could return their law.
-  - Implement the stepwise method for generalized linear models.
-  - Sensitivity analysis
+  - Extend use of the stepwise method for generalized linear models.
+  - *Sensitivity analysis*: standard regression coefficients are currently defined in
+    :class:`~openturns.CorrelationAnalysis`.
+    An improvement is to rely on :class:`~otlmr.LinearModelResult` in a new post-processing.
 
