@@ -536,5 +536,11 @@ Here are some issues which could be investigated before integrating otlmr inside
 * *Singular Value Decomposition*: algorithm currently uses a QR-decomposition of input sample.
   By using a singular value decomposition, maybe some post-processing computations (like
   leverages) could be easier to compute.
+* *Tensorization*: This module adds the :class:`~otlmr.MonomialFactory` class to help
+  creating basis of monomials.  OpenTURNS implements polynomial tensorization for
+  orthogonal basis.  For this reason, :class:`~otlmr.MonomialFactory` inherits from
+  :class:`~openturns.OrthogonalUniVariatePolynomialFactory`.  But this is wrong, since
+  monomials do not form an orthogonal basis; polynomial tensorization should be
+  modified to also generate non-orthogonal basis.
 * Instead of optimal trend coefficients, maybe we could return their law.
 
