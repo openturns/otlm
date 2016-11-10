@@ -529,18 +529,33 @@ Perspectives
 
 Here are some issues which could be investigated before integrating otlmr inside OpenTURNS:
 
-* *Input normalization*: At the moment, inputs are normalized after applying basis' functions.
-  To improve robustness, it would be better to normalize input before applying basis' functions.
-  But in fact, data should be normalized before performing linear regression.
-* *Multivariate output*: stepwise selection is implemented only when output is 1D.
-* *Singular Value Decomposition*: algorithm currently uses a QR-decomposition of input sample.
-  By using a singular value decomposition, maybe some post-processing computations (like
-  leverages) could be easier to compute.
-* *Tensorization*: This module adds the :class:`~otlmr.MonomialFactory` class to help
-  creating basis of monomials.  OpenTURNS implements polynomial tensorization for
-  orthogonal basis.  For this reason, :class:`~otlmr.MonomialFactory` inherits from
-  :class:`~openturns.OrthogonalUniVariatePolynomialFactory`.  But this is wrong, since
-  monomials do not form an orthogonal basis; polynomial tensorization should be
-  modified to also generate non-orthogonal basis.
-* Instead of optimal trend coefficients, maybe we could return their law.
+* Integration into OpenTURNS
+
+  - classes :class:`~openturns.LinearModel` and :class:`~openturns.LinearModelFactory`
+    should be fully dropped
+  - *Tensorization*: This module adds the :class:`~otlmr.MonomialFactory` class to help
+    creating basis of monomials.  OpenTURNS implements polynomial tensorization for
+    orthogonal basis.  For this reason, :class:`~otlmr.MonomialFactory` inherits from
+    :class:`~openturns.OrthogonalUniVariatePolynomialFactory`.  But this is wrong, since
+    monomials do not form an orthogonal basis; polynomial tensorization should be
+    modified to also generate non-orthogonal basis.
+  - Class :class:`~otlmr.LinearModelAlgorithm` currently calls :class:`~otlmr.LinearModelStepwiseAlgorithm`
+    to build the linear model.  This is to avoid code duplication when creating a
+    :class:`~otlmr.LinearModelResult`, but this should be fixed.
+
+* Extensions
+
+  - Drop dependency against R for normality tests
+  - Extend :class:`~otlmr.LinearModelAnalysis` to accept :class:`~openturns.FunctionalchaosResult`
+    as argument.
+  - *Input normalization*: At the moment, inputs are normalized after applying basis' functions.
+    To improve robustness, it would be better to normalize input before applying basis' functions.
+    But in fact, data should be normalized before performing linear regression.
+  - *Multivariate output*: stepwise selection is currently implemented only when output is 1D.
+  - *Singular Value Decomposition*: algorithm currently uses a QR-decomposition of input sample.
+    By using a singular value decomposition, maybe some post-processing computations (like
+    leverages) could be easier to compute.
+  - Instead of optimal trend coefficients, maybe we could return their law.
+  - Implement the stepwise method for generalized linear models.
+  - Sensitivity analysis
 
