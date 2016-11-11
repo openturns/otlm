@@ -67,7 +67,7 @@ factory = ot.OrthogonalProductPolynomialFactory([otlmr.MonomialFactory()]*dim, e
 # BIO~SAL+pH+K+Na+Zn
 interactions = []
 interactions.append([0]*dim)
-for i in xrange(dim):
+for i in range(dim):
   indices = [0]*dim
   indices[i] = 1
   # Y ~ I(Xi)^1

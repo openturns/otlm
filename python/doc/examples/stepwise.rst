@@ -33,7 +33,7 @@ Stepwise method
     interactions = [x for x in ot.Tuples([2]*dim).generate()]
     # Remove X1*X2*X3*X4 to obtain Y ~ (X1+X2+X3+X4)^3
     interactions.pop(interactions.index([1]*dim))
-    for i in xrange(dim):
+    for i in range(dim):
       indices = [0]*dim
       indices[i] = 2
       # Y ~ I(Xi)^2
@@ -49,7 +49,7 @@ Stepwise method
     
     i_min = [interactions.index([0,0,0,0])]
     i_0 = i_min[:]
-    for i in xrange(dim):
+    for i in range(dim):
       indices = [0]*dim
       indices[i] = 1
       i_0.append(interactions.index(indices))
