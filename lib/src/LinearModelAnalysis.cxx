@@ -310,7 +310,6 @@ NumericalScalar LinearModelAnalysis::getRSquared() const
   // Get residuals and output samples
   const NumericalSample residuals(getResiduals());
   const NumericalSample outputSample =(getLinearModelResult().getOutputSample());
-  const UnsignedInteger size = residuals.getSize();
   // Define RSS and SYY
   const NumericalScalar RSS = residuals.computeRawMoment(2)[0];
   const NumericalScalar SYY = outputSample.computeCenteredMoment(2)[0];
@@ -330,8 +329,6 @@ NumericalScalar LinearModelAnalysis::getAdjustedRSquared() const
 /* Fisher test */
 NumericalScalar LinearModelAnalysis::getFisherScore() const
 {
-  // Degree of Freedom
-  const UnsignedInteger dof = getDegreesOfFreedom();
   // Get residuals and output samples
   const NumericalSample residuals(getResiduals());
   const NumericalSample outputSample =(getLinearModelResult().getOutputSample());

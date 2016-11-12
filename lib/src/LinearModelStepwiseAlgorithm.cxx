@@ -65,13 +65,14 @@ LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const NumericalSample
   , inputSample_(inputSample)
   , basis_(basis)
   , outputSample_(outputSample)
-  , minimalIndices_(minimalIndices)
   , direction_(isForward ? FORWARD : BACKWARD)
   , penalty_(penalty)
   , maximumIterationNumber_(maximumIterationNumber)
+  , minimalIndices_(minimalIndices)
+  , condensedFormula_(basis.__str__())
   , hasRun_(false)
 {
-  condensedFormula_ =  basis_.__str__();
+  //  Nothing to do
 }
 
 /* Parameters constructor BOTH */
@@ -86,14 +87,15 @@ LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const NumericalSample
   , inputSample_(inputSample)
   , basis_(basis)
   , outputSample_(outputSample)
-  , minimalIndices_(minimalIndices)
-  , startIndices_(startIndices)
+  , direction_(BOTH)
   , penalty_(penalty)
   , maximumIterationNumber_(maximumIterationNumber)
+  , minimalIndices_(minimalIndices)
+  , startIndices_(startIndices)
+  , condensedFormula_(basis.__str__())
   , hasRun_(false)
-  , direction_(BOTH)
 {
-  condensedFormula_ =  basis_.__str__();
+  //  Nothing to do
 }
 
 /* Virtual constructor */
