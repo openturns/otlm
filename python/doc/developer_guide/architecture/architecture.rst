@@ -539,10 +539,10 @@ Perspectives
   - Class :class:`~otlmr.LinearModelAlgorithm` currently calls :class:`~otlmr.LinearModelStepwiseAlgorithm`
     to build the linear model.  This is to avoid code duplication when creating a
     :class:`~otlmr.LinearModelResult`, but this should be fixed.
+  - Drop rot package
 
 * Extensions
 
-  - Drop dependency against R for normality tests
   - Extend :class:`~otlmr.LinearModelAnalysis` to accept :class:`~openturns.FunctionalChaosResult`
     as argument.
   - *Input normalization*: At the moment, inputs are normalized after applying basis' functions.
@@ -559,4 +559,9 @@ Perspectives
     An improvement is to rely on :class:`~otlmr.LinearModelResult` in a new post-processing.
   - Extend :class:`~openturns.BoxCoxFactory` to accept a :class:`~otlmr.LinearModelAlgorithm`,
     as is done with :class:`~openturns.GeneralizedLinearModelResult`.
+  - Rework :class:`~openturns.TestResult`, it currently uses either pValue or (1-pValue).
+  - Improve validation.  We could not validate by comparing with R ``step`` method because
+    it filters variables: it would accept ``X1*X2`` only after ``X1`` and ``X2`` belong to
+    the model.  Moreover, there are cases where it switches variables, say ``X2*X1``, and
+    it afterwards reject it because it did not match ``X1*X2``.
 
