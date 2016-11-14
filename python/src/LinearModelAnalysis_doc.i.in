@@ -227,7 +227,8 @@ testResult : :class:`~openturns.TestResult`
 
 Notes
 -----
-The Chi-Square test is a goodness of fit test which objective is to check the normality assumption of residuals (and thus the model).
+The Chi-Square test is a goodness of fit test which objective is to check the normality assumption (null hypothesis) of residuals (and thus the model).
+It is accepted when p-value is low.
 
 From a dataset :math:`\epsilon=(\epsilon_1,...,\epsilon_k)` of size :math:`k` (residual set), we define :math:`nClasses` classes
 where :math:`nClasses := 2\ k^{\frac{2}{5}}`.
@@ -254,7 +255,8 @@ It is recommended to test with both *True* and *False* values."
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultKolmogorovSmirnov
-"Performs Kolmogorov test to check Gaussian assumption of the model
+"Performs Kolmogorov test to check Gaussian assumption of the model (null hypothesis).
+It is accepted when p-value is low.
 
 Returns
 -------
@@ -269,7 +271,8 @@ We check that the residual is Gaussian thanks to :class:`~openturns.FittingTest:
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultAndersonDarling
-"Performs Anderson-Darling test to check Gaussian assumption of the model
+"Performs Anderson-Darling test to check Gaussian assumption of the model (null hypothesis).
+It is accepted when p-value is low.
 
 Returns
 -------
