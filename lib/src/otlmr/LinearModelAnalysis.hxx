@@ -59,7 +59,7 @@ public:
   OT::String __repr__() const;
 
   /** Method that returns the ANOVA table (ANalyse Of VAriance) */
-  OT::String __str__() const;
+  OT::String __str__(const OT::String & offset = "") const;
 
   /** Linear model accessor */
   LinearModelResult getLinearModelResult() const;

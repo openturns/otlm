@@ -76,14 +76,14 @@ String LinearModelAnalysis::__repr__() const
 
 
 /* Method that returns the ANOVA table (ANalyse Of VAriance) */
-String LinearModelAnalysis::__str__() const
+String LinearModelAnalysis::__str__(const String & offset) const
 {
   const NumericalSample estimates(getCoefficientsEstimates());
   const NumericalSample standardErrors(getCoefficientsStandardErrors());
   const NumericalSample tscores(getCoefficientsTScores());
   const NumericalSample pValues(getCoefficientsPValues());
   const Description names(getCoefficientsNames());
-  const NumericalScalar sigma2(getResiduals().computeRawMoment(2)[0]);
+  const NumericalScalar sigma2 = getResiduals().computeRawMoment(2)[0];
   const UnsignedInteger dof = getDegreesOfFreedom();
   const UnsignedInteger n = getResiduals().getSize();
   const String separator(" | ");
@@ -850,8 +850,8 @@ Graph LinearModelAnalysis::drawCookVsLeverages() const
     Curve curve(diagonal, "red", "solid", 1);
     graph.add(curve);
     annotation[1] = (OSS() << isovalues[k]);
-    Cloud cloud(diagonal, "red", "dot");
-    graph.add(cloud);
+    Cloud diagonalCloud(diagonal, "red", "dot");
+    graph.add(diagonalCloud);
     Text text(diagonal, annotation, "top");
     text.setColor("red");
     graph.add(text);
