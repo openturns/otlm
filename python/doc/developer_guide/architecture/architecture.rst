@@ -555,7 +555,7 @@ Perspectives
   - Instead of optimal trend coefficients, maybe we could return their law.
   - Extend use of the stepwise method for generalized linear models.
   - *Sensitivity analysis*: standard regression coefficients are currently defined in
-    :class:`~openturns.CorrelationAnalysis`.
+    :class:`~openturns.CorrelationAnalysis_SRC`.
     An improvement is to rely on :class:`~otlmr.LinearModelResult` in a new post-processing.
   - Extend :class:`~openturns.BoxCoxFactory` to accept a :class:`~otlmr.LinearModelAlgorithm`,
     as is done with :class:`~openturns.GeneralizedLinearModelResult`.
