@@ -230,7 +230,7 @@ latex_additional_files = ['math_notations.sty']
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'otlmr.tex', u'otlmr Documentation',
-   u'Phimeca', 'manual'),
+   u'IMACS', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -260,7 +260,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'otlmr', u'otlmr Documentation',
-     [u'Phimeca'], 1)
+     [u'IMACS'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -274,7 +274,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'otlmr', u'otlmr Documentation',
-   u'Phimeca', 'otlmr', 'One line description of project.',
+   u'IMACS', 'otlmr', 'One line description of project.',
    'Miscellaneous'),
 ]
 
