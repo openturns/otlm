@@ -18,15 +18,15 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef OTLMR_LINEARMODELALGORITHM_HXX
-#define OTLMR_LINEARMODELALGORITHM_HXX
+#ifndef OTLM_LINEARMODELALGORITHM_HXX
+#define OTLM_LINEARMODELALGORITHM_HXX
 
 #include "openturns/MetaModelAlgorithm.hxx"
 #include "openturns/NumericalSample.hxx"
-#include "otlmr/LinearModelResult.hxx"
-#include "otlmr/otlmrprivate.hxx"
+#include "otlm/LinearModelResult.hxx"
+#include "otlm/otlmprivate.hxx"
 
-namespace OTLMR
+namespace OTLM
 {
 
 
@@ -36,7 +36,7 @@ namespace OTLMR
  * LinearModelAlgorithm implements the notion of linear model
  */
 
-class OTLMR_API LinearModelAlgorithm :
+class OTLM_API LinearModelAlgorithm :
   public OT::MetaModelAlgorithm
 {
   CLASSNAME;
@@ -102,6 +102,6 @@ private:
 }; /* class LinearModelAlgorithm */
 
 
-} /* namespace OTLMR */
+} /* namespace OTLM */
 
-#endif /* OTLMR_LINEARMODELALGORITHM_HXX */
+#endif /* OTLM_LINEARMODELALGORITHM_HXX */

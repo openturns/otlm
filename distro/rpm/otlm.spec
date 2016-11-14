@@ -14,14 +14,14 @@ FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
 %endif \
 -DBUILD_SHARED_LIBS:BOOL=ON
 
-Name:           otlmr
+Name:           otlm
 Version:        0.1
 Release:        0%{?dist}
 Summary:        OpenTURNS module
 Group:          System Environment/Libraries
 License:        LGPLv3+
 URL:            http://www.openturns.org/
-Source0:        http://downloads.sourceforge.net/openturns-modules/otlmr/otlmr-%{version}.tar.bz2
+Source0:        http://downloads.sourceforge.net/openturns-modules/otlm/otlm-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  gcc-c++, cmake, swig
 %if 0%{?suse_version}
@@ -32,40 +32,40 @@ BuildRequires:  gcc-gfortran
 BuildRequires:  openturns-devel
 BuildRequires:  python-openturns
 BuildRequires:  python-devel
-Requires:       libotlmr0
+Requires:       libotlm0
 
 %description
 Template module for OpenTURNS library.
 
-%package -n libotlmr0
-Summary:        otlmr development files
+%package -n libotlm0
+Summary:        otlm development files
 Group:          Development/Libraries/C and C++
 
-%description -n libotlmr0
-Dynamic libraries for otlmr.
+%description -n libotlm0
+Dynamic libraries for otlm.
 
 %package devel
-Summary:        otlmr development files
+Summary:        otlm development files
 Group:          Development/Libraries/C and C++
-Requires:       libotlmr0 = %{version}
+Requires:       libotlm0 = %{version}
 Requires:       openturns-devel
 
 %description devel
-Development files for otlmr library.
+Development files for otlm library.
 
 %package examples
-Summary:        otlmr examples
+Summary:        otlm examples
 Group:          Productivity/Scientific/Math
 
 %description examples
-Example files for otlmr
+Example files for otlm
 
 %package -n python-%{name}
-Summary:        otlmr library
+Summary:        otlm library
 Group:          Productivity/Scientific/Math
 Requires:       python-openturns
 %description -n python-%{name}
-Python textual interface to otlmr uncertainty library
+Python textual interface to otlm uncertainty library
 
 %prep
 %setup -q
@@ -88,10 +88,10 @@ rm %{buildroot}%{python_sitearch}/%{name}/*.pyc
 %clean
 rm -rf %{buildroot}
 
-%post -n libotlmr0 -p /sbin/ldconfig 
-%postun -n libotlmr0 -p /sbin/ldconfig 
+%post -n libotlm0 -p /sbin/ldconfig 
+%postun -n libotlm0 -p /sbin/ldconfig 
 
-%files -n libotlmr0
+%files -n libotlm0
 %defattr(-,root,root,-)
 %{_libdir}/*.so.*
 

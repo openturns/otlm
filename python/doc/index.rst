@@ -1,4 +1,4 @@
-otlmr documentation
+otlm documentation
 ===================
 
 User documentation

@@ -1,5 +1,5 @@
 import openturns as ot
-import otlmr
+import otlm
 from math import log
 
 description = ["BIO","SAL","pH","K","Na","Zn"]
@@ -59,7 +59,7 @@ Y = sample[:, 0]
 # Build a model BIO~SAL+pH+K+Na+Zn
 dim = X.getDimension()
 enumerateFunction = ot.EnumerateFunction(dim)
-factory = ot.OrthogonalProductPolynomialFactory([otlmr.MonomialFactory()]*dim, enumerateFunction)
+factory = ot.OrthogonalProductPolynomialFactory([otlm.MonomialFactory()]*dim, enumerateFunction)
 
 # Build 'interactions' as a list of list [a1,a2,a3,a4,a5], and we will generate tensorized
 # polynomials SAL^a1*pH^a2*K^a3*Na^a4*Zn^a5.
@@ -108,16 +108,16 @@ for k in [penalty_AIC, penalty_BIC]:
   if k==penalty_AIC:  IC =" AIC "
   if k==penalty_BIC:  IC =" BIC "  
   for forward in [True, False]:
-    algo = otlmr.LinearModelStepwiseAlgorithm(X, basis, Y, i_min, forward, k, maxiteration)
-    algo_result = otlmr.LinearModelAnalysis(algo.getResult())
+    algo = otlm.LinearModelStepwiseAlgorithm(X, basis, Y, i_min, forward, k, maxiteration)
+    algo_result = otlm.LinearModelAnalysis(algo.getResult())
     print("{0:~^60s}".format(""))
     if forward==True : print(" Forward " +IC)
     else             : print(" Backward "+IC)
     print("{0:~^60s}".format(""))
     print(algo_result)
   ## Both
-  algo = otlmr.LinearModelStepwiseAlgorithm(X, basis, Y, i_min, i_0, k, maxiteration)
-  algo_result = otlmr.LinearModelAnalysis(algo.getResult())
+  algo = otlm.LinearModelStepwiseAlgorithm(X, basis, Y, i_min, i_0, k, maxiteration)
+  algo_result = otlm.LinearModelAnalysis(algo.getResult())
   print("{0:~^60s}".format(""))
   print(" Both "+IC)
   print("{0:~^60s}".format(""))

@@ -18,13 +18,13 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef OTLMR_MONOMIALFACTORY_HXX
-#define OTLMR_MONOMIALFACTORY_HXX
+#ifndef OTLM_MONOMIALFACTORY_HXX
+#define OTLM_MONOMIALFACTORY_HXX
 
 #include "openturns/OrthogonalUniVariatePolynomialFactory.hxx"
-#include "otlmr/otlmrprivate.hxx"
+#include "otlm/otlmprivate.hxx"
 
-namespace OTLMR
+namespace OTLM
 {
 
 /**
@@ -33,7 +33,7 @@ namespace OTLMR
  * Monomial factory
  */
 
-class OTLMR_API MonomialFactory :
+class OTLM_API MonomialFactory :
   public OT::OrthogonalUniVariatePolynomialFactory
 {
   CLASSNAME;
@@ -62,6 +62,6 @@ private:
 
 }; /* class MonomialFactory */
 
-} /* namespace OTLMR */
+} /* namespace OTLM */
 
-#endif /* OTLMR_MONOMIALFACTORY_HXX */
+#endif /* OTLM_MONOMIALFACTORY_HXX */

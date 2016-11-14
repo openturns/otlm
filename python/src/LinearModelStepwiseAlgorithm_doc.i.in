@@ -1,4 +1,4 @@
-%feature("docstring") OTLMR::LinearModelStepwiseAlgorithm
+%feature("docstring") OTLM::LinearModelStepwiseAlgorithm
 "Class used to create a linear model from numerical samples.
 
 **Available usages**:

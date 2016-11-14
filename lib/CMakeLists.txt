@@ -4,6 +4,6 @@ add_subdirectory ( src )
 add_subdirectory ( test )
 
 install ( FILES ${HEADERFILES}
-  DESTINATION ${OTLMR_INCLUDE_PATH}/${PACKAGE_NAME}
+  DESTINATION ${OTLM_INCLUDE_PATH}/${PACKAGE_NAME}
         )
 

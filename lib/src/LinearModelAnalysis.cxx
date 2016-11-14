@@ -18,7 +18,7 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "otlmr/LinearModelAnalysis.hxx"
+#include "otlm/LinearModelAnalysis.hxx"
 #include "openturns/PersistentObjectFactory.hxx"
 #include "openturns/NormalityTest.hxx"
 #include "openturns/OSS.hxx"
@@ -37,7 +37,7 @@
 
 using namespace OT;
 
-namespace OTLMR
+namespace OTLM
 {
 
 CLASSNAMEINIT(LinearModelAnalysis);
@@ -874,4 +874,4 @@ void LinearModelAnalysis::load(Advocate & adv)
   adv.loadAttribute( "linearModelResult_", linearModelResult_ );
 }
 
-} /* namespace OTLMR */
+} /* namespace OTLM */

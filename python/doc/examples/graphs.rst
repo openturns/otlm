@@ -6,7 +6,7 @@ Graphs
 
     from openturns.viewer import View
     import openturns as ot
-    import otlmr
+    import otlm
     import pandas as pd
     
     # Data is available from R datasets, and can be downloaded from
@@ -30,9 +30,9 @@ Graphs
     outputSample = sample[:,0]
     inputSample = sample[:,1:5]
     
-    algo1 = otlmr.LinearModelAlgorithm(inputSample, outputSample)
+    algo1 = otlm.LinearModelAlgorithm(inputSample, outputSample)
     result1 = algo1.getResult()
-    analysis1 = otlmr.LinearModelAnalysis(algo1.getResult())
+    analysis1 = otlm.LinearModelAnalysis(algo1.getResult())
     
     for plot in ["drawResidualsVsFitted", "drawScaleLocation", "drawQQplot",
                  "drawCookDistance", "drawResidualsVsLeverages", "drawCookVsLeverages"]:
@@ -55,7 +55,7 @@ Graphs
 
     from openturns.viewer import View
     import openturns as ot
-    import otlmr
+    import otlm
     import pandas as pd
     
     # Data is available from R datasets, and can be downloaded from
@@ -81,9 +81,9 @@ Graphs
     inputSample = pop75
     inputSample.stack(dpi)
     
-    algo2 = otlmr.LinearModelAlgorithm(inputSample, outputSample)
+    algo2 = otlm.LinearModelAlgorithm(inputSample, outputSample)
     result2 = algo2.getResult()
-    analysis2 = otlmr.LinearModelAnalysis(algo2.getResult())
+    analysis2 = otlm.LinearModelAnalysis(algo2.getResult())
     
     for plot in ["drawResidualsVsFitted", "drawScaleLocation", "drawQQplot",
                  "drawCookDistance", "drawResidualsVsLeverages", "drawCookVsLeverages"]:

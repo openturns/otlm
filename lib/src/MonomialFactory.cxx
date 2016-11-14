@@ -18,14 +18,14 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "otlmr/MonomialFactory.hxx"
+#include "otlm/MonomialFactory.hxx"
 #include "openturns/PersistentObjectFactory.hxx"
 #include "openturns/Dirac.hxx"
 #include "openturns/Exception.hxx"
 
 using namespace OT;
 
-namespace OTLMR
+namespace OTLM
 {
 
 CLASSNAMEINIT(MonomialFactory);
@@ -77,4 +77,4 @@ void MonomialFactory::load(Advocate & adv)
   OrthogonalUniVariatePolynomialFactory::load(adv);
 }
 
-} /* namespace OTLMR */
+} /* namespace OTLM */

@@ -18,19 +18,19 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef OTLMR_LINEARMODELANALYSIS_HXX
-#define OTLMR_LINEARMODELANALYSIS_HXX
+#ifndef OTLM_LINEARMODELANALYSIS_HXX
+#define OTLM_LINEARMODELANALYSIS_HXX
 
 #include "openturns/PersistentObject.hxx"
 #include "openturns/NumericalSample.hxx"
 #include "openturns/Description.hxx"
 #include "openturns/TestResult.hxx"
 #include "openturns/Graph.hxx"
-#include "otlmr/LinearModelResult.hxx"
-#include "otlmr/otlmrprivate.hxx"
+#include "otlm/LinearModelResult.hxx"
+#include "otlm/otlmprivate.hxx"
 
 
-namespace OTLMR
+namespace OTLM
 {
 
 /**
@@ -39,7 +39,7 @@ namespace OTLMR
  * The linear model analysis
  */
 
-class OTLMR_API LinearModelAnalysis :
+class OTLM_API LinearModelAnalysis :
   public OT::PersistentObject
 {
   CLASSNAME;
@@ -133,6 +133,6 @@ private:
 
 }; /* class LinearModelAnalysis */
 
-} /* namespace OTLMR */
+} /* namespace OTLM */
 
-#endif /* OTLMR_LINEARMODELANALYSIS_HXX */
+#endif /* OTLM_LINEARMODELANALYSIS_HXX */

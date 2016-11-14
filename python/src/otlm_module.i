@@ -1,6 +1,6 @@
-// SWIG file otlmr_module.i
+// SWIG file otlm_module.i
 
-%module(docstring="otlmr module") otlmr
+%module(docstring="otlm module") otlm
 
 %{
 #include <openturns/OT.hxx>
@@ -17,7 +17,7 @@
 %import uncertainty_module.i
 
 // The new classes
-%include otlmr/otlmrprivate.hxx
+%include otlm/otlmprivate.hxx
 %include MonomialFactory.i
 %include LinearModelResult.i
 %include LinearModelAlgorithm.i

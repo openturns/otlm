@@ -66,7 +66,7 @@ Compilation
 
 .. code-block:: bash
 
-    cd otlmr
+    cd otlm
     mkdir -p build && cd build
     cmake \
       -DCMAKE_INSTALL_PREFIX=$PWD/install \
@@ -84,8 +84,8 @@ LinearModel
 
 The :class:`~openturns.LinearModel` class is outdated and does not follow
 current best practices about metamodel classes.
-We will introduce :class:`~otlmr.LinearModelAlgorithm`,
-:class:`~otlmr.LinearModelAnalysis` and :class:`~otlmr.LinearModelResult`
+We will introduce :class:`~otlm.LinearModelAlgorithm`,
+:class:`~otlm.LinearModelAnalysis` and :class:`~otlm.LinearModelResult`
 classes.
 All current uses of :class:`~openturns.LinearModel` have to be modified; it is
 used in classes :class:`~openturns.VisualTest`, :class:`~openturns.CorrelationAnalysis`
@@ -123,22 +123,22 @@ Note: Student test uses standardized residuals
 Graphical diagnostics
 ~~~~~~~~~~~~~~~~~~~~~
 
-Several plots are provided by :class:`~otlmr.LinearModelAnalysis` class, see diagram class.
+Several plots are provided by :class:`~otlm.LinearModelAnalysis` class, see diagram class.
 
-* :func:`~otlmr.LinearModelAnalysis.drawResidualsVsFitted` plots standardized residuals
+* :func:`~otlm.LinearModelAnalysis.drawResidualsVsFitted` plots standardized residuals
   :math:`\tilde{\epsilon}` vs. fitted values, with
 
   .. math:: \tilde{\epsilon}_i = \frac{\hat{\epsilon}_i}{\sqrt{\frac{n}{n-p-1}\hat{\sigma}^2 (1-H_{i,i})}}
 
-* :func:`~otlmr.LinearModelAnalysis.drawQQplot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
+* :func:`~otlm.LinearModelAnalysis.drawQQplot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
   vs. theoretical quantiles.
-* :func:`~otlmr.LinearModelAnalysis.drawScaleLocation` plots :math:`\sqrt{\tilde{\epsilon}_i}`
+* :func:`~otlm.LinearModelAnalysis.drawScaleLocation` plots :math:`\sqrt{\tilde{\epsilon}_i}`
   vs. fitted values.
-* :func:`~otlmr.LinearModelAnalysis.drawCookDistance` plots an histogram of Cook's distance
+* :func:`~otlm.LinearModelAnalysis.drawCookDistance` plots an histogram of Cook's distance
 
   .. math:: D_i = \frac{\tilde{\epsilon}_i^2}{p} \left(\frac{H_{i,i}}{1-H_{i,i}}\right)
 
-* :func:`~otlmr.LinearModelAnalysis.drawResidualsVsLeverages` plots standardized
+* :func:`~otlm.LinearModelAnalysis.drawResidualsVsLeverages` plots standardized
   residuals :math:`\tilde{\epsilon}` vs leverages
 
   .. math:: h_i = H_{i,i}
@@ -148,7 +148,7 @@ Several plots are provided by :class:`~otlmr.LinearModelAnalysis` class, see dia
   .. math:: D(x,y) = \frac{y^2}{p}\left(\frac{x}{1-x}\right)
 
   for levels 0.5 and 1.
-* :func:`~otlmr.LinearModelAnalysis.drawCookVsLeverages` plots Cook's distance
+* :func:`~otlm.LinearModelAnalysis.drawCookVsLeverages` plots Cook's distance
   :math:`\tilde{\epsilon}` vs :math:`\frac{h_i}{1-h_i}`.
 
   .. math:: h_i = H_{i,i}
@@ -480,7 +480,7 @@ Stepwise regression algorithms
    :math:`\big(A_{i,i}\big)_{i \in [1,p]} = \big(\,\|R_X^{-T}\,e_i\|^2\,\big)_{i \in [1,p]}`
 6. We compute the :math:`(n)` vectors: :math:`\big(H_{i,i}\big)_{i \in [1,n]} = \big(\,\|Q_X^{T}\,e_i\|^2\,\big)_{i \in [1,n]}` and
    :math:`\big(D_{i}\big)_{i \in [1,n]} =\Big(\,\frac{(n-1-p)\hat{\varepsilon}_i^2}{p\,\|\hat{\varepsilon}\|^2}\,\frac{H_{i,i}}{(1-H_{i,i})^2}\,\Big)_{i \in [1,n]}`
-7. We construct an instance of :class:`~otlmr.LinearModelResult` with parameters: :math:`\big(\,X,Y,\hat{\varepsilon},(A_{i,i})_{i \in [1,p]},(H_{i,i})_{i \in [1,n]},(D_{i})_{i \in [1,n]}\,\big)`.
+7. We construct an instance of :class:`~otlm.LinearModelResult` with parameters: :math:`\big(\,X,Y,\hat{\varepsilon},(A_{i,i})_{i \in [1,p]},(H_{i,i})_{i \in [1,n]},(D_{i})_{i \in [1,n]}\,\big)`.
 
 
 ``ComputeUpdateForward`` algorithm
@@ -530,20 +530,20 @@ Perspectives
 
   - classes :class:`~openturns.LinearModel` and :class:`~openturns.LinearModelFactory`
     should be fully dropped
-  - *Tensorization*: This module adds the :class:`~otlmr.MonomialFactory` class to help
+  - *Tensorization*: This module adds the :class:`~otlm.MonomialFactory` class to help
     creating basis of monomials.  OpenTURNS implements polynomial tensorization for
-    orthogonal basis.  For this reason, :class:`~otlmr.MonomialFactory` inherits from
+    orthogonal basis.  For this reason, :class:`~otlm.MonomialFactory` inherits from
     :class:`~openturns.OrthogonalUniVariatePolynomialFactory`.  But this is wrong, since
     monomials do not form an orthogonal basis; polynomial tensorization should be
     modified to also generate non-orthogonal basis.
-  - Class :class:`~otlmr.LinearModelAlgorithm` currently calls :class:`~otlmr.LinearModelStepwiseAlgorithm`
+  - Class :class:`~otlm.LinearModelAlgorithm` currently calls :class:`~otlm.LinearModelStepwiseAlgorithm`
     to build the linear model.  This is to avoid code duplication when creating a
-    :class:`~otlmr.LinearModelResult`, but this should be fixed.
+    :class:`~otlm.LinearModelResult`, but this should be fixed.
   - Drop rot package
 
 * Extensions
 
-  - Extend :class:`~otlmr.LinearModelAnalysis` to accept :class:`~openturns.FunctionalChaosResult`
+  - Extend :class:`~otlm.LinearModelAnalysis` to accept :class:`~openturns.FunctionalChaosResult`
     as argument.
   - *Input normalization*: At the moment, inputs are normalized after applying basis' functions.
     To improve robustness, it would be better to normalize input before applying basis' functions.
@@ -556,8 +556,8 @@ Perspectives
   - Extend use of the stepwise method for generalized linear models.
   - *Sensitivity analysis*: standard regression coefficients are currently defined in
     :class:`~openturns.CorrelationAnalysis_SRC`.
-    An improvement is to rely on :class:`~otlmr.LinearModelResult` in a new post-processing.
-  - Extend :class:`~openturns.BoxCoxFactory` to accept a :class:`~otlmr.LinearModelAlgorithm`,
+    An improvement is to rely on :class:`~otlm.LinearModelResult` in a new post-processing.
+  - Extend :class:`~openturns.BoxCoxFactory` to accept a :class:`~otlm.LinearModelAlgorithm`,
     as is done with :class:`~openturns.GeneralizedLinearModelResult`.
   - Rework :class:`~openturns.TestResult`, it currently uses either pValue or (1-pValue).
   - Improve validation.  We could not validate by comparing with R ``step`` method because

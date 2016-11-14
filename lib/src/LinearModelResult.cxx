@@ -18,7 +18,7 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "otlmr/LinearModelResult.hxx"
+#include "otlm/LinearModelResult.hxx"
 #include "openturns/PersistentObjectFactory.hxx"
 #include "openturns/NumericalMathFunction.hxx"
 #include "openturns/LinearModel.hxx"
@@ -28,48 +28,48 @@
 
 using namespace OT;
 
-namespace OTLMR
+namespace OTLM
 {
 
-static pthread_mutex_t OTLMRResourceMap_InstanceMutex_;
-static UnsignedInteger OTLMRResourceMap_initialized_ = 0;
+static pthread_mutex_t OTLMResourceMap_InstanceMutex_;
+static UnsignedInteger OTLMResourceMap_initialized_ = 0;
 
-class OTLMRResourceMap_init
+class OTLMResourceMap_init
 {
 public:
-OTLMRResourceMap_init()
+OTLMResourceMap_init()
 {
 
-  if (!OTLMRResourceMap_initialized_)
+  if (!OTLMResourceMap_initialized_)
   {
 #ifndef OT_MUTEXINIT_NOCHECK
     pthread_mutexattr_t attr;
     pthread_mutexattr_init( &attr );
     pthread_mutexattr_settype( &attr, PTHREAD_MUTEX_RECURSIVE );
-    pthread_mutex_init(&OTLMRResourceMap_InstanceMutex_, &attr);
+    pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, &attr);
 #else
-    pthread_mutex_init(&OTLMRResourceMap_InstanceMutex_, NULL);
+    pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, NULL);
 #endif
     ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
     ResourceMap::SetAsBool("LinearModelAnalysis-ChiSquareAdjust", true);
 
     ResourceMap::SetAsBool("LinearModelStepwiseAlgorithm-normalize", true);
 
-    OTLMRResourceMap_initialized_ = 1;
+    OTLMResourceMap_initialized_ = 1;
   }
-  assert(OTLMRResourceMap_initialized_);
+  assert(OTLMResourceMap_initialized_);
 }
 
-~OTLMRResourceMap_init()
+~OTLMResourceMap_init()
 {
-  if (OTLMRResourceMap_initialized_)
-    pthread_mutex_destroy(&OTLMRResourceMap_InstanceMutex_);
-  OTLMRResourceMap_initialized_ = 0;
+  if (OTLMResourceMap_initialized_)
+    pthread_mutex_destroy(&OTLMResourceMap_InstanceMutex_);
+  OTLMResourceMap_initialized_ = 0;
 }
 
 };
 
-static const OTLMRResourceMap_init static_initializer_OTLMRResourceMap;
+static const OTLMResourceMap_init static_initializer_OTLMRResourceMap;
 
 CLASSNAMEINIT(LinearModelResult);
 
@@ -241,4 +241,4 @@ void LinearModelResult::load(Advocate & adv)
 }
 
 
-} /* namespace OTLMR */
+} /* namespace OTLM */

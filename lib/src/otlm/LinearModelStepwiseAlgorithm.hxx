@@ -18,18 +18,18 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef OTLMR_LINEARMODELSTEPWISEFACTORY_HXX
-#define OTLMR_LINEARMODELSTEPWISEFACTORY_HXX
+#ifndef OTLM_LINEARMODELSTEPWISEFACTORY_HXX
+#define OTLM_LINEARMODELSTEPWISEFACTORY_HXX
 
 #include "openturns/PersistentObject.hxx"
 #include "openturns/NumericalSample.hxx"
 #include "openturns/Matrix.hxx"
 #include "openturns/Indices.hxx"
 #include "openturns/Basis.hxx"
-#include "otlmr/LinearModelResult.hxx"
-#include "otlmr/otlmrprivate.hxx"
+#include "otlm/LinearModelResult.hxx"
+#include "otlm/otlmprivate.hxx"
 
-namespace OTLMR
+namespace OTLM
 {
 
 /**
@@ -38,7 +38,7 @@ namespace OTLMR
  * The class building linear model using stepwise regression
  */
 
-class OTLMR_API LinearModelStepwiseAlgorithm :
+class OTLM_API LinearModelStepwiseAlgorithm :
   public OT::PersistentObject
 {
   CLASSNAME;
@@ -167,6 +167,6 @@ private:
 
 }; /* class LinearModelStepwiseAlgorithm */
 
-} /* namespace OTLMR */
+} /* namespace OTLM */
 
-#endif /* OTLMR_LINEARMODELSTEPWISEFACTORY_HXX */
+#endif /* OTLM_LINEARMODELSTEPWISEFACTORY_HXX */

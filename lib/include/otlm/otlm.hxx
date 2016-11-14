@@ -1,6 +1,6 @@
 //                                               -*- C++ -*-
 /**
- *  @brief The external header file of otlmr
+ *  @brief The external header file of otlm
  *
  *  Copyright 2005-2016 Airbus-EDF-IMACS-Phimeca
  *
@@ -19,14 +19,14 @@
  *
  */
 
-#ifndef OTLMR_OTLMR_HXX
-#define OTLMR_OTLMR_HXX
+#ifndef OTLM_OTLM_HXX
+#define OTLM_OTLM_HXX
 
-#include "otlmr/LinearModelAlgorithm.hxx"
-#include "otlmr/LinearModelAnalysis.hxx"
-#include "otlmr/LinearModelResult.hxx"
-#include "otlmr/LinearModelStepwiseAlgorithm.hxx"
-#include "otlmr/MonomialFactory.hxx"
+#include "otlm/LinearModelAlgorithm.hxx"
+#include "otlm/LinearModelAnalysis.hxx"
+#include "otlm/LinearModelResult.hxx"
+#include "otlm/LinearModelStepwiseAlgorithm.hxx"
+#include "otlm/MonomialFactory.hxx"
 
-#endif // OTLMR_OTLMR_HXX
+#endif // OTLM_OTLM_HXX
 

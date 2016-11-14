@@ -1,4 +1,4 @@
-%feature("docstring") OTLMR::MonomialFactory
+%feature("docstring") OTLM::MonomialFactory
 "Canonical monomial univariate polynomial family.
 
 Available constructor:
@@ -30,8 +30,8 @@ StandardDistributionPolynomialFactory
 
 Examples
 --------
->>> import otlmr
->>> monomial_factory = otlmr.MonomialFactory()
+>>> import otlm
+>>> monomial_factory = otlm.MonomialFactory()
 >>> for i in range(3):
 ...     print(monomial_factory.build(i))
 1

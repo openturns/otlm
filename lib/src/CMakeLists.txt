@@ -17,9 +17,9 @@ ot_install_header_file ( MonomialFactory.hxx )
 
 include_directories ( ${INTERNAL_INCLUDE_DIRS} )
 
-add_library ( otlmr ${SOURCEFILES} )
+add_library ( otlm ${SOURCEFILES} )
 if ( BUILD_SHARED_LIBS )
-  set_target_properties ( otlmr PROPERTIES COMPILE_DEFINITIONS "OTLMR_DLL_EXPORTS" )
+  set_target_properties ( otlm PROPERTIES COMPILE_DEFINITIONS "OTLM_DLL_EXPORTS" )
 endif ()
 
 if ( NOT DEFINED LIB_VERSION ) 
@@ -28,22 +28,22 @@ endif ()
 if ( NOT DEFINED LIB_SOVERSION ) 
   set ( LIB_SOVERSION 0 )
 endif ()
-set_target_properties ( otlmr PROPERTIES VERSION ${LIB_VERSION} )
-set_target_properties ( otlmr PROPERTIES SOVERSION ${LIB_SOVERSION} )
-target_link_libraries (otlmr ${OPENTURNS_LIBRARY})
+set_target_properties ( otlm PROPERTIES VERSION ${LIB_VERSION} )
+set_target_properties ( otlm PROPERTIES SOVERSION ${LIB_SOVERSION} )
+target_link_libraries (otlm ${OPENTURNS_LIBRARY})
 
 # Add targets to the build-tree export set
-export (TARGETS otlmr FILE ${PROJECT_BINARY_DIR}/otlmr-Targets.cmake)
+export (TARGETS otlm FILE ${PROJECT_BINARY_DIR}/otlm-Targets.cmake)
 
 # Install the export set for use with the install-tree
-install(EXPORT otlmr-Targets
-        DESTINATION "${OTLMR_CONFIG_CMAKE_PATH}"
+install(EXPORT otlm-Targets
+        DESTINATION "${OTLM_CONFIG_CMAKE_PATH}"
         COMPONENT Development)
 
-install(TARGETS otlmr
-        EXPORT  otlmr-Targets 
+install(TARGETS otlm
+        EXPORT  otlm-Targets 
         RUNTIME DESTINATION bin
-        LIBRARY DESTINATION ${OTLMR_LIBRARY_PATH}
-        ARCHIVE DESTINATION ${OTLMR_LIBRARY_PATH}
+        LIBRARY DESTINATION ${OTLM_LIBRARY_PATH}
+        ARCHIVE DESTINATION ${OTLM_LIBRARY_PATH}
 )
 

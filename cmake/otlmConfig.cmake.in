@@ -1,0 +1,47 @@
+#                                               -*- cmake -*-
+#
+#  otlmConfig.cmake(.in)
+#
+#  Find otlm includes and libraries
+#
+#  Copyright (C) 2005-2014 Phimeca
+#
+
+# Use the following variables to compile and link against otlm:
+#  OTLM_FOUND          - True if otlm was found on your system
+#  OTLM_USE_FILE       - The file making otlm usable
+#  OTLM_DEFINITIONS    - Definitions needed to build with otlm
+#  OTLM_INCLUDE_DIRS   - List of directories where otlm' header file are
+#  OTLM_LIBRARY        - Library name
+#  OTLM_LIBRARIES      - List of libraries to link against
+#  OTLM_LIBRARY_DIRS   - List of directories containing otlm' libraries
+#  OTLM_ROOT_DIR       - The base directory of otlm
+#  OTLM_VERSION_STRING - A human-readable string containing the version
+#  OTLM_VERSION_MAJOR  - The major version of otlm
+#  OTLM_VERSION_MINOR  - The minor version of otlm
+#  OTLM_VERSION_PATCH  - The patch version of otlm
+
+set ( OTLM_FOUND 1 )
+set ( OTLM_USE_FILE     "@OTLM_USE_FILE@" )
+
+set ( OTLM_DEFINITIONS  "@OTLM_DEFINITIONS@" )
+set ( OTLM_INCLUDE_DIR  "@OTLM_INCLUDE_DIR@" )
+set ( OTLM_INCLUDE_DIRS "@OTLM_INCLUDE_DIRS@" )
+set ( OTLM_LIBRARY      "@OTLM_LIBRARY@" )
+set ( OTLM_LIBRARIES    "@OTLM_LIBRARIES@" )
+set ( OTLM_LIBRARY_DIRS "@OTLM_LIBRARY_DIRS@" )
+set ( OTLM_ROOT_DIR     "@OTLM_ROOT_DIR@" )
+
+set ( OTLM_VERSION_STRING "@OTLM_VERSION_STRING@" )
+set ( OTLM_VERSION_MAJOR  "@OTLM_VERSION_MAJOR@" )
+set ( OTLM_VERSION_MINOR  "@OTLM_VERSION_MINOR@" )
+set ( OTLM_VERSION_PATCH  "@OTLM_VERSION_PATCH@" )
+
+set (OTLM_PYTHON@PYTHON_VERSION_MAJOR@_MODULE_PATH "@PYTHON_MODULE_PATH@")
+
+# CMAKE_CURRENT_LIST_DIR defined since 2.8.3
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+  get_filename_component (CMAKE_CURRENT_LIST_DIR ${CMAKE_CURRENT_LIST_FILE} PATH)
+endif ()
+# Our library dependencies (contains definitions for IMPORTED targets)
+include (${CMAKE_CURRENT_LIST_DIR}/otlm-Targets.cmake)

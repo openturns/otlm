@@ -1,4 +1,4 @@
-%feature("docstring") OTLMR::LinearModelAlgorithm
+%feature("docstring") OTLM::LinearModelAlgorithm
 "Class used to create a linear model from numerical samples.
 
 **Available usages**:
@@ -39,7 +39,7 @@ the residual couples :math:`(\epsilon_i, \epsilon_{i+1})`, where the residual
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAlgorithm::getInputSample
+%feature("docstring") OTLM::LinearModelAlgorithm::getInputSample
 "Accessor to the input sample.
 
 Returns
@@ -49,7 +49,7 @@ inputSample : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAlgorithm::getBasis
+%feature("docstring") OTLM::LinearModelAlgorithm::getBasis
 "Accessor to the input basis.
 
 Returns
@@ -59,7 +59,7 @@ basis : :class:`~openturns.Basis`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAlgorithm::getOutputSample
+%feature("docstring") OTLM::LinearModelAlgorithm::getOutputSample
 "Accessor to the output sample.
 
 Returns
@@ -69,11 +69,11 @@ outputSample : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAlgorithm::getResult
+%feature("docstring") OTLM::LinearModelAlgorithm::getResult
 "Accessor to the computed linear model.
 
 Returns
 -------
-result : :class:`~otlmr.LinearModelResult`
+result : :class:`~otlm.LinearModelResult`
     The linear model built from numerical samples, along with other useful informations."
 

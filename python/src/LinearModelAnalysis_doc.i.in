@@ -1,4 +1,4 @@
-%feature("docstring") OTLMR::LinearModelAnalysis
+%feature("docstring") OTLM::LinearModelAnalysis
 "Class used to analyse a linear model.
 
 **Available usages**:
@@ -41,20 +41,20 @@ This number can be changed by modifying the ResourceMap key
 Examples
 --------
 >>> import openturns as ot
->>> import otlmr
+>>> import otlm
 >>> ot.RandomGenerator.SetSeed(0)
 >>> distribution = ot.Normal()
 >>> Xsample = distribution.getSample(30)
 >>> func = ot.NumericalMathFunction('x', '2 * x + 1')
 >>> Ysample = func(Xsample) + ot.Normal().getSample(30)
->>> algo = otlmr.LinearModelAlgorithm(Ysample, Xsample)
+>>> algo = otlm.LinearModelAlgorithm(Ysample, Xsample)
 >>> result = algo.getResult()
->>> analysis = otlmr.LinearModelAnalysis(result)
+>>> analysis = otlm.LinearModelAnalysis(result)
 "
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getLinearModelResult
+%feature("docstring") OTLM::LinearModelAnalysis::getLinearModelResult
 "Accessor to the linear model result.
 
 Returns
@@ -65,7 +65,7 @@ linearModelResult : :class:`~openturns.LinearModelResult`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getFormula
+%feature("docstring") OTLM::LinearModelAnalysis::getFormula
 "Accessor to the formula.
 
 Returns
@@ -75,7 +75,7 @@ condensedFormula : :class:`~openturns.String`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getCoefficientsNames
+%feature("docstring") OTLM::LinearModelAnalysis::getCoefficientsNames
 "Accessor to the coefficients names.
 
 Returns
@@ -85,7 +85,7 @@ coefficientsNames : :class:`~openturns.Description`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getResiduals
+%feature("docstring") OTLM::LinearModelAnalysis::getResiduals
 "Accessor to the residuals.
 
 Returns
@@ -95,7 +95,7 @@ sampleResiduals : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getStandardizedResiduals
+%feature("docstring") OTLM::LinearModelAnalysis::getStandardizedResiduals
 "Accessor to the standardized residuals.
 
 Returns
@@ -105,7 +105,7 @@ standardizedResiduals : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getCoefficientsEstimates
+%feature("docstring") OTLM::LinearModelAnalysis::getCoefficientsEstimates
 "Accessor to the coefficients of the linear model of the trend.
 
 Returns
@@ -115,7 +115,7 @@ beta : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getCoefficientsStandardErrors
+%feature("docstring") OTLM::LinearModelAnalysis::getCoefficientsStandardErrors
 "Accessor to the coefficients of standard error.
 
 Returns
@@ -126,7 +126,7 @@ standardErrors : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getCoefficientsTScores
+%feature("docstring") OTLM::LinearModelAnalysis::getCoefficientsTScores
 "Accessor to the coefficients of linear expansion over their standard error.
 
 Returns
@@ -136,7 +136,7 @@ tScores : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getCoefficientsPValues
+%feature("docstring") OTLM::LinearModelAnalysis::getCoefficientsPValues
 "Accessor to the coefficients of the p values.
 
 Returns
@@ -146,7 +146,7 @@ pValues : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getLeverages
+%feature("docstring") OTLM::LinearModelAnalysis::getLeverages
 "Accessor to the leverages.
 
 Returns
@@ -157,7 +157,7 @@ leverages : :class:`~openturns.NumericalPoint`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getCookDistances
+%feature("docstring") OTLM::LinearModelAnalysis::getCookDistances
 "Accessor to the cook's distances.
 
 Returns
@@ -167,7 +167,7 @@ cookDistances : :class:`~openturns.NumericalPoint`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getDegreesOfFreedom
+%feature("docstring") OTLM::LinearModelAnalysis::getDegreesOfFreedom
 "Accessor to the number of degrees of freedom.
 
 Returns
@@ -177,7 +177,7 @@ dof : :class:`~openturns.UnsignedInteger`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getRSquared
+%feature("docstring") OTLM::LinearModelAnalysis::getRSquared
 "Accessor to the R-squared test.
 
 Returns
@@ -187,7 +187,7 @@ rSquared : :class:`~openturns.NumericalScalar`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getAdjustedRSquared
+%feature("docstring") OTLM::LinearModelAnalysis::getAdjustedRSquared
 "Accessor to the Adjusted R-squared test.
 
 Returns
@@ -197,7 +197,7 @@ adjustedRSquared : :class:`~openturns.NumericalScalar`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getFisherScore
+%feature("docstring") OTLM::LinearModelAnalysis::getFisherScore
 "Accessor to the Fisher test.
 
 Returns
@@ -207,7 +207,7 @@ fisherScore : :class:`~openturns.NumericalScalar`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getFisherPValue
+%feature("docstring") OTLM::LinearModelAnalysis::getFisherPValue
 "Accessor to the Fisher p value.
 
 Returns
@@ -217,7 +217,7 @@ fisherPValue : :class:`~openturns.NumericalScalar`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultChiSquared
+%feature("docstring") OTLM::LinearModelAnalysis::getNormalityTestResultChiSquared
 "Performs Pearson Chi-2 statistical test to check Gaussian assumption of the model
 
 Returns
@@ -254,7 +254,7 @@ It is recommended to test with both *True* and *False* values."
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultKolmogorovSmirnov
+%feature("docstring") OTLM::LinearModelAnalysis::getNormalityTestResultKolmogorovSmirnov
 "Performs Kolmogorov test to check Gaussian assumption of the model (null hypothesis).
 It is accepted when p-value is low.
 
@@ -270,7 +270,7 @@ We check that the residual is Gaussian thanks to :class:`~openturns.FittingTest:
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::getNormalityTestResultAndersonDarling
+%feature("docstring") OTLM::LinearModelAnalysis::getNormalityTestResultAndersonDarling
 "Performs Anderson-Darling test to check Gaussian assumption of the model (null hypothesis).
 It is accepted when p-value is low.
 
@@ -286,7 +286,7 @@ We check that the residual is Gaussian thanks to :class:`~openturns.NormalityTes
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::drawResidualsVsFitted
+%feature("docstring") OTLM::LinearModelAnalysis::drawResidualsVsFitted
 "Accessor to plot of residuals versus fitted values.
 
 Returns
@@ -296,7 +296,7 @@ graph : :class:`~openturns.Graph`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::drawScaleLocation
+%feature("docstring") OTLM::LinearModelAnalysis::drawScaleLocation
 "Accessor to a Scale-Location plot of sqrt(abs(residuals)) versus fitted values.
 
 Returns
@@ -306,7 +306,7 @@ graph : :class:`~openturns.Graph`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::drawQQplot
+%feature("docstring") OTLM::LinearModelAnalysis::drawQQplot
 "Accessor to plot a Normal quantiles-quantiles plot of standardized residuals.
 
 Returns
@@ -316,7 +316,7 @@ graph : :class:`~openturns.Graph`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::drawCookDistance
+%feature("docstring") OTLM::LinearModelAnalysis::drawCookDistance
 "Accessor to plot of Cook's distances versus row labels.
 
 Returns
@@ -326,7 +326,7 @@ graph : :class:`~openturns.Graph`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::drawResidualsVsLeverages
+%feature("docstring") OTLM::LinearModelAnalysis::drawResidualsVsLeverages
 "Accessor to plot of residuals versus leverages that adds bands corresponding to Cook's distances of 0.5 and 1.
 
 Returns
@@ -336,7 +336,7 @@ graph : :class:`~openturns.Graph`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelAnalysis::drawCookVsLeverages
+%feature("docstring") OTLM::LinearModelAnalysis::drawCookVsLeverages
 "Accessor to plot of Cook's distances versus leverage/(1-leverage). 
 
 Returns

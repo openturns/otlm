@@ -36,7 +36,7 @@ macro ( ot_add_python_module MODULENAME SOURCEFILE )
 
   swig_add_module ( ${MODULENAME} python ${SOURCEFILE} ${swig_other_sources} )
   add_dependencies ( ${SWIG_MODULE_${MODULENAME}_REAL_NAME} generate_docstrings )
-  swig_link_libraries ( ${MODULENAME} otlmr )
+  swig_link_libraries ( ${MODULENAME} otlm )
   if ( LINK_PYTHON_LIBRARY )
     swig_link_libraries ( ${MODULENAME} ${PYTHON_LIBRARIES} )
   endif ()
@@ -60,19 +60,19 @@ ot_add_python_module( ${PACKAGE_NAME} ${PACKAGE_NAME}_module.i
 
 foreach ( module ${PYTHON_MODULES} )
   install ( FILES ${CMAKE_CURRENT_BINARY_DIR}/${module}.py
-            DESTINATION ${OTLMR_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
+            DESTINATION ${OTLM_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
             )
   install ( TARGETS _${module}
-            LIBRARY DESTINATION ${OTLMR_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
+            LIBRARY DESTINATION ${OTLM_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
           )
 endforeach ( module )
 
 install ( FILES __init__.py
-          DESTINATION ${OTLMR_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
+          DESTINATION ${OTLM_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
         )
 
 install ( FILES ${SWIGFILES}
-          DESTINATION ${OTLMR_SWIG_INCLUDE_PATH}
+          DESTINATION ${OTLM_SWIG_INCLUDE_PATH}
         )
 
 
@@ -81,15 +81,15 @@ install ( FILES ${SWIGFILES}
 if (SPHINX_FOUND AND SPHINX_EXECUTABLE)
 
   # create a build site-package from which sphinx can import
-  set (OTLMR_PYTHON_BUILD_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR}/site-packages)
-  execute_process (COMMAND ${CMAKE_COMMAND} -E make_directory ${OTLMR_PYTHON_BUILD_MODULE_PATH}/otlmr)
+  set (OTLM_PYTHON_BUILD_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR}/site-packages)
+  execute_process (COMMAND ${CMAKE_COMMAND} -E make_directory ${OTLM_PYTHON_BUILD_MODULE_PATH}/otlm)
   foreach (module ${PYTHON_MODULES})
-    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/${module}.py ${OTLMR_PYTHON_BUILD_MODULE_PATH}/otlmr/${module}.py)
+    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/${module}.py ${OTLM_PYTHON_BUILD_MODULE_PATH}/otlm/${module}.py)
     # FIXME: get_target_property (suffix ${SWIG_MODULE_${module}_REAL_NAME} SUFFIX)
-    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/_${module}.so ${OTLMR_PYTHON_BUILD_MODULE_PATH}/otlmr/_${module}.so)
+    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/_${module}.so ${OTLM_PYTHON_BUILD_MODULE_PATH}/otlm/_${module}.so)
   endforeach ()
   foreach (file __init__.py)
-    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/${file} ${OTLMR_PYTHON_BUILD_MODULE_PATH}/otlmr/${file})
+    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/${file} ${OTLM_PYTHON_BUILD_MODULE_PATH}/otlm/${file})
   endforeach ()
 
   # sphinx configuration
@@ -172,5 +172,5 @@ if (SPHINX_FOUND AND SPHINX_EXECUTABLE)
   add_custom_target (sphinx_pdf DEPENDS ${SPHINX_BINARY_DIR}/latex/OpenTURNS.pdf)
   add_dependencies (sphinx_pdf sphinx_latex)
 
-  install (DIRECTORY ${SPHINX_BINARY_DIR}/html DESTINATION ${OTLMR_DOC_PATH})
+  install (DIRECTORY ${SPHINX_BINARY_DIR}/html DESTINATION ${OTLM_DOC_PATH})
 endif ()

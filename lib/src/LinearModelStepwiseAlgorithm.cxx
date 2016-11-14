@@ -18,7 +18,7 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "otlmr/LinearModelStepwiseAlgorithm.hxx"
+#include "otlm/LinearModelStepwiseAlgorithm.hxx"
 #include "openturns/NumericalMathFunction.hxx"
 #include "openturns/Exception.hxx"
 #include "openturns/Combinations.hxx"
@@ -33,7 +33,7 @@
 
 using namespace OT;
 
-namespace OTLMR
+namespace OTLM
 {
 
 CLASSNAMEINIT(LinearModelStepwiseAlgorithm);
@@ -757,5 +757,5 @@ void LinearModelStepwiseAlgorithm::load(Advocate & adv)
 
 
 
-} /* namespace OTLMR */
+} /* namespace OTLM */
 

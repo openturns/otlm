@@ -1,10 +1,10 @@
 """
-    otlmr --- An OpenTURNS module
+    otlm --- An OpenTURNS module
     ==================================
 
     Contents
     --------
-      'otlmr' is a module for OpenTURNS
+      'otlm' is a module for OpenTURNS
 
 """
 
@@ -13,7 +13,7 @@ if sys.platform.startswith('win'):
     # this ensures OT dll is loaded
     import openturns
 
-from .otlmr import *
+from .otlm import *
 
 __version__ = '0.1'
 

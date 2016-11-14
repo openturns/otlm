@@ -18,18 +18,18 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef OTLMR_LINEARMODELRESULT_HXX
-#define OTLMR_LINEARMODELRESULT_HXX
+#ifndef OTLM_LINEARMODELRESULT_HXX
+#define OTLM_LINEARMODELRESULT_HXX
 
 #include "openturns/MetaModelResult.hxx"
 #include "openturns/NumericalSample.hxx"
 #include "openturns/Basis.hxx"
 #include "openturns/Matrix.hxx"
 #include "openturns/NumericalMathFunction.hxx"
-#include "otlmr/otlmrprivate.hxx"
+#include "otlm/otlmprivate.hxx"
 
 
-namespace OTLMR
+namespace OTLM
 {
 
 /**
@@ -38,7 +38,7 @@ namespace OTLMR
  * The result of a linear model evaluation
  */
 
-class OTLMR_API LinearModelResult :
+class OTLM_API LinearModelResult :
   public OT::MetaModelResult
 {
   CLASSNAME;
@@ -148,6 +148,6 @@ private:
 
 }; /* class LinearModelResult */
 
-} /* namespace OTLMR */
+} /* namespace OTLM */
 
-#endif /* OTLMR_LINEARMODELRESULT_HXX */
+#endif /* OTLM_LINEARMODELRESULT_HXX */

@@ -1,7 +1,7 @@
 User manual
 ===========
 
-.. currentmodule:: otlmr
+.. currentmodule:: otlm
 
 
 Linear regression models
@@ -42,7 +42,7 @@ Stepwise method
 Linear model analysis
 ---------------------
 
-Class :class:`~otlmr.LinearModelAnalysis` gives access to the following data:
+Class :class:`~otlm.LinearModelAnalysis` gives access to the following data:
 
 * Linear model formula, in a textual form
 * Informations about residuals (minimum, maximum, median, mean, quantiles, standard deviation)
@@ -60,21 +60,21 @@ Class :class:`~otlmr.LinearModelAnalysis` gives access to the following data:
 
 It also provides several plots:
 
-* :func:`~otlmr.LinearModelAnalysis.drawResidualsVsFitted` plots standardized residuals
+* :func:`~otlm.LinearModelAnalysis.drawResidualsVsFitted` plots standardized residuals
   :math:`\tilde{\epsilon}` vs. fitted values
-* :func:`~otlmr.LinearModelAnalysis.drawQQPlot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
+* :func:`~otlm.LinearModelAnalysis.drawQQPlot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
   vs. theoretical quantiles.
-* :func:`~otlmr.LinearModelAnalysis.drawScaleLocation` plots :math:`\sqrt{\tilde{\epsilon}_i}`
+* :func:`~otlm.LinearModelAnalysis.drawScaleLocation` plots :math:`\sqrt{\tilde{\epsilon}_i}`
   vs. fitted values.
-* :func:`~otlmr.LinearModelAnalysis.drawCookDistance` plots an histogram of Cook's distance
-* :func:`~otlmr.LinearModelAnalysis.drawResidualsVsLeverages` plots standardized
+* :func:`~otlm.LinearModelAnalysis.drawCookDistance` plots an histogram of Cook's distance
+* :func:`~otlm.LinearModelAnalysis.drawResidualsVsLeverages` plots standardized
   residuals :math:`\tilde{\epsilon}` vs leverages.
   Moreover, this plot also contains contour plot of function
 
   .. math:: D(x,y) = \frac{y^2}{p}\left(\frac{x}{1-x}\right)
 
   for levels 0.5 and 1.
-* :func:`~otlmr.LinearModelAnalysis.drawCookVsLeverages` plots Cook's distance
+* :func:`~otlm.LinearModelAnalysis.drawCookVsLeverages` plots Cook's distance
   :math:`\tilde{\epsilon}` vs :math:`\frac{h_i}{1-h_i}`.
   Moreover, this plot also contains isolines of function
 

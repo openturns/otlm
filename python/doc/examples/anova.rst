@@ -5,7 +5,7 @@ ANOVA Table
 .. code:: python
 
     import openturns as ot
-    import otlmr
+    import otlm
     
     sample = ot.NumericalSample(
      [[ 4.17,4.81 ],
@@ -29,9 +29,9 @@ ANOVA Table
     outputSample.add(trt)
     outputSample.setDescription(["weight"])
     
-    algo = otlmr.LinearModelAlgorithm(inputSample, outputSample)
+    algo = otlm.LinearModelAlgorithm(inputSample, outputSample)
     result = algo.getResult()
-    analysis = otlmr.LinearModelAnalysis(result)
+    analysis = otlm.LinearModelAnalysis(result)
     print(analysis)
 
 .. parsed-literal::

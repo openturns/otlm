@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 import openturns as ot
-import otlmr as lm
+import otlm as lm
 from math import sin
 
 ot.TESTPREAMBLE()

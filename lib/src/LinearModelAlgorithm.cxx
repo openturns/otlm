@@ -19,12 +19,12 @@
  *
  */
 #include <fstream>
-#include "otlmr/LinearModelAlgorithm.hxx"
-#include "otlmr/LinearModelStepwiseAlgorithm.hxx"
+#include "otlm/LinearModelAlgorithm.hxx"
+#include "otlm/LinearModelStepwiseAlgorithm.hxx"
 
 using namespace OT;
 
-namespace OTLMR
+namespace OTLM
 {
 
 CLASSNAMEINIT(LinearModelAlgorithm);
@@ -166,4 +166,4 @@ void LinearModelAlgorithm::load(Advocate & adv)
   adv.loadAttribute( "hasRun_", hasRun_ );
 }
 
-} /* namespace OTLMR */
+} /* namespace OTLM */

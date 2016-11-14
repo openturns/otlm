@@ -20,11 +20,11 @@
  */
 #include "openturns/OT.hxx"
 #include "openturns/OTtestcode.hxx"
-#include "otlmr/otlmr.hxx"
+#include "otlm/otlm.hxx"
 
 using namespace OT;
 using namespace OT::Test;
-using namespace OTLMR;
+using namespace OTLM;
 
 int main(int argc, char *argv[])
 {

@@ -1,8 +1,8 @@
 #                                               -*- cmake -*-
 #
-#  Useotlmr.cmake
+#  Useotlm.cmake
 #
-#  Use otlmr in CMake files
+#  Use otlm in CMake files
 #
 #  Copyright (C) 2005-2014 Airbus-EDF-Phimeca
 #
@@ -23,7 +23,7 @@
 #  @date   2010-02-04 16:44:49 +0100 (Thu, 04 Feb 2010)
 #
 
-add_definitions     ( ${OTLMR_DEFINITIONS} )
-include_directories ( ${OTLMR_INCLUDE_DIRS} )
-link_directories    ( ${OTLMR_LIBRARY_DIRS} )
+add_definitions     ( ${OTLM_DEFINITIONS} )
+include_directories ( ${OTLM_INCLUDE_DIRS} )
+link_directories    ( ${OTLM_LIBRARY_DIRS} )
 

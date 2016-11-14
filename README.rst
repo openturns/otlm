@@ -1,10 +1,10 @@
-.. image:: https://travis-ci.org/openturns/otlmr.svg?branch=master
-    :target: https://travis-ci.org/openturns/otlmr
+.. image:: https://travis-ci.org/openturns/otlm.svg?branch=master
+    :target: https://travis-ci.org/openturns/otlm
 
-otlmr Module
+otlm Module
 =================
 
-otlmr is a module for OpenTURNS
+otlm is a module for OpenTURNS
 
 More information can found at http://www.openturns.org
 

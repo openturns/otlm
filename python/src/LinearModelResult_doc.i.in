@@ -1,4 +1,4 @@
-%feature("docstring") OTLMR::LinearModelResult
+%feature("docstring") OTLM::LinearModelResult
 "The LinearModelResult class is created through the method getResult of a LinearModelAlgorithm.
 
 
@@ -40,7 +40,7 @@ LinearModel, LinearModelAlgorithm
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getInputSample
+%feature("docstring") OTLM::LinearModelResult::getInputSample
 "Accessor to the input sample.
 
 Returns
@@ -50,7 +50,7 @@ inputSample : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getOutputSample
+%feature("docstring") OTLM::LinearModelResult::getOutputSample
 "Accessor to the output sample.
 
 Returns
@@ -60,7 +60,7 @@ outputSample : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getFittedSample
+%feature("docstring") OTLM::LinearModelResult::getFittedSample
 "Accessor to the fitted sample.
 
 Returns
@@ -70,7 +70,7 @@ outputSample : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getTrendCoefficients
+%feature("docstring") OTLM::LinearModelResult::getTrendCoefficients
 "Accessor to the coefficients of the linear model of the trend.
 
 Returns
@@ -80,7 +80,7 @@ beta : :class:`~openturns.NumericalPoint`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getFormula
+%feature("docstring") OTLM::LinearModelResult::getFormula
 "Accessor to the formula.
 
 Returns
@@ -90,7 +90,7 @@ condensedFormula : :class:`~openturns.String`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getCoefficientsNames
+%feature("docstring") OTLM::LinearModelResult::getCoefficientsNames
 "Accessor to the coefficients names.
 
 Returns
@@ -100,7 +100,7 @@ coefficientsNames : :class:`~openturns.Description`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getSampleResiduals
+%feature("docstring") OTLM::LinearModelResult::getSampleResiduals
 "Accessor to the residuals.
 
 Returns
@@ -110,7 +110,7 @@ sampleResiduals : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getStandardizedResiduals
+%feature("docstring") OTLM::LinearModelResult::getStandardizedResiduals
 "Accessor to the standardized residuals.
 
 Returns
@@ -120,7 +120,7 @@ standardizedResiduals : :class:`~openturns.NumericalSample`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getLeverages
+%feature("docstring") OTLM::LinearModelResult::getLeverages
 "Accessor to the leverages.
 
 Returns
@@ -130,7 +130,7 @@ leverages : :class:`~openturns.NumericalPoint`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getDiagonalGramInverse
+%feature("docstring") OTLM::LinearModelResult::getDiagonalGramInverse
 "Accessor to the diagonal gram inverse matrix.
 
 Returns
@@ -140,7 +140,7 @@ diagonalGramInverse : :class:`~openturns.NumericalPoint`
 
 // ---------------------------------------------------------------------
 
-%feature("docstring") OTLMR::LinearModelResult::getCookDistances
+%feature("docstring") OTLM::LinearModelResult::getCookDistances
 "Accessor to the cook's distances.
 
 Returns

@@ -10,7 +10,7 @@ if ( NOT DEFINED CMAKE_BUILD_TYPE )
    set( CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
 endif ()
 
-project ( otlmr CXX )
+project ( otlm CXX )
 
 string ( TOLOWER ${CMAKE_PROJECT_NAME} PACKAGE_NAME )
 
@@ -22,19 +22,19 @@ if (OPENTURNS_FOUND)
   message (STATUS "Found OpenTURNS: ${OPENTURNS_ROOT_DIR}")
 endif ()
 include ( ${OPENTURNS_USE_FILE} )
-set ( OTLMR_DEFINITIONS ${OPENTURNS_DEFINITIONS} )
+set ( OTLM_DEFINITIONS ${OPENTURNS_DEFINITIONS} )
 if (NOT BUILD_SHARED_LIBS)
-  list ( APPEND OTLMR_DEFINITIONS "-DOTLMR_STATIC" )
+  list ( APPEND OTLM_DEFINITIONS "-DOTLM_STATIC" )
 endif ()
-add_definitions ( ${OTLMR_DEFINITIONS} )
+add_definitions ( ${OTLM_DEFINITIONS} )
 
-set ( OTLMR_LIBRARY_PATH lib${LIB_SUFFIX} )
-set ( OTLMR_INCLUDE_PATH include)
-set ( OTLMR_SWIG_INCLUDE_PATH ${OTLMR_INCLUDE_PATH}/${PACKAGE_NAME}/swig )
-set ( OTLMR_DATA_PATH share )
-set ( OTLMR_EXAMPLE_PATH ${OTLMR_DATA_PATH}/${PACKAGE_NAME}/examples )
-set ( OTLMR_CONFIG_CMAKE_PATH lib${LIB_SUFFIX}/cmake/otlmr )
-set (OTLMR_DOC_PATH share/${PACKAGE_NAME}/doc)
+set ( OTLM_LIBRARY_PATH lib${LIB_SUFFIX} )
+set ( OTLM_INCLUDE_PATH include)
+set ( OTLM_SWIG_INCLUDE_PATH ${OTLM_INCLUDE_PATH}/${PACKAGE_NAME}/swig )
+set ( OTLM_DATA_PATH share )
+set ( OTLM_EXAMPLE_PATH ${OTLM_DATA_PATH}/${PACKAGE_NAME}/examples )
+set ( OTLM_CONFIG_CMAKE_PATH lib${LIB_SUFFIX}/cmake/otlm )
+set (OTLM_DOC_PATH share/${PACKAGE_NAME}/doc)
 
 if ( BUILD_PYTHON )
   # workaround for cmake bug #0013449
@@ -68,7 +68,7 @@ if ( BUILD_PYTHON )
       get_filename_component ( _ABS_PYTHON_MODULE_PATH ${_ABS_PYTHON_MODULE_PATH} ABSOLUTE )
       file ( RELATIVE_PATH _REL_PYTHON_MODULE_PATH ${CMAKE_INSTALL_PREFIX} ${_ABS_PYTHON_MODULE_PATH} )                   
 
-      set (OTLMR_PYTHON_MODULE_PATH ${_REL_PYTHON_MODULE_PATH})
+      set (OTLM_PYTHON_MODULE_PATH ${_REL_PYTHON_MODULE_PATH})
 
     else ()
       message ( SEND_ERROR "Could not run ${PYTHON_EXECUTABLE}" ) 
@@ -79,18 +79,18 @@ if ( BUILD_PYTHON )
                        OUTPUT_VARIABLE PYTHON_VERSION_MAJOR
                        OUTPUT_STRIP_TRAILING_WHITESPACE)
     endif ()
-    set (OTLMR_PYTHON${PYTHON_VERSION_MAJOR}_MODULE_PATH ${OTLMR_PYTHON_MODULE_PATH})
+    set (OTLM_PYTHON${PYTHON_VERSION_MAJOR}_MODULE_PATH ${OTLM_PYTHON_MODULE_PATH})
   endif ( PYTHONINTERP_FOUND )
 endif ()
 
 
-# WARNING: This is where variables without OTLMR_ prefix are defined !
+# WARNING: This is where variables without OTLM_ prefix are defined !
 foreach (_var PYTHON_MODULE_PATH LIBRARY_PATH INCLUDE_PATH CONFIG_CMAKE_PATH)
-  file (TO_NATIVE_PATH "${OTLMR_${_var}}" NATIVE_OTLMR_${_var})
-  if (NOT IS_ABSOLUTE ${NATIVE_OTLMR_${_var}})
-    file (TO_NATIVE_PATH ${CMAKE_INSTALL_PREFIX}/${OTLMR_${_var}} NATIVE_OTLMR_${_var})
+  file (TO_NATIVE_PATH "${OTLM_${_var}}" NATIVE_OTLM_${_var})
+  if (NOT IS_ABSOLUTE ${NATIVE_OTLM_${_var}})
+    file (TO_NATIVE_PATH ${CMAKE_INSTALL_PREFIX}/${OTLM_${_var}} NATIVE_OTLM_${_var})
   endif ()
-  string (REPLACE "\\" "\\\\" ${_var} ${NATIVE_OTLMR_${_var}})
+  string (REPLACE "\\" "\\\\" ${_var} ${NATIVE_OTLM_${_var}})
 endforeach ()
 
 # RPATH settings
@@ -171,20 +171,20 @@ add_custom_target ( uninstall
   COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
 )
 
-set ( OTLMR_LIBRARY                 otlmr )
-set ( OTLMR_LIBRARIES ${OPENTURNS_LIBRARIES} )
-list ( APPEND OTLMR_LIBRARIES ${OTLMR_LIBRARY} )
-set ( OTLMR_LIBRARY_DIRS ${OPENTURNS_LIBRARY_DIRS} )
-list ( APPEND OTLMR_LIBRARY_DIRS ${LIBRARY_PATH} )
-set ( OTLMR_INCLUDE_DIR ${INCLUDE_PATH} )
-set ( OTLMR_INCLUDE_DIRS ${OTLMR_INCLUDE_DIR} )
-set ( OTLMR_ROOT_DIR       ${CMAKE_INSTALL_PREFIX} )
-list ( APPEND OTLMR_INCLUDE_DIRS ${OPENTURNS_INCLUDE_DIRS} )
-set ( OTLMR_VERSION_STRING ${PACKAGE_VERSION} )
-set ( OTLMR_VERSION_MAJOR ${CPACK_PACKAGE_VERSION_MAJOR} )
-set ( OTLMR_VERSION_MINOR ${CPACK_PACKAGE_VERSION_MINOR} )
-set ( OTLMR_VERSION_PATCH ${CPACK_PACKAGE_VERSION_PATCH} )
-set ( OTLMR_USE_FILE      ${CONFIG_CMAKE_PATH}/Useotlmr.cmake )
+set ( OTLM_LIBRARY                 otlm )
+set ( OTLM_LIBRARIES ${OPENTURNS_LIBRARIES} )
+list ( APPEND OTLM_LIBRARIES ${OTLM_LIBRARY} )
+set ( OTLM_LIBRARY_DIRS ${OPENTURNS_LIBRARY_DIRS} )
+list ( APPEND OTLM_LIBRARY_DIRS ${LIBRARY_PATH} )
+set ( OTLM_INCLUDE_DIR ${INCLUDE_PATH} )
+set ( OTLM_INCLUDE_DIRS ${OTLM_INCLUDE_DIR} )
+set ( OTLM_ROOT_DIR       ${CMAKE_INSTALL_PREFIX} )
+list ( APPEND OTLM_INCLUDE_DIRS ${OPENTURNS_INCLUDE_DIRS} )
+set ( OTLM_VERSION_STRING ${PACKAGE_VERSION} )
+set ( OTLM_VERSION_MAJOR ${CPACK_PACKAGE_VERSION_MAJOR} )
+set ( OTLM_VERSION_MINOR ${CPACK_PACKAGE_VERSION_MINOR} )
+set ( OTLM_VERSION_PATCH ${CPACK_PACKAGE_VERSION_PATCH} )
+set ( OTLM_USE_FILE      ${CONFIG_CMAKE_PATH}/Useotlm.cmake )
 
 if (CMAKE_VERSION VERSION_LESS 2.8.8)
   # CMakePackageConfigHelpers is not available
@@ -195,45 +195,45 @@ macro(set_and_check _var _value)
 endmacro(set_and_check _var _value)
 "     )
   foreach (_var
-      OTLMR_USE_FILE
-      OTLMR_ROOT_DIR
-      OTLMR_INCLUDE_DIR
-      OTLMR_INCLUDE_DIRS
-      OTLMR_LIBRARY_DIRS )
+      OTLM_USE_FILE
+      OTLM_ROOT_DIR
+      OTLM_INCLUDE_DIR
+      OTLM_INCLUDE_DIRS
+      OTLM_LIBRARY_DIRS )
     set(PACKAGE_${_var} ${${_var}})
   endforeach ()
   
-configure_file ( ${CMAKE_SOURCE_DIR}/cmake/otlmrConfig.cmake.in
-                 ${CMAKE_BINARY_DIR}/otlmrConfig.cmake
+configure_file ( ${CMAKE_SOURCE_DIR}/cmake/otlmConfig.cmake.in
+                 ${CMAKE_BINARY_DIR}/otlmConfig.cmake
                  @ONLY ESCAPE_QUOTES
                )
 
-install ( FILES cmake/Useotlmr.cmake 
-                ${CMAKE_BINARY_DIR}/otlmrConfig.cmake
-          DESTINATION ${OTLMR_CONFIG_CMAKE_PATH}
+install ( FILES cmake/Useotlm.cmake 
+                ${CMAKE_BINARY_DIR}/otlmConfig.cmake
+          DESTINATION ${OTLM_CONFIG_CMAKE_PATH}
         )
 
 else ()
 
   include(CMakePackageConfigHelpers)
   configure_package_config_file (
-    cmake/otlmrConfig.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/otlmrConfig.cmake
-    INSTALL_DESTINATION ${OTLMR_CONFIG_CMAKE_PATH}
+    cmake/otlmConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/otlmConfig.cmake
+    INSTALL_DESTINATION ${OTLM_CONFIG_CMAKE_PATH}
     PATH_VARS
-      OTLMR_USE_FILE
-      OTLMR_ROOT_DIR
-      OTLMR_INCLUDE_DIR
-      OTLMR_INCLUDE_DIRS
-      OTLMR_LIBRARY_DIRS
+      OTLM_USE_FILE
+      OTLM_ROOT_DIR
+      OTLM_INCLUDE_DIR
+      OTLM_INCLUDE_DIRS
+      OTLM_LIBRARY_DIRS
     NO_CHECK_REQUIRED_COMPONENTS_MACRO
                                 )                   
-  write_basic_package_version_file( otlmrConfigVersion.cmake VERSION ${OTLMR_VERSION_STRING} COMPATIBILITY AnyNewerVersion )               
+  write_basic_package_version_file( otlmConfigVersion.cmake VERSION ${OTLM_VERSION_STRING} COMPATIBILITY AnyNewerVersion )               
 
-  install ( FILES cmake/Useotlmr.cmake
-                  ${CMAKE_CURRENT_BINARY_DIR}/otlmrConfig.cmake
-                  ${CMAKE_CURRENT_BINARY_DIR}/otlmrConfigVersion.cmake
-            DESTINATION ${OTLMR_CONFIG_CMAKE_PATH}
+  install ( FILES cmake/Useotlm.cmake
+                  ${CMAKE_CURRENT_BINARY_DIR}/otlmConfig.cmake
+                  ${CMAKE_CURRENT_BINARY_DIR}/otlmConfigVersion.cmake
+            DESTINATION ${OTLM_CONFIG_CMAKE_PATH}
           )
 endif ()
 
