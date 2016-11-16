@@ -562,6 +562,7 @@ Perspectives
   - Rework :class:`~openturns.TestResult`, it currently uses either pValue or (1-pValue).
   - Improve validation.  We could not validate by comparing with R ``step`` method because
     it filters variables: it would accept ``X1*X2`` only after ``X1`` and ``X2`` belong to
-    the model.  Moreover, there are cases where it switches variables, say ``X2*X1``, and
+    the model.  According to literature, this is called the principle of marginality.
+    Moreover, there are cases where it switches variables, say ``X2*X1``, and
     it afterwards reject it because it did not match ``X1*X2``.
 
