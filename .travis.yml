@@ -14,7 +14,7 @@ install:
   - git clone https://github.com/mgieseki/dvisvgm.git
   - pushd dvisvgm
   - ./autogen.sh
-  - ./configure --prefix=$HOME/.local
+  - ./configure --prefix=$HOME/.local --disable-woff
   - make -j2
   - make install
   - export PATH=$PATH:$HOME/.local/bin
