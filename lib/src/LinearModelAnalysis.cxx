@@ -30,7 +30,6 @@
 #include "openturns/DistFunc.hxx"
 #include "openturns/LinearModelTest.hxx"
 #include "openturns/FittingTest.hxx"
-#include "openturns/HypothesisTest.hxx"
 #include "openturns/FisherSnedecor.hxx"
 #include "openturns/ChiSquare.hxx"
 #include "openturns/UserDefined.hxx"
