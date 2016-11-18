@@ -8,6 +8,7 @@ install:
   - sudo add-apt-repository ppa:martin-gieseking/ppa -y
   - sudo apt-get update
   - sudo apt-get -y install libopenturns-dev python-openturns cmake gfortran swig texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra python-sphinx python-matplotlib
+  - pip install urllib3[secure] --user
 # dvisvgm
   - sudo apt-get -y install gcc-4.8 g++-4.8 gfortran-4.8 libkpathsea-dev libpotrace-dev python-lxml xmlto asciidoc
   - export CXX="g++-4.8" CC="gcc-4.8"
