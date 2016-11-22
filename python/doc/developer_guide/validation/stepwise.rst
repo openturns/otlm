@@ -232,7 +232,7 @@ Output
     I(X4^2)      -7.6170     3.2805  -2.322   0.0224 *  
     X4:X3        16.4005     2.9115   5.633 1.91e-07 ***
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 2.193 on 92 degrees of freedom
     Multiple R-squared:  0.9423,	Adjusted R-squared:  0.9379 
@@ -262,7 +262,7 @@ Output
     I(X4^2)      -7.6170     3.2805  -2.322   0.0224 *  
     X4:X3        16.4005     2.9115   5.633 1.91e-07 ***
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 2.193 on 92 degrees of freedom
     Multiple R-squared:  0.9423,	Adjusted R-squared:  0.9379 
@@ -302,7 +302,7 @@ Output
     X1:X2:X3     14.5751     4.2878   3.399 0.001041 ** 
     X2:X3:X4     -9.2093     4.2582  -2.163 0.033439 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 0.8908 on 83 degrees of freedom
     Multiple R-squared:  0.9914,	Adjusted R-squared:  0.9897 
@@ -342,7 +342,7 @@ Output
     X1:X2:X3     14.5751     4.2878   3.399 0.001041 ** 
     X2:X3:X4     -9.2093     4.2582  -2.163 0.033439 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 0.8908 on 83 degrees of freedom
     Multiple R-squared:  0.9914,	Adjusted R-squared:  0.9897 
@@ -382,7 +382,7 @@ Output
     X1:X2:X3     15.4381     4.2834   3.604 0.000533 ***
     X2:X3:X4    -10.1590     4.2559  -2.387 0.019258 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 0.8904 on 83 degrees of freedom
     Multiple R-squared:  0.9914,	Adjusted R-squared:  0.9898 
@@ -422,7 +422,7 @@ Output
     X1:X2:X3     15.4381     4.2834   3.604 0.000533 ***
     X2:X3:X4    -10.1590     4.2559  -2.387 0.019258 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 0.8904 on 83 degrees of freedom
     Multiple R-squared:  0.9914,	Adjusted R-squared:  0.9898 
@@ -899,7 +899,7 @@ Output:
     pH           4.049e+02  4.777e+01   8.477 1.22e-10 ***
     Na          -2.333e-02  8.655e-03  -2.695   0.0101 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 394.9 on 42 degrees of freedom
     Multiple R-squared:  0.6584,	Adjusted R-squared:  0.6422 
@@ -923,7 +923,7 @@ Output:
     pH           4.049e+02  4.777e+01   8.477 1.22e-10 ***
     Na          -2.333e-02  8.655e-03  -2.695   0.0101 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 394.9 on 42 degrees of freedom
     Multiple R-squared:  0.6584,	Adjusted R-squared:  0.6422 
@@ -949,7 +949,7 @@ Output:
     K             -0.4388     0.2024  -2.168  0.03615 * 
     Zn           -23.4519    14.0399  -1.670  0.10265   
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 394.8 on 40 degrees of freedom
     Multiple R-squared:  0.6749,	Adjusted R-squared:  0.6423 
@@ -973,7 +973,7 @@ Output:
     pH           412.0395    48.4975   8.496 1.15e-10 ***
     K             -0.4871     0.2032  -2.397   0.0211 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 401.1 on 42 degrees of freedom
     Multiple R-squared:  0.6476,	Adjusted R-squared:  0.6308 
@@ -997,7 +997,7 @@ Output:
     pH           4.049e+02  4.777e+01   8.477 1.22e-10 ***
     Na          -2.333e-02  8.655e-03  -2.695   0.0101 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 394.9 on 42 degrees of freedom
     Multiple R-squared:  0.6584,	Adjusted R-squared:  0.6422 
@@ -1021,7 +1021,7 @@ Output:
     pH           4.049e+02  4.777e+01   8.477 1.22e-10 ***
     Na          -2.333e-02  8.655e-03  -2.695   0.0101 *  
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     
     Residual standard error: 394.9 on 42 degrees of freedom
     Multiple R-squared:  0.6584,	Adjusted R-squared:  0.6422 
