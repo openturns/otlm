@@ -601,15 +601,6 @@ void LinearModelStepwiseAlgorithm::run()
 
   LOGDEBUG(OSS() << "regression=" << regression);
 
-  Description coefficientsNames(p);
-  for (UnsignedInteger i = 0, k = 0; k < basis_.getSize(); ++k)
-  {
-    if (currentIndices_.contains(k))
-    {
-      coefficientsNames[i] = basis_[k].__str__();
-      ++i;
-    }
-  }
   NumericalPoint diagonalGramInverse(p);
   NumericalPoint invRtiNP(p);
   for (UnsignedInteger i = 0; i < p; ++i)
@@ -642,13 +633,12 @@ void LinearModelStepwiseAlgorithm::run()
     cookDistances[i] = (1.0 / p) * standardizedResiduals(i, 0) * standardizedResiduals(i, 0) * (leverages[i] / (1.0 - leverages[i]));
   }
 
+  Description coefficientsNames(0);
   Collection<NumericalMathFunction> currentFunctions;
-  for (UnsignedInteger k = 0; k < basis_.getSize(); ++k)
+  for (Indices::const_iterator it = currentIndices_.begin(); it != currentIndices_.end(); ++it)
   {
-    if (currentIndices_.contains(k))
-    {
-      currentFunctions.add(basis_[k]);
-    }
+    coefficientsNames.add(basis_[*it].__str__());
+    currentFunctions.add(basis_[*it]);
   }
   NumericalMathFunction metaModel(currentFunctions, regression);
 
