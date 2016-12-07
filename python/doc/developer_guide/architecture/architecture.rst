@@ -328,13 +328,15 @@ minimizing the number of operations.
 QR decomposition of matrix :math:`X`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Note that in practice :math:`n >> p` and consequently we don't want to compute :math:`H_X`
+Note that in practice :math:`n >> p` and consequently we do not want to compute :math:`H_X`
 the projection matrix of size :math:`(n\times n)`.
-We don't need to compute :math:`A_X` the inverse Gram matrix of :math:`X` of size :math:`(p\times p)` because we have to solve linear system, consequently
-we use the QR decomposition of matrix :math:`X` into a product :math:`X = Q_X\,R_X`
-of an orthogonal matrix :math:`Q_X` of size :math:`(n\times p)` and an upper triangular matrix :math:`R_X` of size :math:`(p\times p)`.
+We also do not have to compute :math:`A_X` the inverse Gram matrix of :math:`X` of size :math:`(p\times p)`, all we need
+is to solve linear systems.
+Since matrix :math:`X` has full rank, it can be written as a product :math:`X = Q_X\,R_X`
+of a matrix :math:`Q_X` of size :math:`(n\times p)` having orthogonal columns and an upper triangular matrix :math:`R_X`
+of size :math:`(p\times p)` with positive diagonal matrices.
 
-Using the QR decomposition of matrix :math:`X` we obtain:
+Using the thin QR decomposition of matrix :math:`X` we obtain:
 
 .. math::
 
