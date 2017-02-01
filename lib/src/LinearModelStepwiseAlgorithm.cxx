@@ -23,7 +23,6 @@
 #include "openturns/Exception.hxx"
 #include "openturns/Combinations.hxx"
 #include "openturns/ConstantBasisFactory.hxx"
-#include "openturns/LinearNumericalMathFunction.hxx"
 #include "openturns/SpecFunc.hxx"
 #include "openturns/Log.hxx"
 #include "openturns/MatrixImplementation.hxx"
