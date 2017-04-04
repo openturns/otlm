@@ -12,8 +12,8 @@ try:
     # lm build
     print("Fit y ~ 3 - 2 x + 0.05 * sin(x) model using 20 points (sin(x) ~ noise)")
     size = 20
-    oneSample = ot.NumericalSample(size, 1)
-    twoSample = ot.NumericalSample(size, 1)
+    oneSample = ot.Sample(size, 1)
+    twoSample = ot.Sample(size, 1)
     for i in range(size):
         oneSample[i,0] = 7.0 * sin(-3.5 + (6.5 * i) / (size - 1.0)) + 2.0
         twoSample[i,0] = -2.0 * oneSample[i, 0] + 3.0 + 0.05 * sin(oneSample[i, 0])
@@ -32,12 +32,12 @@ try:
     # X is defined in [0,1]
     X *= [10];
     # Stack X2
-    X2 = ot.NumericalSample(X);
+    X2 = ot.Sample(X);
     for i in range(size):
       X2[i, 0] = X[i, 0] * X2[i, 0]
     X.stack(X2)
     # Define y
-    Y = ot.NumericalSample(size, 1);
+    Y = ot.Sample(size, 1);
     for i in range(size):
       Y[i, 0] = 1.0 +  0.1 * X[i, 0] + 10.0 * X[i, 0] * X[i, 0]  + 0.1 * ot.DistFunc.rNormal() ;
     test = lm.LinearModelAlgorithm(X, Y)

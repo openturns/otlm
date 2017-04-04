@@ -49,7 +49,7 @@ data = [[676,33,5,1441.67,35185.5,16.4524],
         [1620,28,5.5,829.26,14533,20.1328],
         [1560,28,5.4,856.96,16892.2,19.242]]
 
-sample = ot.NumericalSample(data)
+sample = ot.Sample(data)
 sample.setDescription(description)
 
 X = sample[:, 1:6]

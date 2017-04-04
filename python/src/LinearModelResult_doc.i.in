@@ -8,27 +8,27 @@ Available constructors:
 
 Parameters
 ----------
-inputSample, outputSample : :class:`~openturns.NumericalSample`
+inputSample, outputSample : :class:`~openturns.Sample`
     The input and output samples of a model.
-metaModel : :class:`~openturns.NumericalMathFunction`
+metaModel : :class:`~openturns.Function`
     The meta model.
 basis : :class:`~openturns.Basis`
     Functional basis to estimate the trend.
 design : :class:`~openturns.Matrix`
     The design matrix math:`X`.
-trendCoefficients : :class:`~openturns.NumericalPoint`
+trendCoefficients : :class:`~openturns.Point`
     The trend coeffients associated to the linearmodel. 
 formula : :class:`~openturns.String` 
      The formula description. 
 coefficientsNames : :class:`~openturns.Description` 
      The coefficients names of the basis.  
-sampleResiduals : :class:`~openturns.NumericalPoint`
+sampleResiduals : :class:`~openturns.Point`
     The residual errors.
-diagonalGramInverse : :class:`~openturns.NumericalPoint`
+diagonalGramInverse : :class:`~openturns.Point`
     The diagonal of the Gram inverse matrix.
-leverages : :class:`~openturns.NumericalPoint`
+leverages : :class:`~openturns.Point`
     The leverage score. 
-cookDistances : :class:`~openturns.NumericalPoint`
+cookDistances : :class:`~openturns.Point`
     The cook's distances.
 
 
@@ -45,7 +45,7 @@ LinearModel, LinearModelAlgorithm
 
 Returns
 -------
-inputSample : :class:`~openturns.NumericalSample`
+inputSample : :class:`~openturns.Sample`
     The Xsample which had been passed to the constructor."
 
 // ---------------------------------------------------------------------
@@ -55,7 +55,7 @@ inputSample : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-outputSample : :class:`~openturns.NumericalSample`
+outputSample : :class:`~openturns.Sample`
     The Ysample which had been passed to the constructor."
 
 // ---------------------------------------------------------------------
@@ -65,7 +65,7 @@ outputSample : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-outputSample : :class:`~openturns.NumericalSample`
+outputSample : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -75,7 +75,7 @@ outputSample : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-beta : :class:`~openturns.NumericalPoint`
+beta : :class:`~openturns.Point`
 "
 
 // ---------------------------------------------------------------------
@@ -105,7 +105,7 @@ coefficientsNames : :class:`~openturns.Description`
 
 Returns
 -------
-sampleResiduals : :class:`~openturns.NumericalSample`
+sampleResiduals : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -115,7 +115,7 @@ sampleResiduals : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-standardizedResiduals : :class:`~openturns.NumericalSample`
+standardizedResiduals : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -125,7 +125,7 @@ standardizedResiduals : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-leverages : :class:`~openturns.NumericalPoint`
+leverages : :class:`~openturns.Point`
 "
 
 // ---------------------------------------------------------------------
@@ -135,7 +135,7 @@ leverages : :class:`~openturns.NumericalPoint`
 
 Returns
 -------
-diagonalGramInverse : :class:`~openturns.NumericalPoint`
+diagonalGramInverse : :class:`~openturns.Point`
 "
 
 // ---------------------------------------------------------------------
@@ -145,6 +145,6 @@ diagonalGramInverse : :class:`~openturns.NumericalPoint`
 
 Returns
 -------
-cookDistances : :class:`~openturns.NumericalPoint`
+cookDistances : :class:`~openturns.Point`
 "
 

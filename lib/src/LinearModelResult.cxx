@@ -20,7 +20,7 @@
  */
 #include "otlm/LinearModelResult.hxx"
 #include "openturns/PersistentObjectFactory.hxx"
-#include "openturns/NumericalMathFunction.hxx"
+#include "openturns/Function.hxx"
 #include "openturns/LinearModel.hxx"
 #include "openturns/OSS.hxx"
 #include "openturns/OTthread.hxx"
@@ -83,19 +83,19 @@ LinearModelResult::LinearModelResult()
 }
 
 /* Parameter constructor */
-LinearModelResult::LinearModelResult(const NumericalSample & inputSample,
+LinearModelResult::LinearModelResult(const Sample & inputSample,
                                      const Basis & basis,
                                      const Matrix & design,
-                                     const NumericalSample & outputSample,
-                                     const NumericalMathFunction & metaModel,
-                                     const NumericalPoint & trendCoefficients,
+                                     const Sample & outputSample,
+                                     const Function & metaModel,
+                                     const Point & trendCoefficients,
                                      const String & formula,
                                      const Description & coefficientsNames,
-                                     const NumericalSample & sampleResiduals,
-                                     const NumericalPoint & diagonalGramInverse,
-                                     const NumericalPoint & leverages,
-                                     const NumericalPoint & cookDistances)
-  : MetaModelResult(NumericalMathFunction(inputSample, outputSample), metaModel, NumericalPoint(1, 0.0), NumericalPoint(1, 0.0))
+                                     const Sample & sampleResiduals,
+                                     const Point & diagonalGramInverse,
+                                     const Point & leverages,
+                                     const Point & cookDistances)
+  : MetaModelResult(Function(inputSample, outputSample), metaModel, Point(1, 0.0), Point(1, 0.0))
   , inputSample_(inputSample)
   , basis_(basis)
   , design_(design)
@@ -130,26 +130,26 @@ String LinearModelResult::__repr__() const
 
 
 /* Input sample accessor */
-NumericalSample LinearModelResult::getInputSample() const
+Sample LinearModelResult::getInputSample() const
 {
   return inputSample_;
 }
 
 
 /* Output sample accessor */
-NumericalSample LinearModelResult::getOutputSample() const
+Sample LinearModelResult::getOutputSample() const
 {
   return outputSample_;
 }
 
 /* Fitted sample accessor */
-NumericalSample LinearModelResult::getFittedSample() const
+Sample LinearModelResult::getFittedSample() const
 {
   return metaModel_(inputSample_);
 }
 
 /* Formula accessor */
-NumericalPoint LinearModelResult::getTrendCoefficients() const
+Point LinearModelResult::getTrendCoefficients() const
 {
   return beta_;
 }
@@ -165,38 +165,38 @@ Description LinearModelResult::getCoefficientsNames() const
   return coefficientsNames_;
 }
 
-NumericalSample LinearModelResult::getSampleResiduals() const
+Sample LinearModelResult::getSampleResiduals() const
 {
   return sampleResiduals_;
 }
 
-NumericalSample LinearModelResult::getStandardizedResiduals() const
+Sample LinearModelResult::getStandardizedResiduals() const
 {
   return standardizedResiduals_;
 }
 
-NumericalPoint LinearModelResult::getLeverages() const
+Point LinearModelResult::getLeverages() const
 {
   return leverages_;
 }
 
-NumericalPoint LinearModelResult::getDiagonalGramInverse() const
+Point LinearModelResult::getDiagonalGramInverse() const
 {
   return diagonalGramInverse_;
 }
 
-NumericalPoint LinearModelResult::getCookDistances() const
+Point LinearModelResult::getCookDistances() const
 {
   return cookDistances_;
 }
 
 void LinearModelResult::computeStandardizedResiduals()
 {
-  NumericalPoint sigma2(sampleResiduals_.computeRawMoment(2));
+  Point sigma2(sampleResiduals_.computeRawMoment(2));
   const UnsignedInteger n = sampleResiduals_.getSize();
   const UnsignedInteger pPlusOne = beta_.getDimension();
-  const NumericalScalar factor = n * sigma2[0] / (n - pPlusOne);
-  standardizedResiduals_ = NumericalSample(n, 1);
+  const Scalar factor = n * sigma2[0] / (n - pPlusOne);
+  standardizedResiduals_ = Sample(n, 1);
   for(UnsignedInteger i = 0; i < n; ++i)
   {
     standardizedResiduals_(i, 0) = sampleResiduals_(i, 0) / std::sqrt(factor * (1.0 - leverages_[i]));

@@ -22,7 +22,7 @@
 #define OTLM_LINEARMODELSTEPWISEFACTORY_HXX
 
 #include "openturns/PersistentObject.hxx"
-#include "openturns/NumericalSample.hxx"
+#include "openturns/Sample.hxx"
 #include "openturns/Matrix.hxx"
 #include "openturns/Indices.hxx"
 #include "openturns/Basis.hxx"
@@ -51,21 +51,21 @@ public:
   LinearModelStepwiseAlgorithm();
 
   /** Parameters constructor FORWARD and BACKWARD */
-  LinearModelStepwiseAlgorithm(const OT::NumericalSample & inputSample,
+  LinearModelStepwiseAlgorithm(const OT::Sample & inputSample,
                                const OT::Basis & basis,
-                               const OT::NumericalSample & outputSample,
+                               const OT::Sample & outputSample,
                                const OT::Indices & minimalIndices,
                                const OT::Bool isForward = true,
-                               const OT::NumericalScalar penalty = -1.0 /* < 0 means BIC, by convention */,
+                               const OT::Scalar penalty = -1.0 /* < 0 means BIC, by convention */,
                                const OT::UnsignedInteger maximumIterationNumber = 1000);
 
   /** Parameters constructor BOTH */
-  LinearModelStepwiseAlgorithm(const OT::NumericalSample & inputSample,
+  LinearModelStepwiseAlgorithm(const OT::Sample & inputSample,
                                const OT::Basis & basis,
-                               const OT::NumericalSample & outputSample,
+                               const OT::Sample & outputSample,
                                const OT::Indices & minimalIndices,
                                const OT::Indices & startIndices,
-                               const OT::NumericalScalar penalty = -1.0 /* < 0 means BIC, by convention */,
+                               const OT::Scalar penalty = -1.0 /* < 0 means BIC, by convention */,
                                const OT::UnsignedInteger maximumIterationNumber = 1000);
 
   /** Virtual constructor */
@@ -76,14 +76,14 @@ public:
   OT::String __str__(const OT::String & offset = "") const;
 
   /** Sample accessors */
-  OT::NumericalSample getInputSample() const;
-  OT::NumericalSample getOutputSample() const;
+  OT::Sample getInputSample() const;
+  OT::Sample getOutputSample() const;
 
   /** Direction accessors */
   Direction getDirection() const;
 
   /** Penalty accessors */
-  OT::NumericalScalar getPenalty() const;
+  OT::Scalar getPenalty() const;
 
   /** Maximum number of iterations accessors */
   OT::UnsignedInteger getMaximumIterationNumber() const;
@@ -106,19 +106,19 @@ public:
 private:
 
   /** Compute the likelihood function */
-  OT::NumericalScalar computeLogLikelihood();
+  OT::Scalar computeLogLikelihood();
 
   /** Build currentX_ and currentIndices_ from given indices */
   void buildCurrentMatrixFromIndices(const OT::Indices & columns);
 
   /** Input sample */
-  OT::NumericalSample inputSample_;
+  OT::Sample inputSample_;
 
   /** The monomials collection */
   OT::Basis basis_;
 
   /** Output sample */
-  OT::NumericalSample outputSample_;
+  OT::Sample outputSample_;
 
   /** The direction of the stepwise regression method */
   Direction direction_;
@@ -126,7 +126,7 @@ private:
   /** The multiple of the degrees of freedom used for the penalty of the stepwise regression method
       - 2      Akaike   information criterion (AIC)
       - log(n) Bayesian information criterion (BIC)  */
-  OT::NumericalScalar penalty_;
+  OT::Scalar penalty_;
 
   /** The maximum number of iterations of the stepwise regression method */
   OT::UnsignedInteger maximumIterationNumber_;

@@ -22,7 +22,7 @@
 #define OTLM_LINEARMODELANALYSIS_HXX
 
 #include "openturns/PersistentObject.hxx"
-#include "openturns/NumericalSample.hxx"
+#include "openturns/Sample.hxx"
 #include "openturns/Description.hxx"
 #include "openturns/TestResult.hxx"
 #include "openturns/Graph.hxx"
@@ -67,31 +67,31 @@ public:
   /** Accessors to data from ANOVA table */
   OT::String getFormula() const;
   OT::Description getCoefficientsNames() const;
-  OT::NumericalSample getResiduals() const;
-  OT::NumericalSample getStandardizedResiduals() const;
-  OT::NumericalSample getCoefficientsEstimates() const;
-  OT::NumericalSample getCoefficientsStandardErrors() const;
-  OT::NumericalSample getCoefficientsTScores() const;
-  OT::NumericalSample getCoefficientsPValues() const;
+  OT::Sample getResiduals() const;
+  OT::Sample getStandardizedResiduals() const;
+  OT::Sample getCoefficientsEstimates() const;
+  OT::Sample getCoefficientsStandardErrors() const;
+  OT::Sample getCoefficientsTScores() const;
+  OT::Sample getCoefficientsPValues() const;
 
   /**  leverages */
-  OT::NumericalPoint getLeverages() const;
+  OT::Point getLeverages() const;
 
   /**  Cook's distances */
-  OT::NumericalPoint getCookDistances() const;
+  OT::Point getCookDistances() const;
 
   /** Number of degrees of freedom */
   OT::UnsignedInteger getDegreesOfFreedom() const;
 
   /** R-squared */
-  OT::NumericalScalar getRSquared() const;
+  OT::Scalar getRSquared() const;
 
   /** Adjusted R-squared */
-  OT::NumericalScalar getAdjustedRSquared() const;
+  OT::Scalar getAdjustedRSquared() const;
 
   /** Fisher test */
-  OT::NumericalScalar getFisherScore() const;
-  OT::NumericalScalar getFisherPValue() const;
+  OT::Scalar getFisherScore() const;
+  OT::Scalar getFisherPValue() const;
 
   /** Kolmogorov-Smirnov normality test */
   OT::TestResult getNormalityTestResultKolmogorovSmirnov() const;

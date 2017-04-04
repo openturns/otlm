@@ -8,12 +8,12 @@ Stepwise method
     import otlm
     from math import log
     
-    sample = ot.NumericalSample.ImportFromTextFile("DATA_test1.csv", ",")
+    sample = ot.Sample.ImportFromTextFile("DATA_test1.csv", ",")
     
     X = sample[:, 1:5]
     R = sample[:, 0]
     
-    myLinearModel = ot.NumericalMathFunction(['x1', 'x2', 'x3', 'x4'], ['y'],
+    myLinearModel = ot.Function(['x1', 'x2', 'x3', 'x4'], ['y'],
         ['14 - 7*x1 - 17*x2 - 7 *x3 - 3*x4 + 13*x3^2 - 16*x4^2 ' +
            ' - 4*x1^2 + 12*x1*x2 + 3*x2*x4 + 13*x3*x4 + 20*x1*x2*x3 ' +
            ' + 17*x1^3 - 10*x2^3 + 7*x4^3'])

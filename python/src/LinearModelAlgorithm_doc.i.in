@@ -44,7 +44,7 @@ the residual couples :math:`(\epsilon_i, \epsilon_{i+1})`, where the residual
 
 Returns
 -------
-inputSample : :class:`~openturns.NumericalSample`
+inputSample : :class:`~openturns.Sample`
     The Xsample which had been passed to the constructor."
 
 // ---------------------------------------------------------------------
@@ -64,7 +64,7 @@ basis : :class:`~openturns.Basis`
 
 Returns
 -------
-outputSample : :class:`~openturns.NumericalSample`
+outputSample : :class:`~openturns.Sample`
     The Ysample which had been passed to the constructor."
 
 // ---------------------------------------------------------------------
