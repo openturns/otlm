@@ -7,7 +7,7 @@ ANOVA Table
     import openturns as ot
     import otlm
     
-    sample = ot.NumericalSample(
+    sample = ot.Sample(
      [[ 4.17,4.81 ],
       [ 5.58,4.17 ],
       [ 5.18,4.41 ],
@@ -21,8 +21,8 @@ ANOVA Table
     ctl = sample[:,0]
     trt = sample[:,1]
     
-    inputSample = ot.NumericalSample(ctl.getSize(), [0])
-    inputSample.add(ot.NumericalSample(trt.getSize(), [1]))
+    inputSample = ot.Sample(ctl.getSize(), [0])
+    inputSample.add(ot.Sample(trt.getSize(), [1]))
     inputSample.setDescription(["Trt"])
     
     outputSample = ctl

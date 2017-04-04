@@ -16,7 +16,7 @@ Graphs
     # pandas to easily filter it out.
     data = pd.read_csv("LifeCycleSavings.csv", index_col=0)
     
-    sample = ot.NumericalSample(data.values)
+    sample = ot.Sample(data.values)
     sample.setName("LifeCycleSavings")
     sample.setDescription(["sr","pop15","pop75","dpi","ddpi"])
     
@@ -65,7 +65,7 @@ Graphs
     # pandas to easily filter it out.
     data = pd.read_csv("LifeCycleSavings.csv", index_col=0)
     
-    sample = ot.NumericalSample(data.values)
+    sample = ot.Sample(data.values)
     sample.setName("LifeCycleSavings")
     sample.setDescription(["sr","pop15","pop75","dpi","ddpi"])
     
@@ -76,7 +76,7 @@ Graphs
     ddpi  = sample[:,4]
     
     # model2
-    f = ot.NumericalMathFunction('x','x^4','y')
+    f = ot.Function('x','x^4','y')
     outputSample = f(sr)
     inputSample = pop75
     inputSample.stack(dpi)

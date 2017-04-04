@@ -22,10 +22,10 @@
 #define OTLM_LINEARMODELRESULT_HXX
 
 #include "openturns/MetaModelResult.hxx"
-#include "openturns/NumericalSample.hxx"
+#include "openturns/Sample.hxx"
 #include "openturns/Basis.hxx"
 #include "openturns/Matrix.hxx"
-#include "openturns/NumericalMathFunction.hxx"
+#include "openturns/Function.hxx"
 #include "otlm/otlmprivate.hxx"
 
 
@@ -51,18 +51,18 @@ public:
 
   /* We cannot use a DesignProxy here since it is not persistent */
   /** Parameter constructor */
-  LinearModelResult(const OT::NumericalSample & inputSample,
+  LinearModelResult(const OT::Sample & inputSample,
                     const OT::Basis & basis,
                     const OT::Matrix & design,
-                    const OT::NumericalSample & outputSample,
-                    const OT::NumericalMathFunction & metaModel,
-                    const OT::NumericalPoint & trendCoefficients,
+                    const OT::Sample & outputSample,
+                    const OT::Function & metaModel,
+                    const OT::Point & trendCoefficients,
                     const OT::String & formula,
                     const OT::Description & coefficientsNames,
-                    const OT::NumericalSample & sampleResiduals,
-                    const OT::NumericalPoint & diagonalGramInverse,
-                    const OT::NumericalPoint & leverages,
-                    const OT::NumericalPoint & cookDistances);
+                    const OT::Sample & sampleResiduals,
+                    const OT::Point & diagonalGramInverse,
+                    const OT::Point & leverages,
+                    const OT::Point & cookDistances);
 
   /** Virtual constructor */
   LinearModelResult * clone() const;
@@ -71,12 +71,12 @@ public:
   OT::String __repr__() const;
 
   /** Sample accessors */
-  OT::NumericalSample getInputSample() const;
-  OT::NumericalSample getOutputSample() const;
-  OT::NumericalSample getFittedSample() const;
+  OT::Sample getInputSample() const;
+  OT::Sample getOutputSample() const;
+  OT::Sample getFittedSample() const;
 
   /** Condensed formula accessor */
-  OT::NumericalPoint getTrendCoefficients() const;
+  OT::Point getTrendCoefficients() const;
 
   /** Condensed formula accessor */
   OT::String getFormula() const;
@@ -85,19 +85,19 @@ public:
   OT::Description getCoefficientsNames() const;
 
   /** Residuals accessor */
-  OT::NumericalSample getSampleResiduals() const;
+  OT::Sample getSampleResiduals() const;
 
   /** Standardized residuals accessor */
-  OT::NumericalSample getStandardizedResiduals() const;
+  OT::Sample getStandardizedResiduals() const;
 
   /** Leverages accessor */
-  OT::NumericalPoint getLeverages() const;
+  OT::Point getLeverages() const;
 
   /** Diagonal Gram inverse accessor */
-  OT::NumericalPoint getDiagonalGramInverse() const;
+  OT::Point getDiagonalGramInverse() const;
 
   /** Cook distance accessor */
-  OT::NumericalPoint getCookDistances() const;
+  OT::Point getCookDistances() const;
 
   /** Method save() stores the object through the StorageManager */
   void save(OT::Advocate & adv) const;
@@ -111,7 +111,7 @@ private:
   void computeStandardizedResiduals();
 
   /** input data */
-  OT::NumericalSample inputSample_;
+  OT::Sample inputSample_;
 
   /** basis */
   OT::Basis basis_;
@@ -120,10 +120,10 @@ private:
   OT::Matrix design_;
 
   /** output data */
-  OT::NumericalSample outputSample_;
+  OT::Sample outputSample_;
 
   /** Intercept and trend coefficients */
-  OT::NumericalPoint beta_;
+  OT::Point beta_;
 
   /** The formula description */
   OT::String condensedFormula_;
@@ -132,19 +132,19 @@ private:
   OT::Description coefficientsNames_;
 
   /** Whole residuals */
-  OT::NumericalSample sampleResiduals_;
+  OT::Sample sampleResiduals_;
 
   /** Standardized residuals */
-  OT::NumericalSample standardizedResiduals_;
+  OT::Sample standardizedResiduals_;
 
   /** Diagonal of (Xt X)^{-1} */
-  OT::NumericalPoint diagonalGramInverse_;
+  OT::Point diagonalGramInverse_;
 
   /** Leverages */
-  OT::NumericalPoint leverages_;
+  OT::Point leverages_;
 
   /** Cook's distances */
-  OT::NumericalPoint cookDistances_;
+  OT::Point cookDistances_;
 
 }; /* class LinearModelResult */
 

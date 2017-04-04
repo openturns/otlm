@@ -48,14 +48,14 @@ With OpenTURNS:
     import openturns as ot
     import otlm
 
-    ctl =ot.NumericalSample([[4.17], [5.58], [5.18], [6.11], [4.50], [4.61], [5.17], [4.53], [5.33], [5.14]])
-    trt =ot.NumericalSample([[4.81], [4.17], [4.41], [3.59], [5.87], [3.83], [6.03], [4.89], [4.32], [4.69]])
+    ctl =ot.Sample([[4.17], [5.58], [5.18], [6.11], [4.50], [4.61], [5.17], [4.53], [5.33], [5.14]])
+    trt =ot.Sample([[4.81], [4.17], [4.41], [3.59], [5.87], [3.83], [6.03], [4.89], [4.32], [4.69]])
 
-    inputSample = ot.NumericalSample(ctl.getSize(), [0])
-    inputSample.add(ot.NumericalSample(trt.getSize(), [1]))
+    inputSample = ot.Sample(ctl.getSize(), [0])
+    inputSample.add(ot.Sample(trt.getSize(), [1]))
     inputSample.setDescription(["Trt"])
 
-    outputSample = ot.NumericalSample(ctl)
+    outputSample = ot.Sample(ctl)
     outputSample.add(trt)
     outputSample.setDescription(["weight"])
 

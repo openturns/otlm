@@ -45,7 +45,7 @@ Examples
 >>> ot.RandomGenerator.SetSeed(0)
 >>> distribution = ot.Normal()
 >>> Xsample = distribution.getSample(30)
->>> func = ot.NumericalMathFunction('x', '2 * x + 1')
+>>> func = ot.Function('x', '2 * x + 1')
 >>> Ysample = func(Xsample) + ot.Normal().getSample(30)
 >>> algo = otlm.LinearModelAlgorithm(Ysample, Xsample)
 >>> result = algo.getResult()
@@ -90,7 +90,7 @@ coefficientsNames : :class:`~openturns.Description`
 
 Returns
 -------
-sampleResiduals : :class:`~openturns.NumericalSample`
+sampleResiduals : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -100,7 +100,7 @@ sampleResiduals : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-standardizedResiduals : :class:`~openturns.NumericalSample`
+standardizedResiduals : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -110,7 +110,7 @@ standardizedResiduals : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-beta : :class:`~openturns.NumericalSample`
+beta : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -120,7 +120,7 @@ beta : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-standardErrors : :class:`~openturns.NumericalSample`
+standardErrors : :class:`~openturns.Sample`
 "
 
 
@@ -131,7 +131,7 @@ standardErrors : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-tScores : :class:`~openturns.NumericalSample`
+tScores : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -141,7 +141,7 @@ tScores : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-pValues : :class:`~openturns.NumericalSample`
+pValues : :class:`~openturns.Sample`
 "
 
 // ---------------------------------------------------------------------
@@ -151,7 +151,7 @@ pValues : :class:`~openturns.NumericalSample`
 
 Returns
 -------
-leverages : :class:`~openturns.NumericalPoint`
+leverages : :class:`~openturns.Point`
 "
 
 
@@ -162,7 +162,7 @@ leverages : :class:`~openturns.NumericalPoint`
 
 Returns
 -------
-cookDistances : :class:`~openturns.NumericalPoint`
+cookDistances : :class:`~openturns.Point`
 "
 
 // ---------------------------------------------------------------------

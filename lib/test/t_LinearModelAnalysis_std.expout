@@ -23,7 +23,7 @@ Chi-Squared          | 0.000276115 |
 Kolmogorov-Smirnov   | 0.17747     |
 ------------------------------------
 
-Confidence intervals with level=0.95 : class=Interval name=Unnamed dimension=2 lower bound=class=NumericalPoint name=Unnamed dimension=2 values=[2.99229,-2.00396] upper bound=class=NumericalPoint name=Unnamed dimension=2 values=[3.03106,-1.99655] finite lower bound=[1,1] finite upper bound=[1,1]
+Confidence intervals with level=0.95 : class=Interval name=Unnamed dimension=2 lower bound=class=Point name=Unnamed dimension=2 values=[2.99229,-2.00396] upper bound=class=Point name=Unnamed dimension=2 values=[3.03106,-1.99655] finite lower bound=[1,1] finite upper bound=[1,1]
 
 
 
@@ -53,4 +53,4 @@ Chi-Squared          | 0.663954 |
 Kolmogorov-Smirnov   | 0.821849 |
 ---------------------------------
 
-Confidence intervals with level=0.95 : class=Interval name=Unnamed dimension=3 lower bound=class=NumericalPoint name=Unnamed dimension=3 values=[0.920867,0.0837015,9.99664] upper bound=class=NumericalPoint name=Unnamed dimension=3 values=[1.03712,0.137429,10.0018] finite lower bound=[1,1,1] finite upper bound=[1,1,1]
+Confidence intervals with level=0.95 : class=Interval name=Unnamed dimension=3 lower bound=class=Point name=Unnamed dimension=3 values=[0.920867,0.0837015,9.99664] upper bound=class=Point name=Unnamed dimension=3 values=[1.03712,0.137429,10.0018] finite lower bound=[1,1,1] finite upper bound=[1,1,1]

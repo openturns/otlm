@@ -41,8 +41,8 @@ LinearModelAlgorithm::LinearModelAlgorithm()
 }
 
 /* Parameters constructor */
-LinearModelAlgorithm::LinearModelAlgorithm(const NumericalSample & inputSample,
-    const NumericalSample & outputSample)
+LinearModelAlgorithm::LinearModelAlgorithm(const Sample & inputSample,
+    const Sample & outputSample)
   : MetaModelAlgorithm()
   , inputSample_(0, 0)
   , outputSample_(0, 0)
@@ -55,21 +55,21 @@ LinearModelAlgorithm::LinearModelAlgorithm(const NumericalSample & inputSample,
   // Set samples
   inputSample_ = inputSample;
   outputSample_ = outputSample;
-  Collection<NumericalMathFunction> functions;
+  Collection<Function> functions;
   const Description inputDescription(inputSample_.getDescription());
-  functions.add(NumericalMathFunction(inputSample_.getDescription(), Description(1, "1")));
+  functions.add(Function(inputSample_.getDescription(), Description(1, "1")));
   for(UnsignedInteger i = 0; i < inputSample_.getDimension(); ++i)
   {
-    functions.add(NumericalMathFunction(inputSample_.getDescription(), Description(1, inputDescription[i])));
+    functions.add(Function(inputSample_.getDescription(), Description(1, inputDescription[i])));
   }
   basis_ = Basis(functions);
 }
 
 
 /* Parameters constructor */
-LinearModelAlgorithm::LinearModelAlgorithm(const NumericalSample & inputSample,
+LinearModelAlgorithm::LinearModelAlgorithm(const Sample & inputSample,
     const Basis & basis,
-    const NumericalSample & outputSample)
+    const Sample & outputSample)
   : MetaModelAlgorithm()
   , inputSample_(0, 0)
   , outputSample_(0, 0)
@@ -119,7 +119,7 @@ String LinearModelAlgorithm::__repr__() const
 }
 
 
-NumericalSample LinearModelAlgorithm::getInputSample() const
+Sample LinearModelAlgorithm::getInputSample() const
 {
   return inputSample_;
 }
@@ -131,7 +131,7 @@ Basis LinearModelAlgorithm::getBasis() const
 }
 
 
-NumericalSample LinearModelAlgorithm::getOutputSample() const
+Sample LinearModelAlgorithm::getOutputSample() const
 {
   return outputSample_;
 }

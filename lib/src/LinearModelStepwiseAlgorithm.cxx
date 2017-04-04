@@ -19,7 +19,7 @@
  *
  */
 #include "otlm/LinearModelStepwiseAlgorithm.hxx"
-#include "openturns/NumericalMathFunction.hxx"
+#include "openturns/Function.hxx"
 #include "openturns/Exception.hxx"
 #include "openturns/Combinations.hxx"
 #include "openturns/ConstantBasisFactory.hxx"
@@ -47,18 +47,18 @@ LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm()
 {
   // Add intercept
   const ConstantBasisFactory factory(inputSample_.getDimension());
-  const NumericalMathFunction one(factory.build()[0]);
+  const Function one(factory.build()[0]);
   basis_.add(one);
   condensedFormula_ =  one.__str__();
 }
 
 /* Parameters constructor FORWARD and BACKWARD */
-LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const NumericalSample & inputSample,
+LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const Sample & inputSample,
                                                            const Basis & basis,
-                                                           const NumericalSample & outputSample,
+                                                           const Sample & outputSample,
                                                            const Indices & minimalIndices,
                                                            const Bool isForward,
-                                                           const NumericalScalar penalty,
+                                                           const Scalar penalty,
                                                            const UnsignedInteger maximumIterationNumber)
   : PersistentObject()
   , inputSample_(inputSample)
@@ -75,12 +75,12 @@ LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const NumericalSample
 }
 
 /* Parameters constructor BOTH */
-LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const NumericalSample & inputSample,
+LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const Sample & inputSample,
                                                            const Basis & basis,
-                                                           const NumericalSample & outputSample,
+                                                           const Sample & outputSample,
                                                            const Indices & minimalIndices,
                                                            const Indices & startIndices,
-                                                           const NumericalScalar penalty,
+                                                           const Scalar penalty,
                                                            const UnsignedInteger maximumIterationNumber)
   : PersistentObject()
   , inputSample_(inputSample)
@@ -131,12 +131,12 @@ String LinearModelStepwiseAlgorithm::__str__(const String & offset) const
 }
 
 /* Sample accessors */
-NumericalSample LinearModelStepwiseAlgorithm::getInputSample() const
+Sample LinearModelStepwiseAlgorithm::getInputSample() const
 {
   return inputSample_;
 }
 
-NumericalSample LinearModelStepwiseAlgorithm::getOutputSample() const
+Sample LinearModelStepwiseAlgorithm::getOutputSample() const
 {
   return outputSample_;
 }
@@ -148,7 +148,7 @@ LinearModelStepwiseAlgorithm::Direction LinearModelStepwiseAlgorithm::getDirecti
 }
 
 /* Penalty accessors */
-NumericalScalar LinearModelStepwiseAlgorithm::getPenalty() const
+Scalar LinearModelStepwiseAlgorithm::getPenalty() const
 {
   return penalty_;
 }
@@ -217,12 +217,12 @@ struct UpdateForwardFunctor
   const Matrix & Xmax_;
   const Matrix & residual_;
   const Matrix & Q_;
-  NumericalScalar criterion_;
+  Scalar criterion_;
   UnsignedInteger bestIndex_;
 
   UpdateForwardFunctor(const Basis & basis, const Indices & indexSet, const Matrix & Xmax, const Matrix & residual, const Matrix & Q)
     : basis_(basis), indexSet_(indexSet), Xmax_(Xmax), residual_(residual), Q_(Q)
-    , criterion_(SpecFunc::MaxNumericalScalar), bestIndex_(Xmax.getNbColumns()) {}
+    , criterion_(SpecFunc::MaxScalar), bestIndex_(Xmax.getNbColumns()) {}
 
   UpdateForwardFunctor(const UpdateForwardFunctor & other, TBB::Split)
     : basis_(other.basis_), indexSet_(other.indexSet_), Xmax_(other.Xmax_), residual_(other.residual_), Q_(other.Q_)
@@ -232,25 +232,25 @@ struct UpdateForwardFunctor
   {
     const UnsignedInteger size(Xmax_.getNbRows());
     Matrix xi(size, 1);
-    NumericalPoint xiNP(size);
-    NumericalPoint viNP(size);
-    NumericalPoint residualNP(size);
-    memcpy(&residualNP[0], &residual_(0, 0), sizeof(NumericalScalar)*size);
+    Point xiNP(size);
+    Point viNP(size);
+    Point residualNP(size);
+    memcpy(&residualNP[0], &residual_(0, 0), sizeof(Scalar)*size);
 
     for (UnsignedInteger index = r.begin(); index != r.end(); ++index)
     {
       const UnsignedInteger i = indexSet_[index];
-      memcpy(&xi(0, 0), &Xmax_(0, i), sizeof(NumericalScalar)*size);
+      memcpy(&xi(0, 0), &Xmax_(0, i), sizeof(Scalar)*size);
       const Matrix Qtxi(Q_.getImplementation()->genProd(*(xi.getImplementation()), true, false));
       const Matrix di(Q_ * Qtxi);
       const Matrix vi(xi - di);
-      memcpy(&viNP[0], &vi(0, 0), sizeof(NumericalScalar)*size);
-      memcpy(&xiNP[0], &xi(0, 0), sizeof(NumericalScalar)*size);
-      const NumericalScalar denominator = dot(xiNP, viNP);
+      memcpy(&viNP[0], &vi(0, 0), sizeof(Scalar)*size);
+      memcpy(&xiNP[0], &xi(0, 0), sizeof(Scalar)*size);
+      const Scalar denominator = dot(xiNP, viNP);
       if (denominator == 0.0) continue;
-      const NumericalScalar alpha = dot(xiNP, residualNP) / denominator;
-      const NumericalPoint newResidual(residualNP - alpha * viNP);
-      const NumericalScalar newCriterion(newResidual.normSquare());
+      const Scalar alpha = dot(xiNP, residualNP) / denominator;
+      const Point newResidual(residualNP - alpha * viNP);
+      const Scalar newCriterion(newResidual.normSquare());
       LOGDEBUG(OSS() << "Squared residual norm when adding column " << i << "(" << basis_[i] << "): " << newCriterion);
       if (newCriterion < criterion_)
       {
@@ -326,14 +326,14 @@ struct UpdateBackwardFunctor
   const Matrix & residual_;
   const Matrix & Q_;
   const Matrix & invRt_;
-  NumericalScalar criterion_;
+  Scalar criterion_;
   UnsignedInteger bestIndex_;
 
   UpdateBackwardFunctor(const Basis & basis, const Indices & indexSet, const Indices & columnMaxToCurrent, const Indices & columnCurrentToMax,
                         const Matrix & Y, const Matrix & residual, const Matrix & Q, const Matrix & invRt)
     : basis_(basis), indexSet_(indexSet), columnMaxToCurrent_(columnMaxToCurrent), columnCurrentToMax_(columnCurrentToMax)
     , Y_(Y), residual_(residual), Q_(Q), invRt_(invRt)
-    , criterion_(SpecFunc::MaxNumericalScalar), bestIndex_(invRt.getNbColumns()) {}
+    , criterion_(SpecFunc::MaxScalar), bestIndex_(invRt.getNbColumns()) {}
 
   UpdateBackwardFunctor(const UpdateBackwardFunctor & other, TBB::Split)
     : basis_(other.basis_), indexSet_(other.indexSet_), columnMaxToCurrent_(other.columnMaxToCurrent_), columnCurrentToMax_(other.columnCurrentToMax_)
@@ -345,24 +345,24 @@ struct UpdateBackwardFunctor
     const UnsignedInteger size(Q_.getNbRows());
     const UnsignedInteger p(invRt_.getNbRows());
     Matrix bi(p, 1);
-    NumericalPoint biNP(p);
-    NumericalPoint diNP(size);
-    NumericalPoint yNP(size);
-    memcpy(&yNP[0], &Y_(0, 0), sizeof(NumericalScalar)*size);
-    NumericalPoint residualNP(size);
-    memcpy(&residualNP[0], &residual_(0, 0), sizeof(NumericalScalar)*size);
+    Point biNP(p);
+    Point diNP(size);
+    Point yNP(size);
+    memcpy(&yNP[0], &Y_(0, 0), sizeof(Scalar)*size);
+    Point residualNP(size);
+    memcpy(&residualNP[0], &residual_(0, 0), sizeof(Scalar)*size);
 
     for (UnsignedInteger index = r.begin(); index != r.end(); ++index)
     {
       const UnsignedInteger iMax = indexSet_[index];
       const UnsignedInteger i = columnMaxToCurrent_[iMax];
-      memcpy(&biNP[0], &invRt_(0, i), sizeof(NumericalScalar)*p);
-      memcpy(&bi(0, 0), &biNP[0], sizeof(NumericalScalar)*p);
+      memcpy(&biNP[0], &invRt_(0, i), sizeof(Scalar)*p);
+      memcpy(&bi(0, 0), &biNP[0], sizeof(Scalar)*p);
       const Matrix di(Q_ * bi);
-      memcpy(&diNP[0], &di(0, 0), sizeof(NumericalScalar)*size);
-      const NumericalScalar alpha = dot(diNP, yNP) / dot(biNP, biNP);
-      const NumericalPoint newResidual(residualNP + alpha * diNP);
-      const NumericalScalar newCriterion(newResidual.normSquare());
+      memcpy(&diNP[0], &di(0, 0), sizeof(Scalar)*size);
+      const Scalar alpha = dot(diNP, yNP) / dot(biNP, biNP);
+      const Point newResidual(residualNP + alpha * diNP);
+      const Scalar newCriterion(newResidual.normSquare());
       LOGDEBUG(OSS() << "Squared residual norm when removing column " << iMax << "(" << basis_[iMax] << "): " << newCriterion);
       if (newCriterion < criterion_)
       {
@@ -395,13 +395,13 @@ void LinearModelStepwiseAlgorithm::run()
   LOGDEBUG(OSS() << "Running LinearModelStepwiseAlgorithm " << __str__());
   const UnsignedInteger size(inputSample_.getSize());
   Y_ = Matrix(size, 1, outputSample_.getImplementation()->getData());
-  const NumericalMathFunction f(basis_);
-  NumericalSample fx(f(inputSample_));
+  const Function f(basis_);
+  Sample fx(f(inputSample_));
   LOGDEBUG(OSS() << "Total number of columns=" << fx.getDimension());
 
   // Normalize input to improve numerical robustness.
-  NumericalPoint normalizationMean(fx.computeMean());
-  NumericalPoint normalizationStdev(fx.computeStandardDeviationPerComponent());
+  Point normalizationMean(fx.computeMean());
+  Point normalizationStdev(fx.computeStandardDeviationPerComponent());
   // Do not normalize the constant term
   UnsignedInteger intercept = normalizationStdev.getDimension();
   const Bool normalize = ResourceMap::GetAsBool("LinearModelStepwiseAlgorithm-normalize");
@@ -425,7 +425,7 @@ void LinearModelStepwiseAlgorithm::run()
     fx -= normalizationMean;
     for (UnsignedInteger i = 0; i < normalizationStdev.getDimension(); ++i)
     {
-      if (std::abs(normalizationStdev[i]) <= SpecFunc::MinNumericalScalar)
+      if (std::abs(normalizationStdev[i]) <= SpecFunc::MinScalar)
       {
         normalizationStdev[i] = 1.0;
       }
@@ -471,7 +471,7 @@ void LinearModelStepwiseAlgorithm::run()
   UnsignedInteger p = currentX_.getNbColumns();
 
   UnsignedInteger iterations = 0;
-  NumericalScalar Lstar;
+  Scalar Lstar;
   while(iterations < maximumIterationNumber_)
   {
     ++iterations;
@@ -479,7 +479,7 @@ void LinearModelStepwiseAlgorithm::run()
     Lstar = penalty_ * p + computeLogLikelihood();
     LOGDEBUG(OSS() << "Iteration " << iterations << ", current criterion=" << Lstar);
 
-    NumericalScalar LF = SpecFunc::MaxNumericalScalar;
+    Scalar LF = SpecFunc::MaxScalar;
     UnsignedInteger indexF = maxX_.getNbColumns();
     if (direction_ == FORWARD || direction_ == BOTH)
     {
@@ -496,7 +496,7 @@ void LinearModelStepwiseAlgorithm::run()
       LF = penalty_ * (p + 1) + size * std::log(updateFunctor.criterion_ / size);
       LOGDEBUG(OSS() << "Best candidate in forward direction is " << indexF << "(" << basis_[indexF] << "), squared residual norm=" << updateFunctor.criterion_ << ", criterion=" << LF);
     }
-    NumericalScalar LB = SpecFunc::MaxNumericalScalar;
+    Scalar LB = SpecFunc::MaxScalar;
     UnsignedInteger indexB = maxX_.getNbColumns();
     if (direction_ == BACKWARD || direction_ == BOTH)
     {
@@ -524,8 +524,8 @@ void LinearModelStepwiseAlgorithm::run()
       // Add column indexF to currentX_
       columnMaxToCurrent[indexF] = p;
       Matrix newX(size, p + 1);
-      memcpy(&newX(0, 0), &currentX_(0, 0), sizeof(NumericalScalar) * size * p);
-      memcpy(&newX(0, p), &maxX_(0, indexF), sizeof(NumericalScalar) * size);
+      memcpy(&newX(0, 0), &currentX_(0, 0), sizeof(Scalar) * size * p);
+      memcpy(&newX(0, p), &maxX_(0, indexF), sizeof(Scalar) * size);
       currentX_ = newX;
       ++p;
     }
@@ -535,9 +535,9 @@ void LinearModelStepwiseAlgorithm::run()
       // Remove column indexB from currentX_
       Matrix newX(size, p - 1);
       const UnsignedInteger pos(columnMaxToCurrent[indexB]);
-      memcpy(&newX(0, 0), &currentX_(0, 0), sizeof(NumericalScalar) * size * pos);
+      memcpy(&newX(0, 0), &currentX_(0, 0), sizeof(Scalar) * size * pos);
       if (pos+1 != p)
-        memcpy(&newX(0, pos), &currentX_(0, pos+1), sizeof(NumericalScalar) * size * (p - pos - 1));
+        memcpy(&newX(0, pos), &currentX_(0, pos+1), sizeof(Scalar) * size * (p - pos - 1));
       currentX_ = newX;
       --p;
       // Update columnMaxToCurrent
@@ -560,14 +560,14 @@ void LinearModelStepwiseAlgorithm::run()
     LOGDEBUG(OSS() << "Index set is now " << currentIndices_.__str__());
   }
   // Update Q,(R^T)^{-1}, residual = Y - Q*Q^T*Y  (X=QR)
-  const NumericalScalar criterion(penalty_ * p + computeLogLikelihood());
+  const Scalar criterion(penalty_ * p + computeLogLikelihood());
   LOGDEBUG(OSS() << "Final indices are " << currentIndices_.__str__() << " and criterion is " << criterion);
 
   // Revert normalization
   if (intercept < normalizationStdev.getDimension() && columnMaxToCurrent[intercept] < columnMaxToCurrent.getSize())
   {
-    NumericalPoint scaling(p, 1.0);
-    NumericalPoint translation(p);
+    Point scaling(p, 1.0);
+    Point translation(p);
     for (UnsignedInteger i = 0; i < columnMaxToCurrent.getSize(); ++i)
     {
       const UnsignedInteger currentIndex = columnMaxToCurrent[i];
@@ -579,8 +579,8 @@ void LinearModelStepwiseAlgorithm::run()
     }
     for (UnsignedInteger j = 0; j < currentX_.getNbColumns(); ++j)
     {
-      const NumericalScalar scale = scaling[j];
-      const NumericalScalar translate = translation[j];
+      const Scalar scale = scaling[j];
+      const Scalar translate = translation[j];
       for (UnsignedInteger i = 0; i < currentX_.getNbRows(); ++i)
       {
         currentX_(i, j) = translate + scale * currentX_(i, j);
@@ -593,53 +593,53 @@ void LinearModelStepwiseAlgorithm::run()
     currentInvRt_ = R.getImplementation()->solveLinearSystemTri(b, false, false, true);
   }
 
-  NumericalPoint regression(p);
+  Point regression(p);
   const Matrix QtY(currentQ_.getImplementation()->genProd(*(Y_.getImplementation()), true, false));
   const Matrix invRQtY(currentInvRt_.getImplementation()->genProd(*(QtY.getImplementation()), true, false));
-  memcpy(&regression[0], &invRQtY(0, 0), sizeof(NumericalScalar)*p);
+  memcpy(&regression[0], &invRQtY(0, 0), sizeof(Scalar)*p);
 
   LOGDEBUG(OSS() << "regression=" << regression);
 
-  NumericalPoint diagonalGramInverse(p);
-  NumericalPoint invRtiNP(p);
+  Point diagonalGramInverse(p);
+  Point invRtiNP(p);
   for (UnsignedInteger i = 0; i < p; ++i)
   {
-    memcpy(&invRtiNP[0], &currentInvRt_(0, i), sizeof(NumericalScalar)*p);
+    memcpy(&invRtiNP[0], &currentInvRt_(0, i), sizeof(Scalar)*p);
     diagonalGramInverse[i] = dot(invRtiNP, invRtiNP);
   }
-  NumericalPoint leverages(size);
+  Point leverages(size);
   Matrix Qt(currentQ_.transpose());
-  NumericalPoint QtiNP(p);
+  Point QtiNP(p);
   for (UnsignedInteger i = 0; i < size; ++i)
   {
-    memcpy(&QtiNP[0], &Qt(0, i), sizeof(NumericalScalar)*p);
+    memcpy(&QtiNP[0], &Qt(0, i), sizeof(Scalar)*p);
     leverages[i] = dot(QtiNP, QtiNP);
   }
-  NumericalSample residualSample(size, 1);
-  memcpy(&residualSample(0, 0), &currentResidual_(0, 0), sizeof(NumericalScalar) * size);
+  Sample residualSample(size, 1);
+  memcpy(&residualSample(0, 0), &currentResidual_(0, 0), sizeof(Scalar) * size);
 
-  NumericalPoint sigma2(residualSample.computeRawMoment(2));
-  const NumericalScalar factor = size * sigma2[0] / (size - p);
-  NumericalSample standardizedResiduals(size, 1);
+  Point sigma2(residualSample.computeRawMoment(2));
+  const Scalar factor = size * sigma2[0] / (size - p);
+  Sample standardizedResiduals(size, 1);
   for(UnsignedInteger i = 0; i < size; ++i)
   {
     standardizedResiduals(i, 0) = residualSample(i, 0) / std::sqrt(factor * (1.0 - leverages[i]));
   }
 
-  NumericalPoint cookDistances(size);
+  Point cookDistances(size);
   for (UnsignedInteger i = 0; i < size; ++i)
   {
     cookDistances[i] = (1.0 / p) * standardizedResiduals(i, 0) * standardizedResiduals(i, 0) * (leverages[i] / (1.0 - leverages[i]));
   }
 
   Description coefficientsNames(0);
-  Collection<NumericalMathFunction> currentFunctions;
+  Collection<Function> currentFunctions;
   for (Indices::const_iterator it = currentIndices_.begin(); it != currentIndices_.end(); ++it)
   {
     coefficientsNames.add(basis_[*it].__str__());
     currentFunctions.add(basis_[*it]);
   }
-  NumericalMathFunction metaModel(currentFunctions, regression);
+  Function metaModel(currentFunctions, regression);
 
   result_ = LinearModelResult(inputSample_, Basis(currentFunctions), currentX_, outputSample_, metaModel,
                               regression, condensedFormula_, coefficientsNames, residualSample,
@@ -654,7 +654,7 @@ void LinearModelStepwiseAlgorithm::buildCurrentMatrixFromIndices(const Indices &
   currentX_ = Matrix(size, columns.getSize());
   currentIndices_ = columns;
   for (UnsignedInteger i = 0; i < columns.getSize(); ++i)
-    memcpy(&currentX_(0, i), &maxX_(0, columns[i]), sizeof(NumericalScalar) * size);
+    memcpy(&currentX_(0, i), &maxX_(0, columns[i]), sizeof(Scalar) * size);
 }
 
 
@@ -666,7 +666,7 @@ LinearModelResult LinearModelStepwiseAlgorithm::getResult()
 }
 
 /* Compute the likelihood function */
-NumericalScalar LinearModelStepwiseAlgorithm::computeLogLikelihood()
+Scalar LinearModelStepwiseAlgorithm::computeLogLikelihood()
 {
   const UnsignedInteger size = currentX_.getNbRows();
   const UnsignedInteger p = currentX_.getNbColumns();
@@ -680,11 +680,11 @@ NumericalScalar LinearModelStepwiseAlgorithm::computeLogLikelihood()
   const Matrix QtY = currentQ_.getImplementation()->genProd(*(Y_.getImplementation()), true, false);
   const Matrix Yhat(currentQ_ * QtY);
   currentResidual_ = Y_ - Yhat;
-  NumericalPoint residualNP(size, 0.0);
-  memcpy(&residualNP[0], &currentResidual_(0,0), sizeof(NumericalScalar) * size);
+  Point residualNP(size, 0.0);
+  memcpy(&residualNP[0], &currentResidual_(0,0), sizeof(Scalar) * size);
 
-  const NumericalScalar normSquared = residualNP.normSquare();
-  const NumericalScalar result = size * std::log(normSquared / size);
+  const Scalar normSquared = residualNP.normSquare();
+  const Scalar result = size * std::log(normSquared / size);
   LOGDEBUG(OSS() << "Residual squared norm=" << normSquared << ", loglikelihood=" << result);
   return result;
 }

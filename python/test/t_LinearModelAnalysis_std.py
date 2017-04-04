@@ -12,8 +12,8 @@ try:
     # lm build
     print("Fit y ~ 3 - 2 x + 0.05 * sin(x) model using 20 points (sin(x) ~ noise)")
     size = 20
-    oneSample = ot.NumericalSample(size, 1)
-    twoSample = ot.NumericalSample(size, 1)
+    oneSample = ot.Sample(size, 1)
+    twoSample = ot.Sample(size, 1)
     for i in range(size):
         oneSample[i,0] = 7.0 * sin(-3.5 + (6.5 * i) / (size - 1.0)) + 2.0
         twoSample[i,0] = -2.0 * oneSample[i, 0] + 3.0 + 0.05 * sin(oneSample[i, 0])
@@ -26,11 +26,11 @@ try:
     alpha = 0.05
     lower_sample = analysis.getCoefficientsEstimates() - analysis.getCoefficientsStandardErrors() * ot.Student(analysis.getDegreesOfFreedom()).computeQuantile(1 - alpha)
     upper_sample = analysis.getCoefficientsEstimates() + analysis.getCoefficientsStandardErrors() * ot.Student(analysis.getDegreesOfFreedom()).computeQuantile(1 - alpha)
-    # lower and upper bounds as NumericalPoint
-    lower_bounds = ot.NumericalPoint(lower_sample.getSize())
+    # lower and upper bounds as Point
+    lower_bounds = ot.Point(lower_sample.getSize())
     for i in range(lower_bounds.getSize()):
         lower_bounds[i] = lower_sample[i][0]
-    upper_bounds = ot.NumericalPoint(upper_sample.getSize())
+    upper_bounds = ot.Point(upper_sample.getSize())
     for i in range(upper_bounds.getSize()):
         upper_bounds[i] = upper_sample[i][0]
     # interval confidence bounds
@@ -50,12 +50,12 @@ try:
     # X is defined in [0,1]
     X *= [10];
     # Stack X2
-    X2 = ot.NumericalSample(X);
+    X2 = ot.Sample(X);
     for i in range(size):
       X2[i, 0] = X[i, 0] * X2[i, 0]
     X.stack(X2)
     # Define y
-    Y = ot.NumericalSample(size, 1);
+    Y = ot.Sample(size, 1);
     for i in range(size):
       Y[i, 0] = 1.0 +  0.1 * X[i, 0] + 10.0 * X[i, 0] * X[i, 0]  + 0.1 * ot.DistFunc.rNormal() ;
     test = lm.LinearModelAlgorithm(X, Y)
@@ -66,11 +66,11 @@ try:
     alpha = 0.05
     lower_sample = analysis.getCoefficientsEstimates() - analysis.getCoefficientsStandardErrors() * ot.Student(analysis.getDegreesOfFreedom()).computeQuantile(alpha / 2.0, True)
     upper_sample = analysis.getCoefficientsEstimates() + analysis.getCoefficientsStandardErrors() * ot.Student(analysis.getDegreesOfFreedom()).computeQuantile(alpha / 2.0, True)
-    # lower and upper bounds as NumericalPoint
-    lower_bounds = ot.NumericalPoint(lower_sample.getSize())
+    # lower and upper bounds as Point
+    lower_bounds = ot.Point(lower_sample.getSize())
     for i in range(lower_bounds.getSize()):
         lower_bounds[i] = lower_sample[i][0]
-    upper_bounds = ot.NumericalPoint(upper_sample.getSize())
+    upper_bounds = ot.Point(upper_sample.getSize())
     for i in range(upper_bounds.getSize()):
         upper_bounds[i] = upper_sample[i][0]
     # interval confidence bounds

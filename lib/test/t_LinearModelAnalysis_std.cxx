@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     setRandomGenerator();
     fullprint << "Fit y ~ 3 - 2 x + 0.05 * sin(x) model using 20 points (sin(x) ~ noise)" << std::endl;
     UnsignedInteger size = 20;
-    NumericalSample oneSample(size, 1);
-    NumericalSample twoSample(size, 1);
+    Sample oneSample(size, 1);
+    Sample twoSample(size, 1);
     for (UnsignedInteger i = 0; i < size; ++i)
     {
       oneSample[i][0] = 7.0 * sin(-3.5 + (6.5 * i) / (size - 1.0)) + 2.0;
@@ -49,14 +49,14 @@ int main(int argc, char *argv[])
     LinearModelAnalysis analysis(result);
     fullprint << analysis.__str__() << std::endl;
     // Compute confidence level (95%) for coefficients estimate (1-alpha = 0.95)
-    const NumericalScalar alpha = 0.05;
-    const NumericalScalar t = Student(analysis.getDegreesOfFreedom()).computeQuantile(alpha / 2.0, true)[0];
-    // Transform errors as NumericalPoint
-    NumericalPoint coefficientsErrors(analysis.getCoefficientsStandardErrors().getImplementation()->getData());
+    const Scalar alpha = 0.05;
+    const Scalar t = Student(analysis.getDegreesOfFreedom()).computeQuantile(alpha / 2.0, true)[0];
+    // Transform errors as Point
+    Point coefficientsErrors(analysis.getCoefficientsStandardErrors().getImplementation()->getData());
     // Define lower and upper bounds
     // First transform return type into NP
-    NumericalPoint lowerBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
-    NumericalPoint upperBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
+    Point lowerBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
+    Point upperBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
     // update bounds
     lowerBounds -= coefficientsErrors * t;
     upperBounds += coefficientsErrors * t;
@@ -75,18 +75,18 @@ int main(int argc, char *argv[])
     // Define a linespace from 0 to 10 with size points
     // We use a Box expermient ==> remove 0 & 1 points
     const Box experiment(Indices(1, size - 2));
-    NumericalSample X(experiment.generate());
+    Sample X(experiment.generate());
     // X is defined in [0,1]
-    const NumericalPoint scale(1, 10.0);
+    const Point scale(1, 10.0);
     X *= scale;
     // Stack X2
-    NumericalSample X2(X);
+    Sample X2(X);
     for (UnsignedInteger i = 0; i < size; ++i)
       X2(i, 0) = X(i, 0) * X(i, 0);
     // Stack
     X.stack(X2);
     // Define y = 1 + 0.1 * x + 10  x^2 + e with e a gaussian noise
-    NumericalSample Y(size, 1);
+    Sample Y(size, 1);
     for (UnsignedInteger i = 0; i < size; ++i)
       Y(i, 0) = 1.0 +  0.1 * X(i, 0) + 10.0 * X(i, 0) * X(i, 0) + 0.1 * DistFunc::rNormal() ;
     LinearModelAlgorithm test(X, Y);
@@ -94,14 +94,14 @@ int main(int argc, char *argv[])
     LinearModelAnalysis analysis(result);
     fullprint << analysis.__str__() << std::endl;
     // Compute confidence level (95%) for coefficients estimate (1-alpha = 0.95)
-    const NumericalScalar alpha = 0.05;
-    const NumericalScalar t = Student(analysis.getDegreesOfFreedom()).computeQuantile(alpha / 2.0, true)[0];
-    // Transform errors as NumericalPoint
-    NumericalPoint coefficientsErrors(analysis.getCoefficientsStandardErrors().getImplementation()->getData());
+    const Scalar alpha = 0.05;
+    const Scalar t = Student(analysis.getDegreesOfFreedom()).computeQuantile(alpha / 2.0, true)[0];
+    // Transform errors as Point
+    Point coefficientsErrors(analysis.getCoefficientsStandardErrors().getImplementation()->getData());
     // Define lower and upper bounds
     // First transform return type into NP
-    NumericalPoint lowerBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
-    NumericalPoint upperBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
+    Point lowerBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
+    Point upperBounds(analysis.getCoefficientsEstimates().getImplementation()->getData());
     // update bounds
     lowerBounds -= coefficientsErrors * t;
     upperBounds += coefficientsErrors * t;

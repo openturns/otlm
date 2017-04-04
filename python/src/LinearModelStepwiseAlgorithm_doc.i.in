@@ -11,7 +11,7 @@
 
 Parameters
 ----------
-inputSample, outputSample : :class:`~openturns.NumericalSample`
+inputSample, outputSample : :class:`~openturns.Sample`
     The input and output samples of a model.
 basis : :class:`~openturns.Basis`
     Functional basis to estimate the trend.

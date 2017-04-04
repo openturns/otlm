@@ -22,7 +22,7 @@
 #define OTLM_LINEARMODELALGORITHM_HXX
 
 #include "openturns/MetaModelAlgorithm.hxx"
-#include "openturns/NumericalSample.hxx"
+#include "openturns/Sample.hxx"
 #include "otlm/LinearModelResult.hxx"
 #include "otlm/otlmprivate.hxx"
 
@@ -47,13 +47,13 @@ public:
   LinearModelAlgorithm();
 
   /** Parameters constructor */
-  LinearModelAlgorithm(const OT::NumericalSample & inputSample,
-                       const OT::NumericalSample & outputSample);
+  LinearModelAlgorithm(const OT::Sample & inputSample,
+                       const OT::Sample & outputSample);
 
   /** Parameters constructor */
-  LinearModelAlgorithm(const OT::NumericalSample & inputSample,
+  LinearModelAlgorithm(const OT::Sample & inputSample,
                        const OT::Basis & basis,
-                       const OT::NumericalSample & outputSample);
+                       const OT::Sample & outputSample);
 
   /** Virtual constructor */
   virtual LinearModelAlgorithm * clone() const;
@@ -63,8 +63,8 @@ public:
   OT::String __repr__() const;
 
   /** Sample accessors */
-  OT::NumericalSample getInputSample() const;
-  OT::NumericalSample getOutputSample() const;
+  OT::Sample getInputSample() const;
+  OT::Sample getOutputSample() const;
 
   /** Basis accessor */
   OT::Basis getBasis() const;
@@ -85,13 +85,13 @@ public:
 private:
 
   // The input data
-  OT::NumericalSample inputSample_;
+  OT::Sample inputSample_;
 
   /** The basis */
   OT::Basis basis_;
 
   // The associated output data
-  OT::NumericalSample outputSample_;
+  OT::Sample outputSample_;
 
   /** Result */
   LinearModelResult result_;
