@@ -62,7 +62,7 @@ It also provides several plots:
 
 * :func:`~otlm.LinearModelAnalysis.drawResidualsVsFitted` plots standardized residuals
   :math:`\tilde{\epsilon}` vs. fitted values
-* :func:`~otlm.LinearModelAnalysis.drawQQPlot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
+* :func:`~otlm.LinearModelAnalysis.drawQQplot` plots :math:`\sqrt{|\tilde{\epsilon}_i|}`
   vs. theoretical quantiles.
 * :func:`~otlm.LinearModelAnalysis.drawScaleLocation` plots :math:`\sqrt{\tilde{\epsilon}_i}`
   vs. fitted values.
