@@ -1,46 +1,36 @@
 language: cpp
+dist: trusty
 sudo: required
 
 install:
   - curl http://ubuntu.openturns.org/openturns.org-repo.key | sudo apt-key add -
-  - echo deb http://ubuntu.openturns.org precise main | sudo tee /etc/apt/sources.list.d/openturns.list
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo add-apt-repository ppa:martin-gieseking/ppa -y
+  - echo deb http://ubuntu.openturns.org trusty main | sudo tee /etc/apt/sources.list.d/openturns.list
   - sudo apt-get update
-  - sudo apt-get -y install libopenturns-dev python-openturns cmake gfortran swig texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra python-sphinx python-matplotlib
-  - pip install urllib3[secure] --user
-# dvisvgm
-  - sudo apt-get -y install gcc-4.8 g++-4.8 gfortran-4.8 libkpathsea-dev libpotrace-dev python-lxml xmlto asciidoc
-  - export CXX="g++-4.8" CC="gcc-4.8"
-  - git clone https://github.com/mgieseki/dvisvgm.git
-  - pushd dvisvgm
-  - ./autogen.sh
-  - ./configure --prefix=$HOME/.local --disable-woff
-  - make -j2
-  - make install
-  - export PATH=$PATH:$HOME/.local/bin
-  - popd
-# sphinx >=1.2 is looking better
-  - pip install git+https://github.com/sphinx-doc/sphinx.git --user
+  - sudo apt-get -y install libopenturns-dev python-openturns cmake gfortran swig texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra python-dev
+  - sudo rm -r /opt/python/*
+  - pip install sphinx numpydoc matplotlib --user
 
 script:
   - cmake -DCMAKE_INSTALL_PREFIX=~/.local
     -DSPHINX_EXECUTABLE=~/.local/bin/sphinx-build
     .
-  - make install -j2 && make tests -j2 && ctest -j2 --output-on-failure --timeout 100
+  - make install -j2 && make tests -j2 && ctest -j2 --output-on-failure --timeout 100 
 
 after_success:
   - test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master" || exit 0
   - git clone https://${GH_TOKEN}@github.com/openturns/openturns.github.io.git
-  - REPO_NAME=`echo "${TRAVIS_REPO_SLUG}" | cut -d "/" -f 2`
-  - mkdir -p openturns.github.io/${REPO_NAME}/${TRAVIS_BRANCH}
-  - cp -r ~/.local/share/${REPO_NAME}/doc/html/* openturns.github.io/${REPO_NAME}/${TRAVIS_BRANCH}
+  - PROJECT_REPONAME=`echo "${TRAVIS_REPO_SLUG}" | cut -d "/" -f 2`
+  - if test -n "${TRAVIS_TAG}"; then
+        TRAVIS_BRANCH=${TRAVIS_TAG:1};
+    fi
+  - mkdir -p openturns.github.io/${PROJECT_REPONAME}/${TRAVIS_BRANCH}
+  - cp -r ~/.local/share/${PROJECT_REPONAME}/doc/html/* openturns.github.io/${PROJECT_REPONAME}/${TRAVIS_BRANCH}
   - cd openturns.github.io
   - touch .nojekyll
   - git config user.email "support@travis-ci.com"
   - git config user.name "Travis CI"
   - git add -A .
-  - git commit -a -m "Travis build ${REPO_NAME} ${TRAVIS_BUILD_NUMBER}"
+  - git commit -a -m "Travis build ${PROJECT_REPONAME} ${TRAVIS_BUILD_NUMBER}"
   - git push --quiet origin master > /dev/null 2>&1
 
 env:
