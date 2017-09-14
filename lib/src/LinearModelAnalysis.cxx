@@ -463,15 +463,6 @@ Graph LinearModelAnalysis::drawResidualsVsFitted() const
     text.setTextPositions(positions);
     graph.add(text);
   }
-  // Adapt the margins
-  Point boundingBox(graph.getBoundingBox());
-  Scalar width = boundingBox[1] - boundingBox[0];
-  Scalar height = boundingBox[3] - boundingBox[2];
-  boundingBox[0] -= 0.1 * width;
-  boundingBox[1] += 0.1 * width;
-  boundingBox[2] -= 0.1 * height;
-  boundingBox[3] += 0.1 * height;
-  graph.setBoundingBox(boundingBox);
   return graph;
 }
 
@@ -522,15 +513,6 @@ Graph LinearModelAnalysis::drawScaleLocation() const
     text.setTextPositions(positions);
     graph.add(text);
   }
-  // Adapt the margins
-  Point boundingBox(graph.getBoundingBox());
-  Scalar width = boundingBox[1] - boundingBox[0];
-  Scalar height = boundingBox[3] - boundingBox[2];
-  boundingBox[0] -= 0.1 * width;
-  boundingBox[1] += 0.1 * width;
-  boundingBox[2] -= 0.1 * height;
-  boundingBox[3] += 0.1 * height;
-  graph.setBoundingBox(boundingBox);
   return graph;
 }
 
@@ -599,15 +581,6 @@ Graph LinearModelAnalysis::drawQQplot() const
   diagonal[1][1] = dataFull[size-1][0]*point[0]+point[1];
   Curve curve(diagonal, "red", "dashed", 2);
   graph.add(curve);
-  // Adapt the margins
-  Point boundingBox(graph.getBoundingBox());
-  Scalar width = boundingBox[1] - boundingBox[0];
-  Scalar height = boundingBox[3] - boundingBox[2];
-  boundingBox[0] -= 0.1 * width;
-  boundingBox[1] += 0.1 * width;
-  boundingBox[2] -= 0.1 * height;
-  boundingBox[3] += 0.1 * height;
-  graph.setBoundingBox(boundingBox);
   return graph;
 }
 
@@ -655,12 +628,6 @@ Graph LinearModelAnalysis::drawCookDistance() const
       graph.add(text);
     }
   }
-  // Adapt the margins
-  Point boundingBox(graph.getBoundingBox());
-  Scalar height = boundingBox[3] - boundingBox[2];
-  boundingBox[2] -= 0.1 * height;
-  boundingBox[3] += 0.1 * height;
-  graph.setBoundingBox(boundingBox);
   return graph;
 }
 
@@ -710,15 +677,10 @@ Graph LinearModelAnalysis::drawResidualsVsLeverages() const
     text.setTextPositions(positions);
     graph.add(text);
   }
-  // Adapt the margins
-  Point boundingBox(graph.getBoundingBox());
-  Scalar width = boundingBox[1] - boundingBox[0];
-  Scalar height = boundingBox[3] - boundingBox[2];
-  boundingBox[0] -= 0.1 * width;
-  boundingBox[1] += 0.1 * width;
-  boundingBox[2] -= 0.1 * height;
-  boundingBox[3] += 0.1 * height;
-  graph.setBoundingBox(boundingBox);
+  const Interval boundingBox(graph.getBoundingBox());
+  const Point lowerBound(boundingBox.getLowerBound());
+  const Point upperBound(boundingBox.getUpperBound());
+  const Scalar width = upperBound[0] - lowerBound[0];
   // Add contour plot of Cook's distance
   const UnsignedInteger pPlusOne = linearModelResult_.getCoefficientsNames().getSize();
   const UnsignedInteger step = 100;
@@ -729,17 +691,16 @@ Graph LinearModelAnalysis::drawResidualsVsLeverages() const
   Description annotation(2);
   Sample diagonal1(2,2);
   Sample diagonal2(2,2);
-  width = boundingBox[1] - boundingBox[0];
   for(UnsignedInteger k = 0; k < isovalues.getSize(); ++k)
   {
     for(UnsignedInteger i = 0; i < step-1; ++i)
     {
-      ptx = boundingBox[0] + i*(width)/step;
+      ptx = lowerBound[0] + i*(width)/step;
       diagonal1[0][0] = ptx;
       diagonal2[0][0] = ptx;
       diagonal1[0][1] =  std::sqrt(std::abs(isovalues[k]*pPlusOne*(1.0-ptx)/ptx));
       diagonal2[0][1] = -diagonal1[0][1];
-      ptx = boundingBox[0] + (i+1)*(width)/step;
+      ptx = lowerBound[0] + (i+1)*(width)/step;
       diagonal1[1][0] = ptx;
       diagonal2[1][0] = ptx;
       diagonal1[1][1] =  std::sqrt(std::abs(isovalues[k]*pPlusOne*(1.0-ptx)/ptx));
@@ -811,15 +772,9 @@ Graph LinearModelAnalysis::drawCookVsLeverages() const
     text.setTextPositions(positions);
     graph.add(text);
   }
-  // Adapt the margins
-  Point boundingBox(graph.getBoundingBox());
-  Scalar width = boundingBox[1] - boundingBox[0];
-  Scalar height = boundingBox[3] - boundingBox[2];
-  boundingBox[0] -= 0.1 * width;
-  boundingBox[1] += 0.1 * width;
-  boundingBox[2] -= 0.1 * height;
-  boundingBox[3] += 0.1 * height;
-  graph.setBoundingBox(boundingBox);
+  const Interval boundingBox(graph.getBoundingBox());
+  const Point lowerBound(boundingBox.getLowerBound());
+  const Point upperBound(boundingBox.getUpperBound());
   // Add contour plot
   Point isovalues(6);
   isovalues[0]=0.5;
@@ -836,15 +791,15 @@ Graph LinearModelAnalysis::drawCookVsLeverages() const
   for(UnsignedInteger k = 0; k < isovalues.getSize(); ++k)
   {
     Scalar coeff=isovalues[k]*isovalues[k];
-    Pt[0] = boundingBox[3]/coeff;
-    Pt[1] = boundingBox[1]*coeff;
-    if (Pt[1] < boundingBox[3]){
-      diagonal[1][0] = boundingBox[1];
+    Pt[0] = upperBound[1]/coeff;
+    Pt[1] = upperBound[0]*coeff;
+    if (Pt[1] < upperBound[1]){
+      diagonal[1][0] = upperBound[0];
       diagonal[1][1] = Pt[1];
     }
-    if (Pt[0] < boundingBox[1]){
+    if (Pt[0] < upperBound[0]){
       diagonal[1][0] = Pt[0];
-      diagonal[1][1] = boundingBox[3];
+      diagonal[1][1] = upperBound[1];
     }
     Curve curve(diagonal, "red", "solid", 1);
     graph.add(curve);
