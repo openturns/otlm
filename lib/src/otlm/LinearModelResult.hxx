@@ -41,7 +41,7 @@ namespace OTLM
 class OTLM_API LinearModelResult :
   public OT::MetaModelResult
 {
-  CLASSNAME;
+  CLASSNAME
 
 public:
 

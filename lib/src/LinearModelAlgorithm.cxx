@@ -28,7 +28,7 @@ using namespace OT;
 namespace OTLM
 {
 
-CLASSNAMEINIT(LinearModelAlgorithm);
+CLASSNAMEINIT(LinearModelAlgorithm)
 
 /* Default constructor */
 LinearModelAlgorithm::LinearModelAlgorithm()

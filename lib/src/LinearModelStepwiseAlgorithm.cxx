@@ -37,7 +37,7 @@ using namespace OT;
 namespace OTLM
 {
 
-CLASSNAMEINIT(LinearModelStepwiseAlgorithm);
+CLASSNAMEINIT(LinearModelStepwiseAlgorithm)
 
 /* Default constructor */
 LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm()

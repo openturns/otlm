@@ -71,7 +71,7 @@ OTLMResourceMap_init()
 
 static const OTLMResourceMap_init static_initializer_OTLMRResourceMap;
 
-CLASSNAMEINIT(LinearModelResult);
+CLASSNAMEINIT(LinearModelResult)
 
 static const Factory<LinearModelResult> Factory_LinearModelResult;
 
