@@ -20,7 +20,7 @@
  */
 #include "otlm/LinearModelResult.hxx"
 #include "openturns/PersistentObjectFactory.hxx"
-#include "openturns/Function.hxx"
+#include "openturns/DatabaseFunction.hxx"
 #include "openturns/LinearModel.hxx"
 #include "openturns/OSS.hxx"
 #include "openturns/OTthread.hxx"
@@ -95,7 +95,7 @@ LinearModelResult::LinearModelResult(const Sample & inputSample,
                                      const Point & diagonalGramInverse,
                                      const Point & leverages,
                                      const Point & cookDistances)
-  : MetaModelResult(Function(inputSample, outputSample), metaModel, Point(1, 0.0), Point(1, 0.0))
+  : MetaModelResult(DatabaseFunction(inputSample, outputSample), metaModel, Point(1, 0.0), Point(1, 0.0))
   , inputSample_(inputSample)
   , basis_(basis)
   , design_(design)
