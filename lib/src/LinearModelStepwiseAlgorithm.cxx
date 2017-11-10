@@ -27,6 +27,8 @@
 #include "openturns/Log.hxx"
 #include "openturns/MatrixImplementation.hxx"
 #include "openturns/ResourceMap.hxx"
+#include "openturns/LinearCombinationFunction.hxx"
+#include "openturns/AggregatedFunction.hxx"
 
 #include <cmath>
 
@@ -395,7 +397,7 @@ void LinearModelStepwiseAlgorithm::run()
   LOGDEBUG(OSS() << "Running LinearModelStepwiseAlgorithm " << __str__());
   const UnsignedInteger size(inputSample_.getSize());
   Y_ = Matrix(size, 1, outputSample_.getImplementation()->getData());
-  const Function f(basis_);
+  const AggregatedFunction f(basis_);
   Sample fx(f(inputSample_));
   LOGDEBUG(OSS() << "Total number of columns=" << fx.getDimension());
 
@@ -639,7 +641,7 @@ void LinearModelStepwiseAlgorithm::run()
     coefficientsNames.add(basis_[*it].__str__());
     currentFunctions.add(basis_[*it]);
   }
-  Function metaModel(currentFunctions, regression);
+  LinearCombinationFunction metaModel(currentFunctions, regression);
 
   result_ = LinearModelResult(inputSample_, Basis(currentFunctions), currentX_, outputSample_, metaModel,
                               regression, condensedFormula_, coefficientsNames, residualSample,
