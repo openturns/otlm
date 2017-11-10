@@ -41,7 +41,7 @@ namespace OTLM
 class OTLM_API LinearModelStepwiseAlgorithm :
   public OT::PersistentObject
 {
-  CLASSNAME;
+  CLASSNAME
 
 public:
 

@@ -39,7 +39,7 @@ using namespace OT;
 namespace OTLM
 {
 
-CLASSNAMEINIT(LinearModelAnalysis);
+CLASSNAMEINIT(LinearModelAnalysis)
 
 static const Factory<LinearModelAnalysis> Factory_LinearModelAnalysis;
 

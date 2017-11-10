@@ -28,7 +28,7 @@ using namespace OT;
 namespace OTLM
 {
 
-CLASSNAMEINIT(MonomialFactory);
+CLASSNAMEINIT(MonomialFactory)
 
 static const Factory<MonomialFactory> Factory_MonomialFactory;
 

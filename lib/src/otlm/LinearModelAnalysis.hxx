@@ -42,7 +42,7 @@ namespace OTLM
 class OTLM_API LinearModelAnalysis :
   public OT::PersistentObject
 {
-  CLASSNAME;
+  CLASSNAME
 
 public:
 

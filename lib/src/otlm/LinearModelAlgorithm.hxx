@@ -39,7 +39,7 @@ namespace OTLM
 class OTLM_API LinearModelAlgorithm :
   public OT::MetaModelAlgorithm
 {
-  CLASSNAME;
+  CLASSNAME
 
 public:
 

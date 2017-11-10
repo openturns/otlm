@@ -36,7 +36,7 @@ namespace OTLM
 class OTLM_API MonomialFactory :
   public OT::OrthogonalUniVariatePolynomialFactory
 {
-  CLASSNAME;
+  CLASSNAME
 
 public:
 
