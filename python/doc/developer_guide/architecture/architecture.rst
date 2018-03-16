@@ -201,7 +201,7 @@ We define :math:`\hat{\beta}_{+i}` the vector of size :math:`(p+1)` and the scal
 We define :math:`H_{+i}` the :math:`(n\times n)` projection matrix by:
 
 .. math::
-    :label: H+
+    :label: Hp
 
     H_{+i}\, \,\hat{=} \, X_{+i}\,\big(X^T_{+i} \,X_{+i}\big)^{-1} \,X^T_{+i}
 
@@ -246,7 +246,7 @@ We define :math:`\hat{\beta}_{-i}` the vector of size :math:`(p-1)` and the scal
 We define :math:`H_{-i}` the :math:`(n\times n)` projection matrix by:
 
 .. math::
-    :label: H-
+    :label: Hm
 
     H_{-i}\, \,\hat{=}\, X_{-i}\,\big(X^T_{-i} \,X_{-i}\big)^{-1} \,X^T_{-i}
 
@@ -358,7 +358,7 @@ It can be shown that the inverse Gram matrix of :math:`X_{+i}` of size :math:`((
      \quad,\quad D_X = A_X\, X^T\,x_i
      \quad,\quad C_X = x_i^T x_i -x_i^T \,X\,A \, X^T\, x_i
 
-Then the projection matrix :math:`H_{+i}` defined by equation :eq:`H+` turns into:
+Then the projection matrix :math:`H_{+i}` defined by equation :eq:`Hp` turns into:
 
 .. math::
 
@@ -367,7 +367,7 @@ Then the projection matrix :math:`H_{+i}` defined by equation :eq:`H+` turns int
 We get the residual term:
 
 .. math::
-    :label: defH+Y
+    :label: defHpY
 
     Y-H_{+i}\,Y  & = Y-X\,A_X \, X^T\,Y -\frac{(x_i^T\,X\,A_X \, X^T\,Y-x_i^T\,Y)}{C_X}\, \big(\,X\,A_X \, X^T\,x_i\, \,-\,x_i\,\big)\\
      & = Y - H_X\,Y -\frac{x_i^T\,(Y\,-\,H_X\,Y)}{x_i^T\,(H_X\,x_i\, \,-\,x_i)}\, \big(\,H_X\,x_i\, \,-\,x_i\,\big)\\
@@ -384,10 +384,10 @@ Implementation using QR decomposition
 Backward selection
 ^^^^^^^^^^^^^^^^^^
 
-The projection matrix :math:`H_{-i}` defined by equation (\ref{H-}) turns into:
+The projection matrix :math:`H_{-i}` defined by equation (\ref{Hm}) turns into:
 
 .. math::
-    :label: H2-
+    :label: H2m
 
     H_{-i}\, \,\hat{=}\, X_{-i}\,\big(X^T_{-i} \,X_{-i}\big)^{-1} \,X^T_{-i}
        = X_{-i}\,A_{-i,-i} \, X^T_{-i} \,-\,\frac {1}{A_{i,i}}\,\big(X_{-i}\, A_{-i,i}\big)\, \big(X_{-i}\, A_{-i,i}\big)^T
@@ -396,7 +396,7 @@ where :math:`A_{-i,-i}` represents the matrix :math:`A` without row :math:`i` an
 :math:`A_{-i,i}` represents the column :math:`i` of the matrix :math:`A` without row :math:`i` and :math:`A_{i,i}` represents the diagonal term :math:`i` of the matrix :math:`A`.
 
 In order to avoid matrix copies, we want to use the matrix :math:`A_X` in the equation
-:eq:`H2-` without creating matrices :math:`A_{-i }`.
+:eq:`H2m` without creating matrices :math:`A_{-i }`.
 To this end, we define :math:`X_{i=0}` a matrix :math:`X` whose column :math:`i` contains only :math:`0`,
 and :math:`\forall B \in \mathbb{R}^p` we note :math:`\big[B\big]_{i=0}` a copy of :math:`B` which has
 its :math:`i`-th row equals to :math:`0`.
@@ -408,7 +408,7 @@ We get: :math:`\forall b \in \mathbb{R}^n\,,\, \forall c \in \mathbb{R}^p`
     X_{i=0}^T\,b \,=\,\big[X^T\,b\big]_{i=0} \quad,\quad X_{i=0}\,c \,=\,X\,\big[c\big]_{i=0}
 
 
-Using equation :eq:`notation0`, the projection matrix :math:`H_{-i}` defined by equation :eq:`H-` turns into:
+Using equation :eq:`notation0`, the projection matrix :math:`H_{-i}` defined by equation :eq:`Hm` turns into:
 
 .. math::
 
@@ -418,18 +418,18 @@ Using equation :eq:`notation0`, the projection matrix :math:`H_{-i}` defined by 
 Using equation :eq:`notation0`, we get the residual term:
 
 .. math::
-    :label: defH-Y
+    :label: defHmY
 
     Y-H_{-i}\,Y & = Y-\,X_{i=0}\,A_X\,X_{i=0}^T\,Y \,+\,\frac {1}{A_{i,i}}\,  \big(X_{i=0}\,A_{,i}\,(A_{i,} X_{i=0}^T\,Y)\,\big)\\
                 & = Y-\,X\,\big[\,A_X\,\big[X^T\,Y\big]_{i=0}\,\big]_{i=0} \,+\,\frac {1}{A_{i,i}}\,  \big( X\,\big[\,A_{,i}\,\big]_{i=0}\,\,(A_{i,} \,\big[X^T\,Y\big]_{i=0})\,\big)\\
                 & = Y-\,X\,\big[\,A_X\,\big[X^T\,Y\big]_{i=0}\, -\,\frac {A_{i,} \,\big[X^T\,Y\big]_{i=0}}{A_{i,i}}\,A_{,i}\,\big]_{i=0}\\
                 & = Y-\,X\,\big(\,A_X\,\big[X^T\,Y\big]_{i=0}\, -\,\frac {A_{i,} \,\big[X^T\,Y\big]_{i=0}}{A_{i,i}}\,A_{,i}\,\big)
 
-Then we rewrite the residual term equation :eq:`defH-Y` using :math:`e_i` the vector of size :math:`(p)` with a :math:`1` in the :math:`i^{th}` coordinates and :math:`0` elsewhere.
+Then we rewrite the residual term equation :eq:`defHmY` using :math:`e_i` the vector of size :math:`(p)` with a :math:`1` in the :math:`i^{th}` coordinates and :math:`0` elsewhere.
 We obtain:
 
 .. math::
-    :label: defH-Y2
+    :label: defHmY2
 
     Y-H_{-i}\,Y & = Y- \,X\,\big(\,A_X\,(X^T\,Y-x_i^T\,Y\,e_i)\, -\,\frac {(A_X\,e_i)^T \,(X^T\,Y-x_i^T\,Y\,e_i)}{A_{i,i}}\,A_X\,e_i\,\big)  \\
                 & = Y- \,X\, A_X\,X^T\,Y \,+\, (x_i^T\,Y)\,X\, A_X\,e_i \,+\,\frac { e_i^T\,A_X\,X^T\,Y-(x_i^T\,Y) \,e_i^T\,A_X\,e_i}{A_{i,i}} \,X\, A_X\,e_i  \\
@@ -488,7 +488,7 @@ Stepwise regression algorithms
 ``ComputeUpdateForward`` algorithm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The function ``computeUpdateForward`` computes the least square of the residual term :math:`(Y-H_{+i}\,Y)` using equation :eq:`defH+Y`:
+The function ``computeUpdateForward`` computes the least square of the residual term :math:`(Y-H_{+i}\,Y)` using equation :eq:`defHpY`:
 
 1. Input: :math:`S_{max} \backslash S^*`,
    :math:`(n \times m)` matrix :math:`X_{max}`,
@@ -506,7 +506,7 @@ The function ``computeUpdateForward`` computes the least square of the residual 
 ``ComputeUpdateBackward`` algorithm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The function ``ComputeUpdateBackward`` computes the least square of the residual term  :math:`(Y-H_{-i}\,Y)` using equation :eq:`defH-Y2`:
+The function ``ComputeUpdateBackward`` computes the least square of the residual term  :math:`(Y-H_{-i}\,Y)` using equation :eq:`defHmY2`:
 
 1. Input: :math:`S^*\backslash S_{min}`,
    :math:`(n\times p)` matrix :math:`X`,
