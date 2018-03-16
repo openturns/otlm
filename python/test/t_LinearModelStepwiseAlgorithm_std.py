@@ -74,7 +74,11 @@ for i in range(dim):
   interactions.append(indices[:])
 
 funcs = [factory.build(enumerateFunction.inverse(indices)) for indices in interactions]
-[f.getEvaluation().setInputDescription(X.getDescription()) for f in funcs]
+description = X.getDescription()
+description.add('f')
+[f.setDescription(description) for f in funcs]
+
+
 basis = ot.Basis(funcs)
 ################################################################################################
 
