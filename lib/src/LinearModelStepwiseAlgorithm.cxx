@@ -56,12 +56,12 @@ LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm()
 
 /* Parameters constructor FORWARD and BACKWARD */
 LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const Sample & inputSample,
-                                                           const Basis & basis,
-                                                           const Sample & outputSample,
-                                                           const Indices & minimalIndices,
-                                                           const Bool isForward,
-                                                           const Scalar penalty,
-                                                           const UnsignedInteger maximumIterationNumber)
+    const Basis & basis,
+    const Sample & outputSample,
+    const Indices & minimalIndices,
+    const Bool isForward,
+    const Scalar penalty,
+    const UnsignedInteger maximumIterationNumber)
   : PersistentObject()
   , inputSample_(inputSample)
   , basis_(basis)
@@ -78,12 +78,12 @@ LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const Sample & inputS
 
 /* Parameters constructor BOTH */
 LinearModelStepwiseAlgorithm::LinearModelStepwiseAlgorithm(const Sample & inputSample,
-                                                           const Basis & basis,
-                                                           const Sample & outputSample,
-                                                           const Indices & minimalIndices,
-                                                           const Indices & startIndices,
-                                                           const Scalar penalty,
-                                                           const UnsignedInteger maximumIterationNumber)
+    const Basis & basis,
+    const Sample & outputSample,
+    const Indices & minimalIndices,
+    const Indices & startIndices,
+    const Scalar penalty,
+    const UnsignedInteger maximumIterationNumber)
   : PersistentObject()
   , inputSample_(inputSample)
   , basis_(basis)
@@ -436,7 +436,8 @@ void LinearModelStepwiseAlgorithm::run()
     LOGDEBUG(OSS() << "Normalize columns: index(intercept)=" << (intercept < normalizationStdev.getDimension() ? (OSS() << intercept).str() : "none") << " mean=" << normalizationMean << " stdev=" << normalizationStdev);
   }
 
-  {  // Reduce scope of Xt
+  {
+    // Reduce scope of Xt
     Matrix Xt(fx.getDimension(), size, fx.getImplementation()->getData());
     maxX_ = Xt.transpose();
   }
@@ -538,8 +539,8 @@ void LinearModelStepwiseAlgorithm::run()
       Matrix newX(size, p - 1);
       const UnsignedInteger pos(columnMaxToCurrent[indexB]);
       memcpy(&newX(0, 0), &currentX_(0, 0), sizeof(Scalar) * size * pos);
-      if (pos+1 != p)
-        memcpy(&newX(0, pos), &currentX_(0, pos+1), sizeof(Scalar) * size * (p - pos - 1));
+      if (pos + 1 != p)
+        memcpy(&newX(0, pos), &currentX_(0, pos + 1), sizeof(Scalar) * size * (p - pos - 1));
       currentX_ = newX;
       --p;
       // Update columnMaxToCurrent
@@ -683,7 +684,7 @@ Scalar LinearModelStepwiseAlgorithm::computeLogLikelihood()
   const Matrix Yhat(currentQ_ * QtY);
   currentResidual_ = Y_ - Yhat;
   Point residualNP(size, 0.0);
-  memcpy(&residualNP[0], &currentResidual_(0,0), sizeof(Scalar) * size);
+  memcpy(&residualNP[0], &currentResidual_(0, 0), sizeof(Scalar) * size);
 
   const Scalar normSquared = residualNP.normSquare();
   const Scalar result = size * std::log(normSquared / size);

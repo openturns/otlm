@@ -37,35 +37,35 @@ static UnsignedInteger OTLMResourceMap_initialized_ = 0;
 class OTLMResourceMap_init
 {
 public:
-OTLMResourceMap_init()
-{
-
-  if (!OTLMResourceMap_initialized_)
+  OTLMResourceMap_init()
   {
+
+    if (!OTLMResourceMap_initialized_)
+    {
 #ifndef OT_MUTEXINIT_NOCHECK
-    pthread_mutexattr_t attr;
-    pthread_mutexattr_init( &attr );
-    pthread_mutexattr_settype( &attr, PTHREAD_MUTEX_RECURSIVE );
-    pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, &attr);
+      pthread_mutexattr_t attr;
+      pthread_mutexattr_init( &attr );
+      pthread_mutexattr_settype( &attr, PTHREAD_MUTEX_RECURSIVE );
+      pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, &attr);
 #else
-    pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, NULL);
+      pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, NULL);
 #endif
-    ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
-    ResourceMap::SetAsBool("LinearModelAnalysis-ChiSquareAdjust", true);
+      ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
+      ResourceMap::SetAsBool("LinearModelAnalysis-ChiSquareAdjust", true);
 
-    ResourceMap::SetAsBool("LinearModelStepwiseAlgorithm-normalize", true);
+      ResourceMap::SetAsBool("LinearModelStepwiseAlgorithm-normalize", true);
 
-    OTLMResourceMap_initialized_ = 1;
+      OTLMResourceMap_initialized_ = 1;
+    }
+    assert(OTLMResourceMap_initialized_);
   }
-  assert(OTLMResourceMap_initialized_);
-}
 
-~OTLMResourceMap_init()
-{
-  if (OTLMResourceMap_initialized_)
-    pthread_mutex_destroy(&OTLMResourceMap_InstanceMutex_);
-  OTLMResourceMap_initialized_ = 0;
-}
+  ~OTLMResourceMap_init()
+  {
+    if (OTLMResourceMap_initialized_)
+      pthread_mutex_destroy(&OTLMResourceMap_InstanceMutex_);
+    OTLMResourceMap_initialized_ = 0;
+  }
 
 };
 
