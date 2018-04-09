@@ -15,5 +15,5 @@ if sys.platform.startswith('win'):
 
 from .otlm import *
 
-__version__ = '0.5'
+__version__ = '0.6'
 
