@@ -15,11 +15,12 @@ ot_install_header_file ( LinearModelStepwiseAlgorithm.hxx )
 ot_install_header_file ( MonomialFactory.hxx )
 
 
-include_directories ( ${INTERNAL_INCLUDE_DIRS} )
+include_directories (${INTERNAL_INCLUDE_DIRS})
 
-add_library ( otlm ${SOURCEFILES} )
-if ( BUILD_SHARED_LIBS )
-  set_target_properties ( otlm PROPERTIES COMPILE_DEFINITIONS "OTLM_DLL_EXPORTS" )
+add_library (otlm ${SOURCEFILES})
+set_target_properties (otlm PROPERTIES POSITION_INDEPENDENT_CODE ON)
+if (BUILD_SHARED_LIBS)
+  set_target_properties (otlm PROPERTIES COMPILE_DEFINITIONS "OTLM_DLL_EXPORTS")
 endif ()
 
 if ( NOT DEFINED LIB_VERSION ) 
