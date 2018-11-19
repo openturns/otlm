@@ -26,7 +26,6 @@
 #include "otlm/LinearModelAnalysis.hxx"
 #include "otlm/LinearModelResult.hxx"
 #include "otlm/LinearModelStepwiseAlgorithm.hxx"
-#include "otlm/MonomialFactory.hxx"
 
 #endif // OTLM_OTLM_HXX
 

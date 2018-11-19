@@ -36,7 +36,6 @@ Stepwise method
     :template: class.rst_t
 
     LinearModelStepwiseAlgorithm
-    MonomialFactory
 
 
 Linear model analysis

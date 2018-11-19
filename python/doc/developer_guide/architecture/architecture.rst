@@ -532,12 +532,6 @@ Perspectives
 
   - classes :class:`~openturns.LinearModel` and :class:`~openturns.LinearModelFactory`
     should be fully dropped
-  - *Tensorization*: This module adds the :class:`~otlm.MonomialFactory` class to help
-    creating basis of monomials.  OpenTURNS implements polynomial tensorization for
-    orthogonal basis.  For this reason, :class:`~otlm.MonomialFactory` inherits from
-    :class:`~openturns.OrthogonalUniVariatePolynomialFactory`.  But this is wrong, since
-    monomials do not form an orthogonal basis; polynomial tensorization should be
-    modified to also generate non-orthogonal basis.
   - Class :class:`~otlm.LinearModelAlgorithm` currently calls :class:`~otlm.LinearModelStepwiseAlgorithm`
     to build the linear model.  This is to avoid code duplication when creating a
     :class:`~otlm.LinearModelResult`, but this should be fixed.
