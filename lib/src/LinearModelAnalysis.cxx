@@ -31,8 +31,6 @@
 #include "openturns/LinearModelTest.hxx"
 #include "openturns/FittingTest.hxx"
 #include "openturns/FisherSnedecor.hxx"
-#include "openturns/ChiSquare.hxx"
-#include "openturns/UserDefined.hxx"
 
 using namespace OT;
 
@@ -371,54 +369,9 @@ TestResult LinearModelAnalysis::getNormalityTestResultAndersonDarling() const
 /* Chi-Squared normality test */
 TestResult LinearModelAnalysis::getNormalityTestResultChiSquared() const
 {
-  // Chi-Square test for normality (https://en.wikipedia.org/wiki/Pearson's_chi-squared_test#Test_for_fit_of_a_distribution)
-  // See also Thode Jr., H.C. (2002): Testing for  Normality. Marcel Dekker, New York
-  // Moore, D.S. (1986): Tests of the chi-squared type. In: D'Agostino, R.B. and Stephens, M.A., eds.: Goodness-of-Fit Techniques. Marcel Dekker, New York.
-  // From residuals :
-  // 1) Define nrClasses := 2 k^{\frac{2}{5}} (k=residual.getSize())
-  // 2) Replace residuals per their CDF (under gaussian hypothesis)
-  // 3) Split [0,1] onto nrClasses
-  // 4) Count CDF per class ==> C_i
-  // 5) Under gaussian assumption, equiprobability fixes the expected count E_i ==> E_i = E = k / nrClasses
-  // 6) Compute the Pearson statistic P=\sum_{i=1}^{nClasses} \frac{C_{i} - E_{i})^{2}}{E_{i}}
-  // 7) Finally compute the pValue as ChiSquared(nrClasses-3).computeComplementaryCDF(P)
-  const UnsignedInteger csAdj = ResourceMap::GetAsBool("LinearModelAnalysis-ChiSquareAdjust") ? 2 : 0 ;
-  const UnsignedInteger size = getResiduals().getSize();
-  const UnsignedInteger nrClasses = static_cast<int>(std::ceil(2.0 * std::pow(size, 2.0 / 5)));
-  // Transform data into "uniform" data using CDF
+  // Using OT::FittingTest::ChiSquared
   const Normal normalDistribution(getResiduals().computeMean()[0], getResiduals().computeStandardDeviation()(0, 0));
-  // Define the cdf values for the class
-  const Sample cdfValues(normalDistribution.computeCDF(getResiduals()));
-  // Define the classes
-  // Define the width of each class
-  const Scalar widthClass = 1.0 / nrClasses;
-  // To define the table, we use a UserDefined distribution
-  const UserDefined userDefinedCDF(cdfValues);
-  // Count elements per class
-  Point count(nrClasses, 0.0);
-  Point lowerBound(1);
-  Point upperBound(1);
-  for (UnsignedInteger k = 0; k < nrClasses; ++ k)
-  {
-    lowerBound[0] = k * widthClass;
-    upperBound[0] = (k + 1) * widthClass;
-    const Interval interval(lowerBound, upperBound);
-    // Compute number of elements in the interval
-    // Number of elements = total_number * Probability
-    count[k] = userDefinedCDF.computeProbability(interval) * size;
-  }
-  // Define the number of elements per class if independent
-  const Scalar theoriticalComponents =  size * 1.0 / nrClasses;
-  // Elements of statistic
-  Scalar statistic = 0.0;
-  for (UnsignedInteger k = 0; k < nrClasses; ++ k)
-  {
-    statistic += std::pow(count[k] - theoriticalComponents, 2) / theoriticalComponents;
-  }
-  // Statistic follows a ChiSquare distribution with nrClasses - 3 dof (mu/sigma uknowns)
-  const Scalar pValue = ChiSquare(nrClasses - 1 - csAdj).computeComplementaryCDF(statistic);
-  // TestResult output
-  return TestResult("ChiSquareNormality", true, pValue, 0.01);
+  return FittingTest::ChiSquared(getResiduals(), normalDistribution);
 }
 
 /* [1] Draw a plot of residuals versus fitted values */

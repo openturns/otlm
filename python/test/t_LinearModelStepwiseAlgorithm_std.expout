@@ -22,7 +22,7 @@ Adjusted R-squared   | 0.642168 |
 Normality test       | p-value     |
 ------------------------------------
 Anderson-Darling     | 0.000429122 |
-Chi-Squared          | 0.000909433 |
+Chi-Squared          | 0.0553713   |
 Kolmogorov-Smirnov   | 0.0481525   |
 ------------------------------------
 
@@ -52,7 +52,7 @@ Adjusted R-squared   | 0.642344 |
 Normality test       | p-value    |
 -----------------------------------
 Anderson-Darling     | 0.00124009 |
-Chi-Squared          | 0.0204981  |
+Chi-Squared          | 0.063153   |
 Kolmogorov-Smirnov   | 0.338063   |
 -----------------------------------
 
@@ -80,7 +80,7 @@ Adjusted R-squared   | 0.642168 |
 Normality test       | p-value     |
 ------------------------------------
 Anderson-Darling     | 0.000429122 |
-Chi-Squared          | 0.000909433 |
+Chi-Squared          | 0.0553713   |
 Kolmogorov-Smirnov   | 0.0481525   |
 ------------------------------------
 
@@ -108,7 +108,7 @@ Adjusted R-squared   | 0.642168 |
 Normality test       | p-value     |
 ------------------------------------
 Anderson-Darling     | 0.000429122 |
-Chi-Squared          | 0.000909433 |
+Chi-Squared          | 0.0553713   |
 Kolmogorov-Smirnov   | 0.0481525   |
 ------------------------------------
 
@@ -132,13 +132,13 @@ Multiple R-squared   | 0.647576 |
 Adjusted R-squared   | 0.630794 |
 ---------------------------------
 
-------------------------------------
-Normality test       | p-value     |
-------------------------------------
-Anderson-Darling     | 0.00130208  |
-Chi-Squared          | 0.000909433 |
-Kolmogorov-Smirnov   | 0.121207    |
-------------------------------------
+-----------------------------------
+Normality test       | p-value    |
+-----------------------------------
+Anderson-Darling     | 0.00130208 |
+Chi-Squared          | 0.0719171  |
+Kolmogorov-Smirnov   | 0.121207   |
+-----------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Both  BIC 
@@ -164,7 +164,7 @@ Adjusted R-squared   | 0.642168 |
 Normality test       | p-value     |
 ------------------------------------
 Anderson-Darling     | 0.000429122 |
-Chi-Squared          | 0.000909433 |
+Chi-Squared          | 0.0553713   |
 Kolmogorov-Smirnov   | 0.0481525   |
 ------------------------------------
 
