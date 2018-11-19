@@ -1,15 +1,15 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Forward  AIC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Basis( [1,SAL,pH,K,Na,Zn] )
+Basis( [class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1]] )
 
 Coefficients:
-   | Estimate    | Std Error   | t value     | Pr(>|t|)    |
-------------------------------------------------------------
-1  | -475.729    | 273.522     | -1.73927    | 0.0893122   |
-pH | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
-Na | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
-------------------------------------------------------------
+                                                                                                                                                                                                                      | Estimate    | Std Error   | t value     | Pr(>|t|)    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -475.729    | 273.522     | -1.73927    | 0.0893122   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0] | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Residual standard error: 394.85 on 42 degrees of freedom
 F-statistic: 40.481 ,  p-value: 1.0636e-10
@@ -29,17 +29,17 @@ Kolmogorov-Smirnov   | 0.0481525   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Backward  AIC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Basis( [1,SAL,pH,K,Na,Zn] )
+Basis( [class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1]] )
 
 Coefficients:
-    | Estimate   | Std Error  | t value    | Pr(>|t|)   |
----------------------------------------------------------
-1   | 1505.49    | 1133.69    | 1.32795    | 0.191723   |
-SAL | -35.9433   | 21.4761    | -1.67364   | 0.102005   |
-pH  | 293.861    | 84.4738    | 3.47873    | 0.00123036 |
-K   | -0.438818  | 0.202384   | -2.16824   | 0.0361463  |
-Zn  | -23.4519   | 14.0399    | -1.67038   | 0.102653   |
----------------------------------------------------------
+                                                                                                                                                                                                                      | Estimate   | Std Error  | t value    | Pr(>|t|)   |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 1505.49    | 1133.69    | 1.32795    | 0.191723   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -35.9433   | 21.4761    | -1.67364   | 0.102005   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 293.861    | 84.4738    | 3.47873    | 0.00123036 |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -0.438818  | 0.202384   | -2.16824   | 0.0361463  |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1] | -23.4519   | 14.0399    | -1.67038   | 0.102653   |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Residual standard error: 394.76 on 40 degrees of freedom
 F-statistic: 20.756 ,  p-value: 1.1414e-09
@@ -59,15 +59,15 @@ Kolmogorov-Smirnov   | 0.338063   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Both  AIC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Basis( [1,SAL,pH,K,Na,Zn] )
+Basis( [class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1]] )
 
 Coefficients:
-   | Estimate    | Std Error   | t value     | Pr(>|t|)    |
-------------------------------------------------------------
-1  | -475.729    | 273.522     | -1.73927    | 0.0893122   |
-pH | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
-Na | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
-------------------------------------------------------------
+                                                                                                                                                                                                                      | Estimate    | Std Error   | t value     | Pr(>|t|)    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -475.729    | 273.522     | -1.73927    | 0.0893122   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0] | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Residual standard error: 394.85 on 42 degrees of freedom
 F-statistic: 40.481 ,  p-value: 1.0636e-10
@@ -87,15 +87,15 @@ Kolmogorov-Smirnov   | 0.0481525   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Forward  BIC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Basis( [1,SAL,pH,K,Na,Zn] )
+Basis( [class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1]] )
 
 Coefficients:
-   | Estimate    | Std Error   | t value     | Pr(>|t|)    |
-------------------------------------------------------------
-1  | -475.729    | 273.522     | -1.73927    | 0.0893122   |
-pH | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
-Na | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
-------------------------------------------------------------
+                                                                                                                                                                                                                      | Estimate    | Std Error   | t value     | Pr(>|t|)    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -475.729    | 273.522     | -1.73927    | 0.0893122   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0] | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Residual standard error: 394.85 on 42 degrees of freedom
 F-statistic: 40.481 ,  p-value: 1.0636e-10
@@ -115,15 +115,15 @@ Kolmogorov-Smirnov   | 0.0481525   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Backward  BIC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Basis( [1,SAL,pH,K,Na,Zn] )
+Basis( [class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1]] )
 
 Coefficients:
-   | Estimate    | Std Error   | t value     | Pr(>|t|)    |
-------------------------------------------------------------
-1  | -506.977    | 279.771     | -1.81211    | 0.0771222   |
-pH | 412.04      | 48.4975     | 8.49609     | 1.14894e-10 |
-K  | -0.487098   | 0.203211    | -2.397      | 0.0210566   |
-------------------------------------------------------------
+                                                                                                                                                                                                                      | Estimate    | Std Error   | t value     | Pr(>|t|)    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -506.977    | 279.771     | -1.81211    | 0.0771222   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 412.04      | 48.4975     | 8.49609     | 1.14894e-10 |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -0.487098   | 0.203211    | -2.397      | 0.0210566   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Residual standard error: 401.08 on 42 degrees of freedom
 F-statistic: 38.587 ,  p-value: 2.0936e-10
@@ -143,15 +143,15 @@ Kolmogorov-Smirnov   | 0.121207    |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Both  BIC 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Basis( [1,SAL,pH,K,Na,Zn] )
+Basis( [class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0],class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1]] )
 
 Coefficients:
-   | Estimate    | Std Error   | t value     | Pr(>|t|)    |
-------------------------------------------------------------
-1  | -475.729    | 273.522     | -1.73927    | 0.0893122   |
-pH | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
-Na | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
-------------------------------------------------------------
+                                                                                                                                                                                                                      | Estimate    | Std Error   | t value     | Pr(>|t|)    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | -475.729    | 273.522     | -1.73927    | 0.0893122   |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0] | 404.948     | 47.7698     | 8.47707     | 1.22026e-10 |
+class=ProductUniVariateFunctionEvaluation functions=[class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=0,class=MonomialFunction degree=1,class=MonomialFunction degree=0] | -0.0233259  | 0.00865512  | -2.69504    | 0.0100775   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Residual standard error: 394.85 on 42 degrees of freedom
 F-statistic: 40.481 ,  p-value: 1.0636e-10

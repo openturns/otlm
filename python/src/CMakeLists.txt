@@ -75,7 +75,6 @@ ot_add_python_module( ${PACKAGE_NAME} ${PACKAGE_NAME}_module.i
                       LinearModelAnalysis.i LinearModelAnalysis_doc.i.in
                       LinearModelResult.i LinearModelResult_doc.i.in
                       LinearModelStepwiseAlgorithm.i LinearModelStepwiseAlgorithm_doc.i.in
-                      MonomialFactory.i MonomialFactory_doc.i.in
                     )
 
 

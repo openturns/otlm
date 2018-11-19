@@ -456,7 +456,7 @@ With OpenTURNS:
     # Build a model Y~(X1+X2+X3+X4)^3+I(Xi)^2+I(Xi)^3
     dim = X.getDimension()
     enumerateFunction = ot.EnumerateFunction(dim)
-    factory = ot.OrthogonalProductPolynomialFactory([otlm.MonomialFactory()]*dim, enumerateFunction)
+    factory = ot.TensorizedUniVariateFunctionFactory([ot.MonomialFunctionFactory()]*dim, enumerateFunction)
     
     # Build 'interactions' as a list of list [a1,a2,a3,a4], and we will generate tensorized
     # polynomials x1^a1*x2^a2*x3^a3*x4^a4.
@@ -1048,7 +1048,7 @@ With OpenTURNS:
     # Build a model BIO~SAL+pH+K+Na+Zn
     dim = X.getDimension()
     enumerateFunction = ot.EnumerateFunction(dim)
-    factory = ot.OrthogonalProductPolynomialFactory([otlm.MonomialFactory()]*dim, enumerateFunction)
+    factory = ot.TensorizedUniVariateFunctionFactory([ot.MonomialFunctionFactory()]*dim, enumerateFunction)
     
     # Build 'interactions' as a list of list [a1,a2,a3,a4,a5], and we will generate tensorized
     # polynomials SAL^a1*pH^a2*K^a3*Na^a4*Zn^a5.

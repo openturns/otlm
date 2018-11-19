@@ -18,7 +18,6 @@
 
 // The new classes
 %include otlm/otlmprivate.hxx
-%include MonomialFactory.i
 %include LinearModelResult.i
 %include LinearModelAlgorithm.i
 %include LinearModelAnalysis.i
