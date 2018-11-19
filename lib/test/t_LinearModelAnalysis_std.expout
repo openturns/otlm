@@ -15,13 +15,13 @@ Multiple R-squared   | 0.999986 |
 Adjusted R-squared   | 0.999985 |
 ---------------------------------
 
-------------------------------------
-Normality test       | p-value     |
-------------------------------------
-Anderson-Darling     | 0.00258386  |
-Chi-Squared          | 0.000276115 |
-Kolmogorov-Smirnov   | 0.17747     |
-------------------------------------
+-----------------------------------
+Normality test       | p-value    |
+-----------------------------------
+Anderson-Darling     | 0.00258386 |
+Chi-Squared          | 0.157724   |
+Kolmogorov-Smirnov   | 0.17747    |
+-----------------------------------
 
 Confidence intervals with level=0.95 : class=Interval name=Unnamed dimension=2 lower bound=class=Point name=Unnamed dimension=2 values=[2.99229,-2.00396] upper bound=class=Point name=Unnamed dimension=2 values=[3.03106,-1.99655] finite lower bound=[1,1] finite upper bound=[1,1]
 
@@ -49,7 +49,7 @@ Adjusted R-squared   | 1 |
 Normality test       | p-value  |
 ---------------------------------
 Anderson-Darling     | 0.57332  |
-Chi-Squared          | 0.663954 |
+Chi-Squared          | 0.783691 |
 Kolmogorov-Smirnov   | 0.821849 |
 ---------------------------------
 
