@@ -21,7 +21,7 @@ isForward : :class:`~openturns.Bool`
       the boolean value used for the stepwise regression method direction FORWARD and BACKWARD. 
 startIndices : :class:`~openturns.Indices`
      The indices of start model used for the stepwise regression method direction BOTH.
-penalty : :class:`~openturns.NumericalScalar`
+penalty : float
      The multiple of the degrees of freedom used for the penalty of the stepwise regression method : 
      - 2      Akaike   information criterion (AIC)
      - log(n) Bayesian information criterion (BIC)  
