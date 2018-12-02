@@ -59,7 +59,7 @@ Examples
 
 Returns
 -------
-linearModelResult : :class:`~openturns.LinearModelResult`
+linearModelResult : :class:`~otlm.LinearModelResult`
     The  linear model result which had been passed to the constructor."
 
 
@@ -182,7 +182,7 @@ dof : :class:`~openturns.UnsignedInteger`
 
 Returns
 -------
-rSquared : :class:`~openturns.NumericalScalar`
+rSquared : float
 "
 
 // ---------------------------------------------------------------------
@@ -192,7 +192,7 @@ rSquared : :class:`~openturns.NumericalScalar`
 
 Returns
 -------
-adjustedRSquared : :class:`~openturns.NumericalScalar`
+adjustedRSquared : float
 "
 
 // ---------------------------------------------------------------------
@@ -202,7 +202,7 @@ adjustedRSquared : :class:`~openturns.NumericalScalar`
 
 Returns
 -------
-fisherScore : :class:`~openturns.NumericalScalar`
+fisherScore : float
 "
 
 // ---------------------------------------------------------------------
@@ -212,13 +212,13 @@ fisherScore : :class:`~openturns.NumericalScalar`
 
 Returns
 -------
-fisherPValue : :class:`~openturns.NumericalScalar`
+fisherPValue : float
 "
 
 // ---------------------------------------------------------------------
 
 %feature("docstring") OTLM::LinearModelAnalysis::getNormalityTestResultChiSquared
-"Performs Pearson Chi-2 statistical test to check Gaussian assumption of the model
+"Performs the Chi-Square statistical test to check Gaussian assumption of the model
 
 Returns
 -------
@@ -227,30 +227,12 @@ testResult : :class:`~openturns.TestResult`
 
 Notes
 -----
-The Chi-Square test is a goodness of fit test which objective is to check the normality assumption (null hypothesis) of residuals (and thus the model).
-It is accepted when p-value is low.
+The Chi-Square test is a goodness of fit test which objective is to check the
+normality assumption (null hypothesis) of residuals (and thus the model).
 
-From a dataset :math:`\epsilon=(\epsilon_1,...,\epsilon_k)` of size :math:`k` (residual set), we define :math:`nClasses` classes
-where :math:`nClasses := 2\ k^{\frac{2}{5}}`.
-
-Under the normality hypothesis, we compute cumulative function of the :math:`\epsilon` set (mean and standard
-deviation of the underlying normal distribution derived from the dataset). The interval :math:`[0, 1]` is then splitted
-onto :math:`nClasses` intervals.
-
-For the Chi-Square test, two major elements are to be considered:
-
- - :math:`C_{i}` is the number of counted observations in the class :math:`i`
- - :math:`E_{i}` is the number of expected observations in the class :math:`i`
-
-Using the cumulative information, we count number of elements in each class (:math:`C_{i}`).
-Also, under the null hypothesis, the different classes are equiprobable ( :math:`E_{i}\ =\ E\ =\frac{k}{nClasses}`.
-
-From the previous values per class, we compute the Pearson test statistic :math:`P=\sum_{i=1}^{nClasses} \frac{C_{i} - E_{i})^{2}}{E_{i}}`.
-
-Finally, the p-value is computed thanks to a chi-square distribution with :math:`dof` degrees of freedom, where
-:math:`dof` is adjusted thanks to the boolean ResourceMap key (``LinearModelAnalysis-ChiSquareAdjust``).
-If key is set to *True*, degree of freedom is :math:`nClasses - 3`. Otherwise it is :math:`nClasses - 1`
-It is recommended to test with both *True* and *False* values."
+Usually, Chi-Square test applies for discrete distributions. Here we rely on
+the :class:`~openturns.FittingTest_ChiSquared` to check the normality.
+"
 
 // ---------------------------------------------------------------------
 

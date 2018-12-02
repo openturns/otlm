@@ -51,7 +51,6 @@ public:
       pthread_mutex_init(&OTLMResourceMap_InstanceMutex_, NULL);
 #endif
       ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
-      ResourceMap::SetAsBool("LinearModelAnalysis-ChiSquareAdjust", true);
 
       ResourceMap::SetAsBool("LinearModelStepwiseAlgorithm-normalize", true);
 
