@@ -21,7 +21,6 @@
 #include "otlm/LinearModelResult.hxx"
 #include "openturns/PersistentObjectFactory.hxx"
 #include "openturns/DatabaseFunction.hxx"
-#include "openturns/LinearModel.hxx"
 #include "openturns/OSS.hxx"
 #include "openturns/OTthread.hxx"
 
@@ -53,6 +52,7 @@ public:
       ResourceMap::SetAsUnsignedInteger("LinearModelAnalysis-Identifiers", 3);
 
       ResourceMap::SetAsBool("LinearModelStepwiseAlgorithm-normalize", true);
+      ResourceMap::SetAsString("LinearModelAlgorithm-DecompositionMethod", "QR");
 
       OTLMResourceMap_initialized_ = 1;
     }
