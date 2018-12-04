@@ -20,8 +20,10 @@
  */
 #include <fstream>
 #include "otlm/LinearModelAlgorithm.hxx"
-#include "otlm/LinearModelStepwiseAlgorithm.hxx"
 #include "openturns/SymbolicFunction.hxx"
+#include "openturns/DesignProxy.hxx"
+#include "openturns/LeastSquaresMethod.hxx"
+#include "openturns/LinearCombinationFunction.hxx"
 
 using namespace OT;
 
@@ -99,10 +101,65 @@ void LinearModelAlgorithm::run()
 {
   // Do not run again if already computed
   if (hasRun_) return;
+
+  const UnsignedInteger size = inputSample_.getSize();
+  const UnsignedInteger p = basis_.getSize();
+
+  // No particular strategy : using the full basis
   Indices indices(basis_.getSize());
   indices.fill();
-  LinearModelStepwiseAlgorithm step(inputSample_, basis_, outputSample_, indices, true, 2.0, 0);
-  result_ = step.getResult();
+
+  // Define the design proxy
+  DesignProxy proxy(inputSample_, basis_);
+
+  // Compute using a least squares method
+  LeastSquaresMethod algo;
+  algo = LeastSquaresMethod::Build(ResourceMap::GetAsString("LinearModelAlgorithm-DecompositionMethod"), proxy, indices);
+
+  // Solve linear system
+  Point coefficients(algo.solve(outputSample_.asPoint()));
+
+  // Define the metamodel
+  LinearCombinationFunction metaModel(basis_, coefficients);
+
+  // Get the GramInverse
+  const Point diagonalGramInverse(algo.getGramInverseDiag());
+
+  // Leverage = diagonal of the Hat matrix
+  Point leverages(algo.getHDiag());
+
+  // The design proxy evaluated on the basis function
+  Matrix fX(proxy.computeDesign(indices));
+
+  // Description of the basis
+  Description coefficientsNames(0);
+  for (UnsignedInteger k = 0; k < basis_.getSize(); ++k)
+  {
+    coefficientsNames.add(basis_[k].__str__());
+  }
+
+  // Residual sample
+  const Sample residualSample(outputSample_ - metaModel(inputSample_));
+  // Sigma2 
+  const Point sigma2(residualSample.computeRawMoment(2));
+
+  const Scalar factor = size * sigma2[0] / (size - p);
+  Sample standardizedResiduals(size, 1);
+  for(UnsignedInteger i = 0; i < size; ++i)
+  {
+    standardizedResiduals(i, 0) = residualSample(i, 0) / std::sqrt(factor * (1.0 - leverages[i]));
+  }
+
+  Point cookDistances(size);
+  for (UnsignedInteger i = 0; i < size; ++i)
+  {
+    cookDistances[i] = (1.0 / p) * standardizedResiduals(i, 0) * standardizedResiduals(i, 0) * (leverages[i] / (1.0 - leverages[i]));
+  }
+
+  result_ = LinearModelResult(inputSample_, basis_, fX, outputSample_, metaModel,
+                              coefficients, basis_.__str__(), coefficientsNames, residualSample,
+                              diagonalGramInverse, leverages, cookDistances);
+
   hasRun_ = true;
 }
 
